@@ -1,0 +1,41 @@
+\documentclass{article}
+
+\textheight = 24.5cm	% alto texto impreso
+\textwidth = 16.5cm	    % ancho texto impreso
+\topmargin = -2cm	    % margen superior 3-2=1cm
+\oddsidemargin = -0.5cm % margen izquierdo 4.5-0.5=4cm
+
+
+% OTROS PAQUETES
+\usepackage{enumerate}          % enumerados
+\usepackage[utf8]{inputenc}     % acentos sin codigo
+\usepackage{subfigure}          % subgraficos
+\usepackage{adjustbox}          % Ajustar tamaño de tablas (Figuras dentro de numeraciones)
+\usepackage{caption}            % Caption de las figuras
+\usepackage{multicol}           % columnas
+\usepackage{amsmath}    % paquete para usar \begin{equation}
+\usepackage{amsthm}		% Definiciones y teoremas
+\newtheorem{defi}{Definition}
+
+%% Numeracion con formato: Page 3 of 20
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+\pagestyle{fancy}
+\fancyhf[]{}
+
+\chead{Apunte}  %titulos de la página.
+\rfoot{Página \thepage \hspace{1pt} de \pageref{LastPage}}
+
+\renewcommand{\headrulewidth}{1pt}  % Grosor de la línea del encabezado.
+\renewcommand{\footrulewidth}{1pt}  % Grosor de la línea del pie de página. 
+%% End. Numeracion con formato.
+
+\usepackage{graphicx}
+\graphicspath{images/}
+\usepackage{blindtext}
+\usepackage{subfiles} % Best loaded last in the preamble
+
+\title{Subfiles package example}
+\author{Overleaf}
+\date{ }
