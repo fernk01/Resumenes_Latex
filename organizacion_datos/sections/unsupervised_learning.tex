@@ -1,0 +1,55 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Unsupervised Learning}
+    \begin{enumerate}
+        \item Unsupervised Learning
+        \begin{enumerate}
+            \item Clustering
+                \begin{enumerate}
+                    \item K-means.
+                    \item Clustering jerárquico.
+                    \item DBSCAN.
+                    \item Mezcla de Gaussianas.
+                \end{enumerate}
+            \item Association
+                \begin{enumerate}
+                    \item Reglas de asociación.
+                    \item algoritmo Apriori
+                \end{enumerate}
+                        
+            \item Dimensionality Reduction
+        \end{enumerate}
+    \end{enumerate}
+    
+    \subsection{Clustering}
+        En este tipo de problemas se trata de agrupar los datos. Agruparlos de tal forma que queden definidos N conjuntos distinguibles, aunque no necesariamente se sepa que signifiquen esos conjuntos. El agrupamiento siempre será por características similares.\\
+        
+        Cuantos clusters elegir:
+        \begin{enumerate}
+            \item Regla del codo (Elbow Method). fer
+            \item Método de Silhouette. fer 
+            \item Estadistica de Hopkins. fer
+        \end{enumerate}
+        
+        \paragraph{Regla del codo (Elbow Method)}
+            En el grafico buscamos un 'codo', el lugar donde baja abruptamente.
+            \begin{itemize}
+                \item Elegimos un rango, ejemplo 1 a 10, y para cada valor:
+                    \begin{itemize}
+                        \item Para cada centroide calculamos la distancia promedio.
+                    \end{itemize}
+            \end{itemize}
+    \subsubsection{K-means}
+        \begin{enumerate}
+            \item El usuario decide la cantidad de grupos.
+            \item K-Means elige al azar K centroides.
+            \item Decide qué grupos están más cerca de cada centroide. Esos puntos forman un grupo.
+            \item K-Means recalcula los centroides al centro de cada grupo		
+            \item K-Means vuelve a reasignar los puntos usando los nuevos centroides. Calcula nuevos grupos
+            \item K-means repite punto 4 y 5 hasta que los puntos no cambian de grupo. 
+        \end{enumerate}
+		 
+        Un ejemplo de este algoritmo seria el conjunto de datos Iris, donde se tiene 5 columnas (Largo de sépalo, Ancho de sépalo, Largo de pétalo, Ancho de pétalo, Especies). La columna Especies no la usamos por que estamos en Unsupervised Learning. Con las columnas restantes tenemos que buscar cuantos clusters hay y luego prodria compara con la columna Especies.
+	
+\end{document}  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
