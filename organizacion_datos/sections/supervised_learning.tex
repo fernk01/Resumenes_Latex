@@ -2,22 +2,21 @@
 
 \begin{document} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Supercised Learning}
+    El Supercised Learning se puede clasificar en dos grandes grupos:
     \begin{enumerate}
-        \item Supercised Learning
+        \item Classification:
         \begin{enumerate}
-            \item Classification:
-            \begin{enumerate}
-                \item Regresión logística.
-                \item K-Nearest Neighbors (KNN).
-                \item Decision Trees.
-                \item Random Forest.
-            \end{enumerate}
-            \item Regression.
-                \begin{enumerate}
-                    \item Linear Regression.
-                \end{enumerate}
+            \item Regresión logística.
+            \item K-Nearest Neighbors (KNN).
+            \item Decision Trees.
+            \item Random Forest.
         \end{enumerate}
+        \item Regression.
+            \begin{enumerate}
+                \item Linear Regression.
+            \end{enumerate}
     \end{enumerate}
+
     
     Existen métodos y algoritmos que se pueden usar en ambos problemas:
     \begin{table}[ht]
@@ -96,31 +95,34 @@
                     \item Es útil para datos incompletos.
                 \end{enumerate}
             
+            \underline{\textbf{Metricas:}}
+            \begin{itemize} 
+                \item 
+                    \textbf{Entropía:} \\
+                    La medida del desorden o la medida de la pureza. Básicamente, es la medida de la impureza o aleatoriedad de los datos.\\
 
-            \paragraph{$\oplus$ Entropía (Metrica):}
-                La medida del desorden o la medida de la pureza. Básicamente, es la medida de la impureza o aleatoriedad de los datos.\\
+                    Para calcular la entropia de $n$ clases se utiliza la fórmula:
+                    \begin{equation}
+                        H(S) = \sum_{i=1}^{n} -p_i \cdot  \log_2(p_i)
+                    \end{equation}
                 
-                Para calcular la entropia de $n$ clases se utiliza la fórmula:
-                \begin{equation}
-                    H(S) = \sum_{i=1}^{n} -p_i \cdot  \log_2(p_i)
-                \end{equation}
-            
-                Dónde:
-                \begin{itemize}
-                    \item $S$: es una lista de valores posibles.
-                    \item $p_i$: es la probabilidad de los valores.
-                    \item $i$: cada uno de los valores.
-                \end{itemize}
-            
-                Importante:
-                \begin{itemize}
-                    \item Para una muestra homogénea la entropia es igual a cero 0. Si no existe aleatoriedad, es decir, una moneda cargada.
-                    \item La máxima entropía viene dada por $\log_2(n)$, $n$ son los posibles valores de salida. Si $n=2$ (true o false) entonces, la máxima entropía es 1. O sea es la máxima incertidumbre, ejemplo moneda equilibrada.
-                \end{itemize}
-            
-            \paragraph{$\oplus$ Ganancia de la Información (Metrica):}
-                La ganancia de la información se aplica a cuantificar qué característica, de un conjunto de datos dados, proporciona la máxima información sobre la clasificación.
+                    Dónde:
+                    \begin{itemize}
+                        \item $S$: es una lista de valores posibles.
+                        \item $p_i$: es la probabilidad de los valores.
+                        \item $i$: cada uno de los valores.
+                    \end{itemize}
                 
+                    Importante:
+                    \begin{itemize}
+                        \item Para una muestra homogénea la entropia es igual a cero 0. Si no existe aleatoriedad, es decir, una moneda cargada.
+                        \item La máxima entropía viene dada por $\log_2(n)$, $n$ son los posibles valores de salida. Si $n=2$ (true o false) entonces, la máxima entropía es 1. O sea es la máxima incertidumbre, ejemplo moneda equilibrada.
+                    \end{itemize}
+
+                \item 
+                    \textbf{Ganancia de la Información:}
+                    La ganancia de la información se aplica a cuantificar qué característica, de un conjunto de datos dados, proporciona la máxima información sobre la clasificación.
+            \end{itemize}               
         
         \subsubsection{Random Forest - Bosques aleatorios.}
             Usa una técnica, o meta-algoritmo llamado Bootstrap aggregating. Se crean m tablas reducidas en atributos y para cada una de ellas entrenamos un árbol.
@@ -141,7 +143,7 @@
 		\paragraph{$\bullet$ Métricas Regresión:}
                 Las métricas de evaluación son medidas utilizadas para evaluar el rendimiento de un modelo de aprendizaje automático. En el caso de los problemas de regresión en el aprendizaje supervisado, estas métricas nos ayudan a determinar qué tan bien nuestro modelo está haciendo predicciones cuantitativas, como valores continuos.\\
 		
-    		Metricas para la regresión.
+    		\underline{Metricas para la regresión:}
     		\begin{itemize}
     			\item Raíz del error cuadrático medio \textbf{(RMSE)}.
     			\item Error absoluto medio \textbf{(MAE)}.
@@ -149,7 +151,7 @@
     			\item Suma Residual de los cuadrados \textbf{RSS}.
     		\end{itemize}
 		
-    		Para cada una de las métricas:
+    		\underline{Para cada una de las métricas:}
     		\begin{itemize}
     			\item $m:$ número de instancias
     			\item $h:$ Funcion hipotesis, es el modelo entrenado. En este caso regresion lineal.
