@@ -1,0 +1,42 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \section{Introducción} 
+        Resumen hecho por lcondoriz.
+
+    \section*{¿Qué es un sistema operativo?}
+        En un sistema operativo los usuarios interactúan con aplicaciones, estas
+        aplicaciones se ejecutan en un ambiente que es proporcionado por el sistema operativo. A su vez el sistema operativo hace de mediador para tener acceso al hardware del equipo.
+        La principal forma para lograr esto es mediante el concepto de \textbf{virtualización}. Esto significa que el sistema operativo toma un recurso físico (\textit{Ej. Memorias, procesadores, persistencia}) y lo transforma en algo mas general y fácil de usar.\\
+
+        \underline{El sistema operativo unix esta conformado por:}
+        \begin{itemize}
+            \item \textbf{Kernel:}
+                Es el programa central del sistema operativo que tiene control total sobre todo en el sistema. Facilita las interacciones entre el hardware y el software y gestiona los recursos como la memoria, el procesador, los dispositivos y las interrupciones. Es el pedazo de código que esta interactuando con privilegios absolutos sobre el harware y provee una interfaz a los usuarios
+            \item \textbf{Drivers:} 
+                Son programas que permiten al kernel comunicarse con los dispositivos de hardware y controlar su funcionamiento
+
+            \item \textbf{Syscall:}
+                Es la interfaz que permite a los programas de usuario solicitar servicios al kernel mediante llamadas al sistema
+            \item \textbf{System utilities:}
+                Son programas que realizan funciones básicas del sistema operativo como la administración de archivos, procesos, usuarios, redes, etc. Ejemplos ls, cat, mv, pwd...etc.
+            \item \textbf{Disk pkgs:}
+                Son paquetes de software que se instalan en el disco duro y que proporcionan funcionalidades adicionales al sistema operativo3.
+            \item \textbf{Entorno gráfico:}
+                Es la parte del sistema operativo que permite al usuario interactuar con el sistema mediante una interfaz visual basada en ventanas, iconos, menús, etc.
+            \item \textbf{Usuario:}
+                Es la persona que utiliza el sistema operativo y sus aplicaciones.
+        \end{itemize}
+
+        \underline{Modos de ejecución de un SO:}
+        \begin{itemize}
+            \item \textbf{Kernel mode:}
+                Es el modo privilegiado en el que se ejecuta el sistema operativo y tiene acceso completo y sin restricciones al hardware y a toda la memoria.
+                Gracias a la existencia del kernel, los programas son independientes del hardware subyacente.
+            \item \textbf{User mode:}
+                Es el modo restringido en el que se ejecutan las aplicaciones y tiene un espacio de direcciones virtuales privado y limitado. El modo usuario no puede acceder directamente al hardware ni a las direcciones de memoria reservadas para el sistema operativo. El modo usuario debe hacer llamadas al sistema para solicitar servicios al sistema operativo. El modo usuario es también llamado modo esclavo, estado problemático o modo restringido.
+        \end{itemize}
+      
+        
+
+\end{document}  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
