@@ -2,5 +2,42 @@
 
 \begin{document} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{La Memoria}
+    \subsection{La Abstracción del Espacio de Direcciones: Introducción}
+    
+    \subsection{El Espacio de Direcciones o Address Space}
+        El Address Space de un proceso contiene todo el estado de la memoria de un programa en ejecución. Es la abstracción para la memoria.\\
+
+        El Espacio de Direcciones o Address Space es la abstracción fundamental sobre la memoria de una computadora. Consiste en dar un mecanismo fácil de usar a lo usuarios de la computadora.
+
+        Cuando se describe el espacio de direcciones se está describiendo la abstracción que el Sistema Operativo le proporciona al programa en ejecución sobre la memoria de la computadora.
+
+        Cuando el Sistema Operativo implementa esta abstracción, se dice que el O.S. está Virtualizando la Memoria ya que el programa en ejecución cree que está cargado en un lugar particular de la memoria (la posición 0 dirección virtual o virtual address) y tiene potencialmente toda la memoria para él.\\
+        
+        Metas principales de la virtualización es :
+        \begin{itemize}
+            \item transparencia.
+            \item eficiencia: tiempo y espacio.
+            \item protección: proteger a los procesos unos de otros como también proteger al sistema operativo de los procesos.
+                \begin{itemize}
+                    \item aislamiento: cada proceso tiene su propio espacio de direcciones aislado.
+                \end{itemize} 
+        \end{itemize}
+
+
+    \subsection{El API de Memoria}
+        \subsubsection{Tipos de Memoria}
+            \begin{itemize}
+                \item \textbf{Memoria de stack:} su reserva y liberación es manejada implícitamente por el compilador en nombre del programador por esta razón a veces también se denomina memoria automática.
+                \item \textbf{Memoria de heap:} es la memoria que se reserva y libera explícitamente por el programador.
+            \end{itemize}
+
+    \subsection{Address Translation}
+        Existen dos puntos importantes a la hora de virtualizar memoria:
+        \begin{itemize}
+            \item flexibilidad
+            \item eficiencia
+        \end{itemize}
+
+        Para lograr esto se usa la técnica de \textbf{address translation} o traducción de direcciones (Hardware-Based Address Translation).\\
 
 \end{document}  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

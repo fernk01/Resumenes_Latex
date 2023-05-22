@@ -1,0 +1,73 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Preguntas}
+    \subsection*{El proceso}
+        \begin{enumerate}
+            \item \textbf{Describa que es un proceso: qué abstrae, cómo lo hace, cuál es su estructura. Además explique el mecanismo por el cual el proceso cree tener la memoria completa de la máquina cuando en realidad solo tiene lo necesario para su funcionamiento.}\\
+                Es un proceso es sólo un programa en ejecución. Un proceso incluye:
+                \begin{itemize}
+                    \item Los Archivos abiertos
+                    \item Las señales(signals) pendientes
+                    \item Datos internos del kernel
+                    \item El estado completo del procesador
+                    \item Un espacio de direcciones de memoria
+                    \item Uno o más hilos de ejecución. Cada thread contiene
+                    \begin{itemize}
+                        \item Un contador de programa
+                        \item Un Stack
+                        \item Un Conjunto de Registros
+                        \item Una sección de datos globales
+                    \end{itemize}
+                \end{itemize}
+
+                Abstrae los recursos del sistema como la CPU, la memoria y los dispositivos de entrada/salida. La abstracción del proceso provee ejecución, aislamiento y protección.
+
+                El mecanismo es la virtualización de memoria, que es una abstracción por la cual la memoria física puede ser compartida por diversos procesos.
+            \item \textbf{Cuál/cuáles mecanismos utiliza el kernel para garantizar el aislamiento entre procesos. Estos mecanismos están relacionados con el hardware, porque deben existir y donde se ve su funcionamiento.}\\
+                El kernel utiliza la virtualización de memoria para garantizar el aislamiento entre procesos.
+            \item \textbf{¿Que es la virtuaizacion?}\\
+                Es crear una abstracción que haga que un dispositivo de hardware sea mucho más fácil de utilizar.
+                Existen dos tipos de virtualización:
+                \begin{itemize}
+                    \item \textbf{Virtualización de memoria:} Le hace creer al proceso que este tiene toda la memoria disponible.
+                        \begin{itemize}
+                            \item Protección de Memoria: Memoria Virtual.
+                            \item Traducción de Direcciones.
+                        \end{itemize} 
+                    \item \textbf{Virtualizacion de procesador:} Consiste en dar la ilusión de la existencia de un único procesador para cualquier programa que requiera de su uso.
+                    
+                    De esta forma, se prove:
+                    \begin{itemize}
+                        \item Simplicidad en la programación.
+                        \item Aislamiento frente a Fallas.
+                    \end{itemize}
+                \end{itemize}
+            \item \textbf{¿Cuales son los mecanismos de protección de memoria?}\\
+                La memoria virtual es una asbtracción por al cual la memoria física puede ser compartida por diversos procesos.
+
+                Un componente clave de la memoria virtual son las direcciones virtuales, con las direcciones virtuales, para cada proceso su memoria inicia en el mismo lugar, la dirección 0. 
+                
+                El hardware traduce la dirección virtual a una dirección física de memoria, se realiza por hardware (MMU).
+
+            \item \textbf{¿Que es el address space?¿Que partes tiene?¿Para qué sirve?. Describa el/los mecanismos para crear un proceso en unix, sus sycalls, ejemplifique.}\\
+                El address space es el espacio de direcciones virtuales que un proceso puede utilizar.  Está dividido en varias áreas: text, data, stack y heap.
+                El propósito del address space es mantener separados los procesos y evitar que un proceso escriba en los datos de otro proceso.\\
+                
+                Para la creacion de un proceso:
+                \begin{itemize}
+                    \item única forma es llamando a la system call \textit{fork}.
+                \end{itemize}
+            \item 
+            
+        \end{enumerate}
+    \subsection*{La Memoria}
+        \begin{enumerate}
+            \item \textbf{¿Que es la memoria virtual? ¿Qué mecanismos conoce, describa los tres que a usted le parezcan más relevantes?}\\
+            
+            \item 
+        \end{enumerate}
+    \subsubsection*{Definiciones sueltas}
+        El sistema operativo tiene que poder configurar el hardware de forma tal que cada proceso pueda leer y escribir solo su propia memoria.
+\end{document}  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
