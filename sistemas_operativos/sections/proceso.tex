@@ -3,7 +3,7 @@
 \begin{document} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{El Proceso}
-    \subsection*{De Programa a Proceso}
+    \subsection{De Programa a Proceso}
         \begin{lstlisting}[language=Python, caption=hola mundo.]
             #include <stdio.h>
 
@@ -29,7 +29,7 @@
             \caption{Proceso de compilacion.}
         \end{figure}
 
-    \subsection*{Un Programa en Unix}
+    \subsection{Un Programa en Unix}
         Un programa es un archivo que posee toda la información de como construir un proceso en memoria [KER](cap. 6). Un programa contiene:
         \begin{enumerate}
             \item \textbf{Formato de Identificación Binaria:} Cada archivo ejecutable posee META información describiendo el formato ejecutable. Esto permite al kernel interpretar la información contenida en el mismo archivo.
@@ -59,7 +59,7 @@
             \item Proteger al SO y al Programa.
         \end{enumerate}
 
-    \subsection*{El Proceso}
+    \subsection{El Proceso}
         Un proceso es sólo un programa en ejecución. Un proceso incluye:
         \begin{itemize}
             \item Los Archivos abiertos.
@@ -92,7 +92,7 @@
             \caption{Proceso.}
         \end{figure}
 
-    \subsection*{La Virtualización}
+    \subsection{La Virtualización}
         Crear una abstracción que haga que un dispositivo de hardware sea mucho más fácil de utilizar.
         \begin{itemize}
             \item Virtualización de memoria.
@@ -187,28 +187,28 @@
                 \item Que privilegios tiene ese proceso.
             \end{itemize}
 
-        \subsection*{El Proceso: por dentro}
-            La idea detras de la abstracción es como virtualizar una CPU, es decir, como hacer para que una única procesador pueda ejecutar múltiples procesos.\\
+    \subsection{El Proceso: por dentro}
+        La idea detras de la abstracción es como virtualizar una CPU, es decir, como hacer para que una única procesador pueda ejecutar múltiples procesos.\\
 
-            Un Proceso necesita permisos del Kernel del SO para:
-            \begin{itemize}
-                \item Acceder a memoria perteneciente a otro proceso.
-                \item Antes de escribir o leer en el disco.
-                \item Antes de cambiar algún seteo del hardware del equipo.
-                \item Antes de enviar información a otro proceso.
-            \end{itemize}
+        Un Proceso necesita permisos del Kernel del SO para:
+        \begin{itemize}
+            \item Acceder a memoria perteneciente a otro proceso.
+            \item Antes de escribir o leer en el disco.
+            \item Antes de cambiar algún seteo del hardware del equipo.
+            \item Antes de enviar información a otro proceso.
+        \end{itemize}
 
 
-        \subsection*{El API de Procesos}    
-            Que debe incluir cualquier interfaz de un SO:
-            \begin{itemize}
-                \item Creación (Create): todo sistema operativo debe incluir una forma de crear un nuevo proceso.
-                \item Destrucción(Destroy): así como existe una interface para crear un proceso debe existir una interface para destruirlo por la fuerza.
-                \item Espera (wait): A veces es útil esperar a que un proceso termine su ejecución por ende algún tipo de interface de espera debe ser provista.
-                \item Control Vario (Miscellaneous Control): Además de esperar o matar a un proceso otros tipos de operaciones deben poder realizarse. Por ejemplo, suspender su ejecución por un tiempo y luego reanudarla.
-                \item Estado (Status) : Tiene que existir una forma de saber sobre la situación del proceso y su estado. Cuánto hace que se está ejecutando, en que estado se encuentra, etc.
-            \end{itemize}
+    \subsection{El API de Procesos}    
+        Que debe incluir cualquier interfaz de un SO:
+        \begin{itemize}
+            \item Creación (Create): todo sistema operativo debe incluir una forma de crear un nuevo proceso.
+            \item Destrucción(Destroy): así como existe una interface para crear un proceso debe existir una interface para destruirlo por la fuerza.
+            \item Espera (wait): A veces es útil esperar a que un proceso termine su ejecución por ende algún tipo de interface de espera debe ser provista.
+            \item Control Vario (Miscellaneous Control): Además de esperar o matar a un proceso otros tipos de operaciones deben poder realizarse. Por ejemplo, suspender su ejecución por un tiempo y luego reanudarla.
+            \item Estado (Status) : Tiene que existir una forma de saber sobre la situación del proceso y su estado. Cuánto hace que se está ejecutando, en que estado se encuentra, etc.
+        \end{itemize}
 
-            Estas son las acciones básicas que todo SO debe proveer sobre la \textbf{abstracción de la CPU.}
+        Estas son las acciones básicas que todo SO debe proveer sobre la \textbf{abstracción de la CPU.}
 
 \end{document}  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
