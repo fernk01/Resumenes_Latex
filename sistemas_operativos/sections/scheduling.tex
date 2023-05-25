@@ -2,18 +2,18 @@
 
 \begin{document} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Scheduling o Planificación de Procesos}
-    \subsection*{Scheduling o Planificación de Procesos}
+    \subsection{Scheduling o Planificación de Procesos}
         \textbf{time slice o time quantum:} período de tiempo que el kernel le otorga a un proceso. Para S.O de tipo Time Sharing.
 
-    \subsection*{Time Sharing}
+    \subsection{Time Sharing}
         Los Sistemas Operativos llamados \textbf{time sharing} surgen de la idea de los programadores de tener \textit{“toda una computadora para uno mismo”}.\\
         
         \textbf{Planificador o Scheduler:} Es un componente del sistema operativo que se encarga de decidir qué proceso se ejecuta en cada momento.
 
-    \subsection*{Números y el Workload}
+    \subsection{Números y el Workload}
         El \textbf{Workload} es carga de trabajo de un proceso corriendo en el sistema.
 
-    \subsection*{Métricas de Planificación}
+    \subsection{Métricas de Planificación}
         políticas de planificación o scheduling
 
         \begin{enumerate}
@@ -28,7 +28,7 @@
                 \end{equation}
         \end{enumerate}
     
-    \subsection*{Políticas Para Sistemas Mono-procesador}
+    \subsection{Políticas Para Sistemas Mono-procesador}
         Se estudiarán las políticas de planificación para un sistema que posea un solo procesador o CPU con un solo núcleo de procesamiento.
         \begin{enumerate}
             \item \textbf{First In, First Out (FIFO)}
@@ -53,7 +53,7 @@
             
             Con este método de planificación, la métrica de \textit{response} mejora, pero la de \textit{turnaround} empeora, ya que se atrasa el retorno de todos los programas.
 
-    \subsection*{Multi-Level Feedback Queue (MLFQ)}
+    \subsection{Multi-Level Feedback Queue (MLFQ)}
         Multi-Level Feedback Queue (MLFQ) es un algoritmo de planificación de procesos en sistemas operativos. Este algoritmo utiliza múltiples colas de prioridad para asignar la CPU a los procesos. Los procesos se colocan en la cola de prioridad más baja al llegar y se ejecutan hasta que se bloquean o terminan. Si un proceso no se completa en la cola de prioridad más baja, se mueve a la siguiente cola de prioridad más alta.\\
 
         MLQF intenta atacar principalmente 2 problemas:
@@ -62,7 +62,7 @@
             \item Intenta hacer que el sistema tenga un tiempo de respuesta interactivo para los usuarios.(Minimizar el response time)
         \end{itemize}
 
-    \subsection*{MLQF: Las reglas básicas}
+    \subsection{MLQF: Las reglas básicas}
         Las 2 reglas básicas de MLFQ:
         \begin{itemize}
             \item \textbf{REGLA 1:} si la prioridad (A) es mayor que la prioridad de (B), (A) se ejecuta y (B) no.
@@ -78,7 +78,7 @@
 
         PROBLEMA Con este Approach de MLFQ \textbf{Starvation o indefiniciónes}: Si una tarea es muy larga, puede que nunca llegue a ejecutarse. Para solucionar esto se utiliza la REGLA 5.
 
-    \subsection*{Planificación: Proportional Share}
+    \subsection{Planificación: Proportional Share}
         La planificación por proporcional share es un tipo de planificación de procesos que trata de garantizar que cada proceso obtenga un cierto porcentaje de tiempo de CPU según su prioridad. Una forma de implementar este tipo de planificación es mediante el lottery scheduling, que consiste en realizar sorteos periódicos para determinar qué proceso debe ejecutarse a continuación; los procesos que deben ejecutarse más a menudo deben tener más posibilidades de ganar el sorteo.
 
         La ventaja de este método es que utiliza la aleatoriedad para evitar casos extremos, reducir el estado necesario y acelerar la decisión. La desventaja es que no garantiza un reparto exacto del tiempo de CPU, sino solo probabilístico.

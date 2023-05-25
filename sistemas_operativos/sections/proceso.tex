@@ -8,11 +8,11 @@
             #include <stdio.h>
 
             int main() {
-            printf("hello, world\n");
+                printf("hello, world\n");
             }
         \end{lstlisting}
-    
-        La Compilación:
+
+        \underline{La Compilación:}
         \begin{enumerate}
             \item \textbf{La fase de procesamiento}. El preprocesador (cpp) sustituye las macros (\#) y se eliminan los comentarios del código fuente. El resultado es un archivo de código C preprocesado con extensión .i .
             \item \textbf{La fase de compilacion}. El compilador (cc) traduce el programa .i a un archivo de texto .s que contiene un programa en lenguaje assembly.
@@ -30,11 +30,13 @@
         \end{figure}
 
     \subsection{Un Programa en Unix}
-        Un programa es un archivo que posee toda la información de como construir un proceso en memoria [KER](cap. 6). Un programa contiene:
+        Un programa es un archivo que posee toda la información de como construir un proceso en memoria [KER](cap. 6).\\
+
+        \underline{Un programa contiene:}
         \begin{enumerate}
             \item \textbf{Formato de Identificación Binaria:} Cada archivo ejecutable posee META información describiendo el formato ejecutable. Esto permite al kernel interpretar la información contenida en el mismo archivo.
             
-            Formatos en Unix:
+            \underline{Formatos en Unix:}
             \begin{itemize}
                 \item \textbf{OUT} Assembler Output $\rightarrow$ Salida del compilador de C
                 \item \textbf{COFF} Common Object File Format $\rightarrow$ Utilizado en las versiones de System V compartidas, y símbolos de depuración en sistemas Unix.
@@ -87,7 +89,7 @@
         
         \begin{figure}[bh]
             \centering
-            \includegraphics[scale=0.33]{../images/proceso.png}
+            \includegraphics[scale=0.5]{../images/proceso.png}
             \label{fig:proceso}
             \caption{Proceso.}
         \end{figure}
@@ -197,7 +199,6 @@
             \item Antes de cambiar algún seteo del hardware del equipo.
             \item Antes de enviar información a otro proceso.
         \end{itemize}
-
 
     \subsection{El API de Procesos}    
         Que debe incluir cualquier interfaz de un SO:

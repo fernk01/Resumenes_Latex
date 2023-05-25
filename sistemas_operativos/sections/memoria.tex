@@ -3,7 +3,18 @@
 \begin{document} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{La Memoria}
     \subsection{La Abstracción del Espacio de Direcciones: Introducción}
-    
+        La memoria física puede ser imaginada como un arreglo de direcciones de memoria una detrás de otra.
+        \\
+        Esta “abstracción” es manejable mientras la cantidad de memoria necesitada esta en un rango “manejable” y cual es ese rango. En DOS (Disk Operating System) ese rango lo daba la elección de una arquitectura determinada, la del 8086, que permite tener direcciones de memoria de hasta 220
+        bits, es decir 1 MegaByte de memoria.
+
+        \begin{figure}[bh]
+            \centering
+            \includegraphics[scale=0.45]{../images/address_traslation_01.png}
+            \label{fig:address_traslation_01}
+            \caption{Address traslation.}
+        \end{figure}
+
     \subsection{El Espacio de Direcciones o Address Space}
         El Address Space de un proceso contiene todo el estado de la memoria de un programa en ejecución. Es la abstracción para la memoria.\\
 
@@ -22,7 +33,6 @@
                     \item aislamiento: cada proceso tiene su propio espacio de direcciones aislado.
                 \end{itemize} 
         \end{itemize}
-
 
     \subsection{El API de Memoria}
         \subsubsection{Tipos de Memoria}

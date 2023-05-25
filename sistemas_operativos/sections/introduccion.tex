@@ -4,10 +4,8 @@
     \section{Introducción} 
         Resumen hecho por lcondoriz.
 
-    \section*{¿Qué es un sistema operativo?}
-        En un sistema operativo los usuarios interactúan con aplicaciones, estas
-        aplicaciones se ejecutan en un ambiente que es proporcionado por el sistema operativo. A su vez el sistema operativo hace de mediador para tener acceso al hardware del equipo.
-        La principal forma para lograr esto es mediante el concepto de \textbf{virtualización}. Esto significa que el sistema operativo toma un recurso físico (\textit{Ej. Memorias, procesadores, persistencia}) y lo transforma en algo mas general y fácil de usar.\\
+    \section{¿Qué es un sistema operativo?}
+        Un sistema operativo es el software encargado de hacer que la ejecución de los programas parezca elgo fácil. La principal forma para lograr esto es mediante el concepto de \textbf{virtualización}. Esto significa que el sistema operativo toma un recurso físico (\textit{Ej. Memorias, procesadores, persistencia}) y lo transforma en algo mas general y fácil de usar.\\
 
         \underline{El sistema operativo unix esta conformado por:}
         \begin{itemize}
@@ -28,6 +26,20 @@
                 Es la persona que utiliza el sistema operativo y sus aplicaciones.
         \end{itemize}
 
+        \underline{Un sistema operativo deberá virtualizar varios recursos físicos:}
+        \begin{itemize}
+            \item El procesador.
+            \item La memoria.
+            \item La persistencia (dispositivos de almacenamiento).
+        \end{itemize}
+
+        \underline{Un sistema operativo cumple simultáneamente tres roles:}
+        \begin{itemize}
+            \item Referee: gestiona recursos compartidos
+            \item Ilusionista: abstracción del hardware
+            \item Pegamento: servicios comunes
+        \end{itemize}
+
         \underline{Modos de ejecución de un SO:}
         \begin{itemize}
             \item \textbf{Kernel mode:}
@@ -35,8 +47,6 @@
                 Gracias a la existencia del kernel, los programas son independientes del hardware subyacente.
             \item \textbf{User mode:}
                 Es el modo restringido en el que se ejecutan las aplicaciones y tiene un espacio de direcciones virtuales privado y limitado. El modo usuario no puede acceder directamente al hardware ni a las direcciones de memoria reservadas para el sistema operativo. El modo usuario debe hacer llamadas al sistema para solicitar servicios al sistema operativo. El modo usuario es también llamado modo esclavo, estado problemático o modo restringido.
-        \end{itemize}
-      
-        
+        \end{itemize}    
 
 \end{document}  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
