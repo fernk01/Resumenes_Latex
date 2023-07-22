@@ -1,0 +1,82 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Cola de Prioridad} 
+    El orden de salida no es el de entrada, sino que está dado por una prioridad. Video YouTube \cite{Cola_de_prioridad_youtube} y Video YouTube Ejercicios \cite{Cola_de_prioridad_ejercicios_youtube}.
+
+    \paragraph{Heaps: Propiedad de heap (de máximos)}
+    Un árbol binario AB tiene propiedad de heap si la reíz es más grande (o igual) que sus dos hijos, y estos también son heaps.
+        
+    \paragraph{Heaps: Representación de árbol izquierdista}
+    Un árbol izquierdista es aquel que tiene todos los niveles completos, salvo a lo sumo el último, que debe completarse se izquierda a derecha.
+
+    \paragraph{Heaps: Representación en arreglos}
+    Árbol izquierdista con propiedad de heap $\rightarrow$ En un arreglo como si fuera el recorrido por niveles del AB.\\
+
+
+    La implemtacion de una cola de prioridad se hace atraves de un un arreglo pero se usa la representan de árbol como interpresación.
+
+    \subsection{Heap: Representación en arreglo - Posiciones}
+        Si estoy en la posición $i$:
+        \begin{itemize}
+            \item Posiciones de sus hijos:
+                \begin{itemize}
+                    \item hijo izquierdo: $2i + 1$
+                    \item hijo derecho: $2i + 2$
+                \end{itemize}
+            \item Posición de su padre: $\frac{i-1}{2}$
+        \end{itemize}
+
+    \subsection{Operaciones sobre Heaps: Upheap y Downheap}
+        \underline{Encolar:}
+        \begin{itemize}
+            \item Al encolar, guardamos el elemento al final.
+            \item Aplicamos \textbf{Upheap:}
+                \begin{itemize}
+                    \item Si el elemento es más grande que su padre, entonces se intercambian, y se aplica Upheap al padre.
+                    \item Sino, termina.
+                \end{itemize}
+        \end{itemize}
+
+        \underline{Desencolar:}
+        \begin{itemize}
+            \item Llevamos el último al primer lugar (podemos intercambiar)
+            \item Aplicamos \textbf{Downheap:}
+                \begin{itemize}
+                    \item Si alguno de los hijos es más grande que el elemento, entonces intercambiar, con el mas más grande de ellos.
+                    \item Sino, termina.
+                \end{itemize}
+        \end{itemize}
+
+        \underline{Complejidad:}
+        \begin{itemize}
+            \item Upheap: $O(log(n))$
+            \item Downheap: $O(log(n))$
+            \item Ver el máximo: $O(1)$
+            \item Encolar: $O(log(n))$
+            \item Desencolar: $O(log(n))$
+        \end{itemize}
+
+        \subsection{Heapify: Cómo construir un heap desde un arreglo}
+            Si tengo un arreglo de $n$ elementos, cómo creo un heap con dichos elementos.\\
+
+            \underline{Complejidad:} $O(n)$
+        
+        \subsection{Heapsort}
+            El método requiere dos etapas. Video YouTube \cite{Heapsort_youtube}.
+            \begin{enumerate}
+                \item Construir un heap con los elementos del arreglo.
+                    \begin{itemize}
+                        \item heap de maximos si queremos ordenar de menor a mayor (creciente).
+                        \item heap de minimos si queremos ordenar de mayor a menor (decreciente).
+                    \end{itemize}
+                \item Desencolar los elementos del heap. Se lleva a cabo el intercambio del primer elemento (posición inicial del heap) con el último, y la reconstrucción del heap en una zona que se disminuye en uno en cada etapa. Esta parte concluye cuando la zona del heap queda reducida a 1.
+            \end{enumerate}
+
+            \paragraph{Complejidad:} Se termina haciendo n veces Downheap (desde la raíz siempre) $O(n \cdot log(n))$
+
+
+
+
+
+\end{document}  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

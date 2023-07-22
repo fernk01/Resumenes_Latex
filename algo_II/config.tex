@@ -1,0 +1,122 @@
+\documentclass{article}
+%%  Configuracion de la pagina.
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+%%
+%% Dimensiones de la pagina.
+% \textheight = 24cm	% alto texto impreso
+% \textwidth = 16cm	    % ancho texto impreso
+% \topmargin = -2cm	    % margen superior 3-2=1cm
+% \oddsidemargin = -0.5cm % margen izquierdo 4.5-0.5=4cm
+%%
+\usepackage{graphicx}
+%%  
+\usepackage{subfiles} % Best loaded last in the preamble
+%%  Para tener una bibliografia.
+\usepackage{csquotes}
+\usepackage{biblatex} %Imports biblatex package
+\addbibresource{bibliography.bib} %Import the bibliography file
+\nocite{*}
+%%
+%% Numeracion con formato: Page 3 of 20
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+\pagestyle{fancy}
+\fancyhf[]{}
+
+\chead{Apunte de Sistemas Operativos FIUBA}  %titulos de la página.
+\rfoot{Página \thepage \hspace{1pt} de \pageref{LastPage}}
+
+\renewcommand{\headrulewidth}{1pt}  % Grosor de la línea del encabezado.
+\renewcommand{\footrulewidth}{1pt}  % Grosor de la línea del pie de página. 
+%%
+%% Referecias a las secciones.
+\usepackage{hyperref}
+%%
+%% Configuracion para el indice.
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }  
+\urlstyle{same}
+%%
+%% para usar icono de checkmark
+\usepackage{tikz}
+\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;} 
+%% Cambiar colo a las section y subsection
+\usepackage{xcolor}
+\usepackage{sectsty}
+\chapterfont{\color{blue}}  % sets colour of chapters
+\sectionfont{\color{blue}}  % sets colour of sections
+\subsectionfont{\color{purple}}  % sets colour of sections
+\subsubsectionfont{\color{brown}}  % sets colour of sections
+%% 
+\hbadness=100000 % No warnings for underfull or overfull boxes (ignora este error en visual studio code)
+%%  Titulo para la portada.
+\title{Apunte de Sistemas Operativos FIUBA}
+\author{lcondoriz }
+\date{May 2023}
+%%
+%% INICIO: Octave Code
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+% Agregamos los acentos manualmente.
+\lstset{
+    breaklines=true,
+    %
+    extendedchars = true,
+    literate =
+    {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+    {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+    {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+    {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
+    {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+    {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+    {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
+    {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
+    {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
+    {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
+    {€}{{\EUR}}1 {£}{{\pounds}}1 {ñ}{{\~n}}1,
+}
+
+\lstset{style=mystyle}
+\renewcommand\lstlistingname{Script} % Cambia el nombre de caption
+
+
+%% FIN: Octave Code

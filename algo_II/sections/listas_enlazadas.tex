@@ -1,0 +1,40 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Lista Enlazada} 
+
+    Una lista enlazada es una estructura de datos que consiste en una secuencia de nodos, en los cuales cada nodo tiene un puntero al siguiente nodo de la lista. La lista enlazada es una estructura de datos dinámica, ya que el tamaño de la lista puede crecer y decrecer durante la ejecución del programa.\\
+
+    \underline{Los requisitos que debe cumplir una lista enlazada son:}
+    \begin{itemize}
+        \item Cada nodo debe contener al menos un dato y un puntero al siguiente nodo (o al anterior y al siguiente, en el caso de las listas doblemente enlazadas).
+
+        \item El primer nodo debe tener un puntero nulo en su parte anterior (o en ambas partes, si se trata de una lista circular).
+        \item El último nodo debe tener un puntero nulo en su parte posterior (o apuntar al primer nodo, si se trata de una lista circular).
+        \item Los nodos deben estar conectados entre sí mediante los punteros, sin dejar nodos sueltos o desconectados.
+        
+    \end{itemize}
+
+    \underline{Tipos de listas enlazadas:}
+    \begin{enumerate}
+        \item \textbf{Lista enlazada simple:} Cada nodo tiene un puntero al siguiente nodo de la lista.
+        \item \textbf{Lista enlazada doble:} Cada nodo tiene un puntero al nodo anterior y al siguiente.
+        \item  \textbf{Lista enlazada ligada circular:} El último nodo apunta al primero, y el primero al último.
+    \end{enumerate}
+
+    \subsection{Operaciones}
+        \begin{itemize}
+            \item \textbf{Insertar:} Inserta un elemento en la lista.
+            \item \textbf{Eliminar:} Elimina un elemento de la lista.
+            \item \textbf{Buscar:} Busca un elemento en la lista.
+            \item \textbf{Mostrar:} Muestra los elementos de la lista.
+        \end{itemize}
+
+    \subsection{Caracteristicas}
+        \begin{itemize}
+            \item \textbf{Acceso aleatorio:} No se puede acceder a un elemento de la lista de forma directa, sino que hay que recorrer la lista desde el principio hasta el elemento deseado.
+            \item \textbf{Inserción y eliminación:} La inserción y eliminación de elementos en una lista enlazada es muy rápida, ya que no hay que desplazar elementos como en el caso de los arrays.
+            \item \textbf{Memoria:} La memoria necesaria para una lista enlazada es mayor que la necesaria para un array, ya que cada nodo de la lista debe almacenar el puntero al siguiente nodo.
+        \end{itemize}
+        
+\end{document}  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
