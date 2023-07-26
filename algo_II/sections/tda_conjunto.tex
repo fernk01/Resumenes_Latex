@@ -28,9 +28,25 @@
         
         La diferencia entre un árbol binario y uno de búsqueda es que el primero no tiene ningún orden específico para organizar los elementos, mientras que el segundo sí lo tiene. Un árbol binario puede tener cualquier forma y distribución de los nodos, siempre que cada uno tenga como máximo dos hijos. Un árbol binario de búsqueda tiene una forma y distribución determinadas por la relación de orden entre los elementos.
 
+        % Cargamos la imagen
+        \begin{figure}[ht]
+            \centering
+            \includegraphics[width=0.3\textwidth]{images/arboles/arbol_binario.png}
+            \caption{Árbol binario} 
+        \end{figure}
+
+        La única condición que debe cumplir un árbol binario es que cada nodo puede tener como máximo dos hijos. No hay ninguna restricción sobre el orden de los elementos, ni sobre la forma del árbol.\\
+
     \subsection{Árbol binario de búsqueda ABB}
         Un árbol binario de búsqueda también llamado BST (acrónimo del inglés Binary Search Tree) es un tipo particular de árbol binario que presenta una estructura de datos en forma de árbol.
 
+        % Cargamos la imagen
+        \begin{figure}[ht]
+            \centering
+            \includegraphics[width=0.3\textwidth]{images/arboles/ABB.png}
+            \caption{Árbol binario de búsqueda} 
+        \end{figure}
+        
         \subsubsection{Propiedad de ABB:} 
             Un ABB es un AB donde (esto es lo que lo diferencia de un AB común):
             \begin{itemize}
@@ -79,8 +95,8 @@
                 \item Profundidad: En los recorridos en profundidad se procesa cada nodo, su subárbol izquierdo y el derecho. Se usa una Pila.
                     \begin{itemize}
                         \item Preorden. $\Theta(n)$
-                        \item Postorder $\Theta(n)$
                         \item Inorder $\Theta(n)$
+                        \item Postorder $\Theta(n)$
                     \end{itemize}
                 \item Anchura o por niveles $\Theta(n)$: En los recorridos en anchura se procesa cada nodo por niveles. Se usa una Cola.
             \end{itemize} 
@@ -118,6 +134,8 @@
             \caption{Rotaciones Árbol AVL}
             \label{fig:AVL} 
         \end{figure}
+        
+    \newpage
 
     \subsection{Árboles multivía o de m vías}
         Estas estructuras mejoran la eficiencia del almacenamiento habilitando la posibilidad de tener varios datos o claves en el mismo nodo.
