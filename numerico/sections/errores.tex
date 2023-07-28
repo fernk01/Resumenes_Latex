@@ -1,0 +1,22 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Errores den los métodos numéricos} 
+    \subsection{Errores de adsoluto y relativo}
+    Supongamos que obtenemos de alguna forma (por ejemplo, una medición) cierto valor $\overline{m}$. Sabemos que el valor $\ll  exacto \gg $ de dicho valor es $m$.
+    \begin{itemize}
+        \item Error adsoluto: $|e_a| = |m - \overline{m}|$
+        \item Error relativo: $|e_r| = \frac{|m - \overline{m}|}{|m|} = \frac{|e_a|}{|m|}$, (siempre que $m \neq 0$)
+    \end{itemize}        
+
+    \subsection{Condición de un problema}
+        El primer caso, el análisis de la propagación de los errores inherentes, permite establecer si el problema está \textit{bien o mal condicionado}.
+        \begin{itemize}
+            \item \textbf{Bien condicionado:} Si al analizar un pequeño cambio (o perturbación)
+            en los datos el resultado se modifica levemente (o tiene un pequeño cambio).
+            \item \textbf{Mal condicionado:} Si, por el contrario, el resultado se modifica notablemente o se vuelve oscilante.
+        \end{itemize}
+
+        Si está mal condicionado, no hay forma de corregirlo cambiando el algoritmo pues el problema está en el modelo matemático.
+
+\end{document}  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
