@@ -96,128 +96,164 @@
             \end{figure}
 
             \newpage
-
-            \subsubsection{Complejidad}
+        
+        \subsubsection{Lista de adyacencia}
+            Una \textbf{lista de adyacencia} es una representación de todas las aristas o arcos de un grafo en una lista. 
+             % Cargamos la imagen
+             \begin{figure}[ht]
+                \centering
+                \includegraphics[width=0.8\textwidth]{images/grafos/grafo_lista_adyacencia.jpg}
+                \caption{Grafo dirigido Lista de Adyacencia} 
+            \end{figure}
+        \subsubsection{Complejidad}
     
-                \begin{table}[ht]
-                    \centering
-                    \begin{tabular}{|l|l|l|l|}
-                    \hline
-                        & M. Incidencia & M. Adyacencia & Lista Adyacencia\\ \hline
-                        \textbf{Espacio:} & $O(V \cdot E)$ & $O(V^2)$ & $O(V + E)$\\ \hline
-                        \textbf{Agregar un vértice:}  & $O(V \cdot E)$ & $O(V^2)$ & $O(1)$ o $O(V)$\\ \hline
-                        \textbf{Agregar una arista:} & $O(V \cdot E)$ & $O(1)$ & $O(V)$ \\ \hline
-                        \textbf{Si dos vértices son adyacentes:} & $O(E)$ & $O(1)$ & $O(V)$\\ \hline
-                        \textbf{Obtener los abyacentes de un vértices:} & $O(E)$ & $O(V)$ & $O(V)$\\ \hline
-                    \end{tabular}
-                    \caption[short]{Coplejidad.}
-                \end{table}
+            \begin{table}[ht]
+                \centering
+                \begin{tabular}{|l|l|l|l|}
+                \hline
+                    & M. Incidencia & M. Adyacencia & Lista Adyacencia\\ \hline
+                    \textbf{Espacio:} & $O(V \cdot E)$ & $O(V^2)$ & $O(V + E)$\\ \hline
+                    \textbf{Agregar un vértice:}  & $O(V \cdot E)$ & $O(V^2)$ & $O(1)$ o $O(V)$\\ \hline
+                    \textbf{Agregar una arista:} & $O(V \cdot E)$ & $O(1)$ & $O(V)$ \\ \hline
+                    \textbf{Si dos vértices son adyacentes:} & $O(E)$ & $O(1)$ & $O(V)$\\ \hline
+                    \textbf{Obtener los abyacentes de un vértices:} & $O(E)$ & $O(V)$ & $O(V)$\\ \hline
+                \end{tabular}
+                \caption[short]{Coplejidad.}
+            \end{table}
 
-        \subsection{Recorridos Grafos}
-            \underline{Recorridos Grafos Dirigidos}
+    \subsection{Recorridos Grafos}
+        \underline{Recorridos Grafos Dirigidos}
+        \begin{itemize}
+            \item Anchura: BFS (Breadth First Search)
+            \item Profundidad: DFS (Depth First Search)
+        \end{itemize}
+
+    
+        \paragraph{BFS:} Se lo puede implementar con una cola (es mas fácil verlo de esta manera).
+        \paragraph{DFS:} Se lo puede implementar con recursividad (es mas fácil verlo de esta manera) o con una pila. Cuando se trabaja con grafos No conexos se puede implementar el algoritmo para que recorra todos los nodos no visitados.\\
+
+        \underline{Referencias:}
+        \begin{itemize}
+            \item Video YouTube - Recorrido DFS Recursividad FIUBA \cite{grafo_dfs_recursividad_youtube}.
+            \item Video YouTube - Recorrido BFS y DFS con Pilas y Colas  \cite{grafo_bfs_dfs_youtube_1}.
+            \item Video YouTube - Recorrido BFS y DFS con Pilas y Colas  \cite{grafo_bfs_dfs_youtube_2}.
+            \item Página simula recorrido BFS y DFS tiene errores \cite{grafo_bfs_dfs_simulacion_1}.
+            \item Página simula recorrido BFS y DFS SIN errores \cite{grafo_bfs_dfs_simulacion_2}.
+        \end{itemize}
+
+
+        \subsubsection{BFS: Recorrido en Anchura}
+            Para grafos dirigidos y no dirigidos.\\
+            
+            \underline{Procedimento:}
             \begin{itemize}
-                \item Anchura: BFS (Breadth First Search)
-                \item Profundidad: DFS (Depth First Search)
+                \item Seleccionar un vértice inicial.
+                \item Marcarlo como visitado.
+                \item Encolarlo.
+                \item Mientras la \textbf{cola} (FIFO) no esté vacía :
+                    \begin{itemize}
+                        \item Desencolar vértice.
+                        \item Mostrarlo.
+                        \item Marcar como visitados.
+                            \begin{itemize}
+                                \item Los vertices adyacentes no visitado.
+                            \end{itemize}
+                            \item Encolar.
+                    \end{itemize}
+
             \end{itemize}
 
-      
-            \paragraph{BFS:} Se lo puede implementar con una cola (es mas fácil verlo de esta manera).
-            \paragraph{DFS:} Se lo puede implementar con recursividad (es mas fácil verlo de esta manera) o con una pila. Cuando se trabaja con grafos No conexos se puede implementar el algoritmo para que recorra todos los nodos no visitados.\\
-
-            \underline{Referencias:}
+        \subsubsection{DFS: Recorrido en Profundidad}
+            Para grafos dirigidos y no dirigidos. Para implementar el algoritmo suele usarse una \textbf{pila}, o bien un algoritmo recursivo.\\
+            
+            \underline{Procedimento:}
             \begin{itemize}
-                \item Video YouTube - Recorrido DFS Recursividad FIUBA \cite{grafo_dfs_recursividad_youtube}.
-                \item Video YouTube - Recorrido BFS y DFS con Pilas y Colas  \cite{grafo_bfs_dfs_youtube_1}.
-                \item Video YouTube - Recorrido BFS y DFS con Pilas y Colas  \cite{grafo_bfs_dfs_youtube_2}.
-                \item Página simula recorrido BFS y DFS tiene errores \cite{grafo_bfs_dfs_simulacion_1}.
-                \item Página simula recorrido BFS y DFS SIN errores \cite{grafo_bfs_dfs_simulacion_2}.
+                \item Seleccionar un vértice inicial.
+                \item Marcarlo como visitado.
+                \item Apilarlo.
+                \item Mientras la \textbf{pila} (LIFO) no esté vacía :
+                    \begin{itemize}
+                        \item Desapilar vértice.
+                        \item Mostrarlo.
+                        \item Recorrer todos los vértices adyacentes del vértice desapilado
+                            \begin{itemize}
+                                \item Si el vértice adyacente no ha sido visitado, marcarlo como visitado y apilarlo.
+                                \item Si el vértice adyacente ya ha sido visitado, continúa con el siguiente vértice adyacente.
+                            \end{itemize}
+                    \end{itemize}
             \end{itemize}
 
+            \underline{Procedimento Recursivo:}
+            % Cargamos la imagen
+            \begin{figure}[ht]
+                \centering
+                \includegraphics[width=0.5\textwidth]{images/grafos/grafo_dfs_recursividad.png}
+                \caption{Grafo no dirigido DFS Recursividad}
+                \label{fig:grafo_dfs_recursividad}
+            \end{figure}
+            
+            Observando la figura \ref{fig:grafo_dfs_recursividad}. Se comienza el recorrido DFS por algun nodo. Se elige el nodo A:
+            $$ A \rightarrow B \rightarrow E \rightarrow D $$ 
+            luego volvemos en la recursividad, por que no hay mas nuevos nodos adyacentes a $D$, hasta llegar a $A$.
+            $$ A \rightarrow B \rightarrow E \rightarrow D \rightarrow C $$ 
+            no existe mas camino por donde ir, por lo tanto se elige un nuevo nodo no visitado y se repite el proceso.
+            $$ A \rightarrow B \rightarrow E \rightarrow D \rightarrow C \rightarrow F $$
+            elige un nuevo nodo no visitado y se repite el proceso.
+            $$ A \rightarrow B \rightarrow E \rightarrow D \rightarrow C \rightarrow F \rightarrow G $$
+            elige un nuevo nodo no visitado y se repite el proceso.
+            $$ A \rightarrow B \rightarrow E \rightarrow D \rightarrow C \rightarrow F \rightarrow G \rightarrow H $$
 
-            \subsubsection{BFS: Recorrido en Anchura}
-                Para grafos dirigidos y no dirigidos.\\
+        \subsubsection{Complejidad BFS y DFS}
                 
-                \underline{Procedimento:}
-                \begin{itemize}
-                    \item Seleccionar un vértice inicial.
-                    \item Marcarlo como visitado.
-                    \item Encolarlo.
-                    \item Mientras la \textbf{cola} (FIFO) no esté vacía :
-                        \begin{itemize}
-                            \item Desencolar vértice.
-                            \item Mostrarlo.
-                            \item Marcar como visitados.
-                                \begin{itemize}
-                                    \item Los vertices adyacentes no visitado.
-                                \end{itemize}
-                                \item Encolar.
-                        \end{itemize}
+            \begin{table}[ht]
+                \centering
+                \begin{tabular}{|l|l|l|}
+                \hline
+                & Matriz Adyacencia & Matriz Incidencia  \\ \hline
+                Anchura BFS & $O(V^2)$ & $O(V+E)$ \\ \hline
+                Profundidad DFS & $O(V^2)$ & $O(V+E)$  \\ \hline
+                \end{tabular}
+                \caption[short]{Coplejidad.}
+                \label{tab:tabla_complejidad_bfs_dfs}
+            \end{table}
 
-                \end{itemize}
+        \subsubsection{Aplicaciones}
+            \underline{DFS: Recorrido Profundidad}
+            \begin{enumerate}
+                \item \textbf{Test de Aciclidad (Ciclos):} Se recorre el grafo teniendo en cuenta los recorridos paciales. Cl coste del algorimos es el mismo que la Tabla \ref{tab:tabla_complejidad_bfs_dfs}.
+                \item  \textbf{Puntos de Articulación:} Un punto de articulación (o vértice de corte) de un grafo \textbf{no dirigido} y \textbf{conexo} es un vértice que verifica que al ser eliminado del grafo éste deja de ser conexo.
+                \item \textbf{Obtención de las componentes fuertemente conexas en un grafo dirigido:} Una componente fuertemente conexa es un subgrafo en el que para cada par de vértices existe un camino de uno a otro.
+            \end{enumerate}
 
-            \subsubsection{DFS: Recorrido en Profundidad}
-                Para grafos dirigidos y no dirigidos.\\
-                
-                \underline{Procedimento:}
-                \begin{itemize}
-                    \item Seleccionar un vértice inicial.
-                    \item Marcarlo como visitado.
-                    \item Apilarlo.
-                    \item Mientras la \textbf{pila} (LIFO) no esté vacía :
-                        \begin{itemize}
-                            \item Desapilar vértice.
-                            \item Mostrarlo.
-                            \item Recorrer todos los vértices adyacentes del vértice desapilado
-                                \begin{itemize}
-                                    \item Si el vértice adyacente no ha sido visitado, marcarlo como visitado y apilarlo.
-                                    \item Si el vértice adyacente ya ha sido visitado, continúa con el siguiente vértice adyacente.
-                                \end{itemize}
-                        \end{itemize}
-                \end{itemize}
+            \underline{BFS: Recorrido Anchura}
+            \begin{enumerate}
+                \item \textbf{Camino mínimo:} Si el grafo es no pesado, el camino mínimo entre dos vértices es el camino que tiene menos aristas.
+                \item \textbf{Árbol de expansión mínimo:} Si el grafo es pesado, el árbol de expansión mínimo es el subgrafo que tiene todos los vértices del grafo original y la suma de los pesos de sus aristas es la mínima posible.
+            \end{enumerate}
 
-            \subsubsection{Complejidad BFS y DFS}
-                
-                \begin{table}[ht]
-                    \centering
-                    \begin{tabular}{|l|l|l|}
-                    \hline
-                    & Matriz Adyacencia & Matriz Incidencia  \\ \hline
-                    Anchura BFS & $O(V^2)$ & $O(V+E)$ \\ \hline
-                    Profundidad DFS & $O(V^2)$ & $O(V+E)$  \\ \hline
-                    \end{tabular}
-                    \caption[short]{Coplejidad.}
-                    \label{tab:tabla_complejidad_bfs_dfs}
-                \end{table}
+        \subsubsection{Puntos de Articulación:}
+            \underline{Propiedades:}
+            \begin{itemize}
+                \item Si r es raíz es el árbol DFS y tiene más de un hijo en el árbol, entonces r es un punto de articulación.
+                \item bajo(u) = mínimo número asignado en el recorrido en profundidad.
+                \item Para todo vértice u que no sea raíz, es punto de articulación si y sólo si tiene al menos un hijo x tal que bajo(x) $\geq$ numero asignado al vértice u en el recorrido en profundidad.
+            \end{itemize}
 
-            \subsubsection{Aplicaciones}
-                \underline{DFS: Recorrido Profundidad}
-                \begin{enumerate}
-                    \item \textbf{Test de Aciclidad (Ciclos):} Se recorre el grafo teniendo en cuenta los recorridos paciales. Cl coste del algorimos es el mismo que la Tabla \ref{tab:tabla_complejidad_bfs_dfs}.
-                    \item  \textbf{Puntos de Articulación:} Un punto de articulación (o vértice de corte) de un grafo \textbf{no dirigido} y \textbf{conexo} es un vértice que verifica que al ser eliminado del grafo éste deja de ser conexo.
-                    \item \textbf{Obtención de las componentes fuertemente conexas en un grafo dirigido:} Una componente fuertemente conexa es un subgrafo en el que para cada par de vértices existe un camino de uno a otro.
-                \end{enumerate}
+            \underline{Procedimento:}
+            \begin{enumerate}
+                \item Recorrer el grafo en profundidad y numerar los vértices en el orden en que se los visita.
+                \item Asignar el valor bajo(u) a cada vértice u comenzando desde el último hasta el primero de los visitados.
+            \end{enumerate}
 
-                \underline{BFS: Recorrido Anchura}
-                \begin{enumerate}
-                    \item \textbf{Camino mínimo:} Si el grafo es no pesado, el camino mínimo entre dos vértices es el camino que tiene menos aristas.
-                    \item \textbf{Árbol de expansión mínimo:} Si el grafo es pesado, el árbol de expansión mínimo es el subgrafo que tiene todos los vértices del grafo original y la suma de los pesos de sus aristas es la mínima posible.
-                \end{enumerate}
+            % Cargamos la imagen
+            \begin{figure}[ht]
+                \centering
+                \includegraphics[width=0.8\textwidth]{images/grafos/puntos_articulacion.png}
+                \caption{Puntos de articulación.}
+                \label{fig:puntos_articulacion}
+            \end{figure}
 
-                \paragraph{Puntos de Articulación:}
-                \underline{Propiedades:}
-                \begin{itemize}
-                    \item Si r es raíz es el árbol DFS y tiene más de un hijo en el árbol, entonces r es un punto de articulación.
-                    \item bajo(u) = mínimo número asignado en el recorrido en profundidad.
-                    \item Para todo vértice u que no sea raíz, es punto de articulación si y sólo si tiene al menos un hijo x tal que bajo(x) $\geq$ numero asignado al vértice u en el recorrido en profundidad.
-                \end{itemize}
-
-                \underline{Procedimento:}
-                \begin{enumerate}
-                    \item Recorrer el grafo en profundidad y numerar los vértices en el orden en que se los visita.
-                    \item Asignar el valor bajo(u) a cada vértice u comenzando desde el último hasta el primero de los visitados.
-                \end{enumerate}
-
-        \subsection{Problemas sobre caminos en un grafo}
+    \subsection{Problemas sobre caminos en un grafo}
                 \begin{itemize}
                     \item \textbf{Camino más corto entre un vértice y todos los demás:} Consiste en determinar el costo del camino más corto desde el vértice considerado origen a todos los otros vértices. Para grafos dirigidos y no dirigidos con aristas ponderadas no negativas.
                         \begin{itemize}
@@ -255,19 +291,19 @@
             
                 Ver video YouTube \cite{grafo_algoritmo_warshall_youtube_1}.
 
-        \subsection{Algunos problemas sobre Grafos no dirigidos}
-            Un \textbf{árbol libre} es un grafo no dirigido conexo sin ciclos.\\
-            
-            \underline{Se verifica que}
-            \begin{itemize}
-                \item En todo árbol libre con $N$ vértices $(N>1)$, el árbol contiene $N-1$ aristas.
-                \item Si se agrega una arista a un árbol libre, aparece un ciclo.
-                \item Si u y v son dos vertices distintos de un árbol, entonces hay un solo camino que los une.
-            \end{itemize}
+    \subsection{Algunos problemas sobre Grafos no dirigidos}
+        Un \textbf{árbol libre} es un grafo no dirigido conexo sin ciclos.\\
+        
+        \underline{Se verifica que}
+        \begin{itemize}
+            \item En todo árbol libre con $N$ vértices $(N>1)$, el árbol contiene $N-1$ aristas.
+            \item Si se agrega una arista a un árbol libre, aparece un ciclo.
+            \item Si u y v son dos vertices distintos de un árbol, entonces hay un solo camino que los une.
+        \end{itemize}
 
-            \underline{Algoritmos que permiten obtener el árbol de expansión de coste mínimo}
-            \begin{itemize}
-                \item \textbf{Algoritmo de Prim:} El algoritmo de Prim es un algoritmo para la determinación del árbol de expansión mínimo de un grafo no dirigido, conex y con aristas no negativas.
-                \item \textbf{Algoritmo de Kruskal:} El algoritmo de Kruskal es un algoritmo para la determinación del árbol de expansión mínimo de un grafo conexo y no dirigido.
-            \end{itemize}
+        \underline{Algoritmos que permiten obtener el árbol de expansión de coste mínimo}
+        \begin{itemize}
+            \item \textbf{Algoritmo de Prim:} El algoritmo de Prim es un algoritmo para la determinación del árbol de expansión mínimo de un grafo no dirigido, conex y con aristas no negativas.
+            \item \textbf{Algoritmo de Kruskal:} El algoritmo de Kruskal es un algoritmo para la determinación del árbol de expansión mínimo de un grafo conexo y no dirigido.
+        \end{itemize}
 \end{document}  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
