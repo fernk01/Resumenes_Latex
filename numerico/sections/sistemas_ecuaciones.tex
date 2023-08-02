@@ -1,0 +1,326 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Sistemas de Ecuaciones Lineales y No Lineales} 
+    \begin{definition}
+        Una matriz que tiene la misma cantidad de las que de columnas ($A$ es de $nxn$ dimensiones) se denomina \textbf{matriz cuadrada}. 
+    \end{definition}
+
+    \begin{definition}
+        Una matriz cuyo determinante es no nulo ($det(A)\neq 0$) se denomina \textbf{matriz no singular}.
+    \end{definition}
+        
+    \underline{Matrices Especiales:}
+    \begin{itemize}
+        \item \textbf{Diagonal Dominante:}
+            \begin{equation}
+                |a_{ii}| \geq \sum_{j=1, j\neq i}^{n} |a_{ij}| \quad \quad para \quad i = 1,2,...,n
+            \end{equation}
+        \item \textbf{Simétrica:} $A = A^T$
+        \item \textbf{Definida Positiva:} $x^T \cdot A \cdot x > 0 \quad \forall x \neq 0$
+    \end{itemize}
+
+    \begin{definition}
+        (Norma infinito) Dada una matriz $A$ de $nxn$ dimensiones, se define la norma infinito de $A$ como:
+        \begin{equation}
+            ||A||_{\infty} = max_{1\leq i \leq n} \sum_{j=1}^{n} |a_{ij}|
+        \end{equation}
+
+        Ejemplo:
+        \begin{equation}
+            A = \begin{bmatrix*}[r]
+                1 & 2 & -1 \\
+                0 & 3 & -1 \\
+                5 & -1 & 1
+            \end{bmatrix*}
+            \quad \quad
+            ||A||_{\infty} = 7
+        \end{equation}
+        
+        Paso a paso:
+        \begin{equation}
+            \begin{split}
+                \sum_{j = i}^{3} &= |1| + |2| + |-1| = 4 \\
+                \sum_{j = i}^{3} &= |0| + |3| + |-1| = 4 \\
+                \sum_{j = i}^{3} &= |5| + |-1| + |1| = 7 \\
+            \end{split}
+        \end{equation}
+
+    \end{definition}
+
+    \subsection{Eliminación de Gauss y sustitución inversa}
+        El Método de Eliminación de Gauss1 es un método directo muy efectivo que transforma una matriz cualquiera en una matriz triangular superior y luego aplica el método de sustitución inversa para obtener la solución del sistema dado. Para ello se basa en la propiedad que tienen las matrices de que la misma no cambia si se reemplaza alguna de sus las por una combinación lineal de ella con alguna de las restantes las. El procedimiento en líneas generales es:\\
+
+
+        \subsubsection{Estrategias de pivoteo}
+            Establecer como pivote un valor alto en módulo, para evitar el mal condicionamiento del algoritmo.
+            \begin{itemize}
+                \item \textbf{Pivoteo parcial:} 
+                    Se intercambian las filas de la matriz para que el pivote sea el mayor en módulo.
+                    
+                    Paso $k$:
+                    \begin{itemize}
+                        \item Buscar $r$ tal que $|a_{rk}^{(k)}| = max|a_{ik}^{(k)}|$, $k \leq  i \leq n $
+                        \item intercambiar filas $r$ y $k$
+                    \end{itemize}
+
+                    
+                \item \textbf{Pivoteo total:} 
+                    Se intercambian las filas y las columnas de la matriz para que el pivote sea el mayor en módulo.
+
+                    Paso $k$:
+                    \begin{itemize}
+                        \item Buscar $r$ y $s$ tal que $|a_{rs}^{(k)}| = max|a_{ij}^{(k)}|$, $k \leq  i,j \leq n $
+                        \item intercambiar filas $r$ y $k$ y columnas $s$ y $k$
+                    \end{itemize}
+
+            \end{itemize}
+
+            Usando la estrategia de pivoteo se logra que el error de representación sea minimo (Video P03b min 3:25).
+    \subsection{Factorización LU}
+        Descomposición o Factorización LU consiste en descomponer la matriz $\textbf{\textit{A}}$ original en el producto de dos matriz: una triangular inferior $(\textbf{\textit{L}})$ y una triangular superior $(\textbf{\textit{U}})$, para armar el siguiente sistema:
+
+        \begin{equation}
+            A \cdot x = B \quad \Rightarrow \quad L \cdot U \cdot x = B, \quad con \quad A = L \cdot U
+        \end{equation}
+
+        De esta forma obtenemos dos sistemas de ecuaciones:
+        \begin{equation}
+            \begin{split}
+                L \cdot y &= B\\
+                U \cdot x &= y
+            \end{split}
+        \end{equation}
+
+        Para obnter las matriz $\textit{U}$ se triangula la matriz $\textit{A}$ mediante el método de eliminación de Gauss. Para obtener la matriz $\textit{L}$ se utiliza el mismo método, pero se guardan los \textit{multiplicadores} en la matriz $\textit{L}$ (Ver libro Peole pag 189).
+
+        \begin{equation}
+            %% Creamos una matriz de 3x3
+            A = \begin{bmatrix*}[r]
+                    2 & 1 & 3 \\
+                    4 & -1 & 3 \\
+                    -2 & 5 & 5 \\
+                \end{bmatrix*}
+        \end{equation}
+
+        \begin{equation}
+            %% Creamos una matriz de 3x3
+            A = \begin{bmatrix*}[r]
+                    2 & 1 & 3 \\
+                    4 & -1 & 3 \\
+                    -2 & 5 & 5 \\
+                \end{bmatrix*}  \xrightarrow[]{\begin{subarray}{l}
+                    R_2 - 2R_1\\
+                    R_3 +  R_1\\
+                \end{subarray}}
+                \begin{bmatrix*}[r]
+                    2 & 1 & 3 \\
+                    0 & -3 & -3 \\
+                    0 & 6 & 8 \\
+                \end{bmatrix*}
+                \xrightarrow{R_3 - 2R_2}
+                \begin{bmatrix*}[r]
+                    2 & 1 & 3 \\
+                    0 & -3 & -3 \\
+                    0 & 0 & 2 \\
+                \end{bmatrix*} = U
+        \end{equation}
+
+        Con eso se obtine la matriz $\textit{U}$. Para obtener la matriz $\textit{L}$ se guarda los multiplicadores en la matriz $\textit{L}$.
+
+        Los multiplicadores que se obtuvieron en la matriz $\textit{L}$ son:
+        
+        \begin{equation}
+            \begin{split}
+            R_2 - 2R_1 &\quad \Rightarrow \quad m_{21} = 2\\
+            R_3 +  R_1 &\quad \Rightarrow \quad m_{31} = -1\\
+            R_3 - 2R_2 &\quad \Rightarrow \quad m_{32} = -2
+            \end{split}
+        \end{equation}
+
+
+        \begin{equation}
+            %% Creamos una matriz de 3x3
+            L = \begin{bmatrix*}[r]
+                    1 & 0 & 0 \\
+                    2 & 1 & 0 \\
+                    -1 & -2 & 1 \\
+            \end{bmatrix*}
+        \end{equation}
+
+    \subsection{Refinamiento Iterativo de la Solución}
+        Si $A \cdot x = b$. Conocemos la solución $\widetilde{x}$ aproximada.\\
+        \begin{enumerate}
+            \item Calculamos el residuo con 
+                \begin{equation}
+                    R = b - A \cdot \widetilde{x}
+                \end{equation}
+                Se utiliza doble presición para calcular el residuo $2t$.
+            
+            \item Calcular el vertor de corrección $\delta x = x - \widetilde{x}$ con
+                \begin{equation}
+                    A \cdot \delta x = R
+                \end{equation}
+               
+            \item Calcular la solución corregida $x = \widetilde{x} + \delta x$
+            \end{enumerate}
+    
+    \subsection{Métodos}
+        \begin{itemize}
+            \item \textbf{Métodos Directos:} Se obtiene la solución en un número finito de pasos.
+            
+                Se suelen usar con matrices densas o casi llenas.
+            \item \textbf{Métodos Iterativos:} Se obtiene la solución en un número infinito de pasos.
+                \begin{itemize}
+                    \item Método de Jacobi
+                    \item Método de Gauss-Seidel
+                    \item Método de SOR
+                \end{itemize}
+
+                Se suelen usar con matrices rala, con muchos ceros.
+        \end{itemize}
+
+    \subsection{Método de Jacobi}
+        La forma tradicional:
+        \begin{equation}
+            x_{i}^{(k+1)} = \frac{b_i}{a_{ii}} - 
+            \sum_{\begin{subarray}{l}
+                        j= 1 \\
+                        j \neq i
+                    \end{subarray}
+                }^{n} \frac{a_{ij}}{a_{ii}} \cdot x_j^{(k)}
+        \end{equation}
+
+        El método estacionario más sencillo es el Método de Jacobi. 
+        \begin{equation}
+            \begin{bmatrix*}[r]
+                4 & 3 & 0 \\
+                3 & 4 & -1 \\
+                0 & -1 & 4 \\
+            \end{bmatrix*}
+            \cdot
+            \begin{bmatrix*}[r]
+                x_1 \\
+                x_2 \\
+                x_3 \\
+            \end{bmatrix*}
+            =
+            \begin{bmatrix*}[r]
+                24 \\
+                30 \\
+                -24 \\
+            \end{bmatrix*}   
+        \end{equation}
+    
+        Despejamos de la ecuación $x_1$, $x_2$ y $x_3$ en cualquier orden.
+        \begin{equation}
+            \begin{split}
+                4 \cdot x_1 + 3 \cdot x_2 = 24 \quad \quad x_1 &= \frac{1}{4} \cdot (24 - 3 \cdot x_2)\\
+                3 \cdot x_1 + 4 \cdot x_2 - x_3 = 30 \quad \quad x_2 &= \frac{1}{4} \cdot (30 + x_3 - 3 \cdot x_1)\\
+                -x_2 + 4 \cdot x_3 = -24 \quad \quad x_3 &= \frac{1}{4} \cdot (-24 + x_2)\\
+            \end{split}
+            \label{eq:sist_despeje}
+        \end{equation}
+
+        Forma general:
+        \begin{equation}
+            \begin{split}
+                x_1^{(k+1)} &= \frac{1}{4} \cdot (24 - 3 \cdot x_2^{(k)})\\
+                x_2^{(k+1)} &= \frac{1}{4} \cdot (30 + x_3^{(k)} - 3 \cdot x_1^{(k)})\\
+                x_3^{(k+1)} &= \frac{1}{4} \cdot (-24 + x_2^{(k)})\\
+            \end{split}
+        \end{equation}
+
+        Colocamos la condición inicial para el vector $x$; se elige cualquier valor. Comumente se elige $x_1 = x_2 = x_3 = 0$.
+
+
+    \subsection{Método de Gauss-Seidel}
+        La forma tradicional:
+        \begin{equation}
+            x_{i}^{(k+1)} = \frac{b_i}{a_{ii}} - 
+            \sum_{j= 1}^{i-1} \frac{a_{ij}}{a_{ii}} \cdot x_j^{(k+1)}
+                -
+            \sum_{j= i+1}^{n} \frac{a_{ij}}{a_{ii}} \cdot x_j^{(k)}
+        \end{equation}
+
+        Utilizando la ecuacion (\ref{eq:sist_despeje}), pero esta vez usando los valores de $x_1$, $x_2$ y $x_3$ de la iteración anterior.\\
+
+        Forma general de la ecuacion (\ref{eq:sist_despeje}) es:
+        \begin{equation}
+            \begin{split}
+                x_1^{(k+1)} &= \frac{1}{4} \cdot (24 - 3 \cdot x_2^{(k)})\\
+                x_2^{(k+1)} &= \frac{1}{4} \cdot (30 - 3 \cdot x_1^{(k+1)} + x_3^{(k)})\\
+                x_3^{(k+1)} &= \frac{1}{4} \cdot (-24 + x_2^{(k+1)})\\
+            \end{split}
+        \end{equation}
+
+
+    \subsection{Método de SOR}
+        La forma tradicional:
+        \begin{equation}
+            x_{i}^{(k+1)} = (1 - \omega) \cdot x_i^{(k)} + \frac{\omega}{a_{ii}} \cdot \left( b_i - \sum_{j= 1}^{i-1} a_{ij} \cdot x_j^{(k+1)} - \sum_{j= i+1}^{n} a_{ij} \cdot x_j^{(k)} \right)
+        \end{equation}
+
+        De Gauss-Seidel se obtine $x_i^{(k+1)}$ y el residuo $r_i^{(k)} = x_i^{(k+1)} - x_i^{(k)}$. Entonces la sobre-relajación de los residuos es:
+        \begin{equation}
+            x_{i}^{(k+1)} = x_i^{(k)} + \omega \cdot r_i^{(k)}
+        \end{equation}
+
+        Solo reemplazamos en el residuo $r_i^{(k)}$ el valor de $x_i^{(k+1)}$ de Gauss-Seidel, lo demás se queda como esta.\\
+
+    \subsection{Criterios de interrupción}
+        Podemos tomar como criterios para interrumpir las iteraciones, que $x-x^{(n)} < Tol$, siendo $Tol$ una valor definido arbitrariamente, generalmente relacionado con la precisión utilizada ($\mu$). Existen varios criterios que pueden aplicarse. Estos son:
+        \begin{itemize}
+            \item \textbf{Criterio de la norma infinito:}
+                \begin{equation}
+                    ||x^{(n)} - x||_{\infty} < Tol
+                \end{equation}
+            \item \textbf{Criterio de la norma 1:}
+                \begin{equation}
+                    ||x^{(n)} - x||_{1} < Tol
+                \end{equation}
+            \item \textbf{Criterio de la norma 2:}
+                \begin{equation}
+                    ||x^{(n)} - x||_{2} < Tol
+                \end{equation}
+            \item \textbf{Criterio de la norma relativa:}
+                \begin{equation}
+                    \frac{||x^{(n)} - x||_{\infty}}{||x^{(n)}||_{\infty}} < Tol
+                \end{equation}
+        \end{itemize}
+
+    \subsection{Convergencia}
+        El Método de Jacobi y Gauss-Seidel convergen rápidamente si la matriz $A$ es \textit{estrictamente diagonal dominante}, como se verá más adelante. En cambio, la convergencia es lenta si la matriz $A$ es cualquiera de las otras dos. Finalmente, si la matriz $A$ no cumple con ninguna de las definiciones anteriores, el método de Jacobi no converge.
+
+        \begin{itemize}
+            \item \textbf{Diagonal dominantencia:} 
+                \begin{equation}
+                    |a_{ii}| \geq \sum_{\begin{subarray}{l}
+                        j= 1 \\
+                        j \neq i
+                    \end{subarray}
+                }^{n} |a_{ij}|
+                \end{equation}
+
+            \item \textbf{Estrictamente Diagonal dominantencia:} 
+                \begin{equation}
+                    |a_{ii}| > \sum_{\begin{subarray}{l}
+                        j= 1 \\
+                        j \neq i
+                    \end{subarray}
+                }^{n} |a_{ij}|
+                \end{equation}
+         \end{itemize}
+
+    \subsection{Resumen}
+
+
+
+
+
+
+
+
+
+
+\end{document}  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

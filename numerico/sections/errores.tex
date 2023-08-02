@@ -1,5 +1,6 @@
 \documentclass[../main.tex]{subfiles}
 
+
 \begin{document} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Errores den los métodos numéricos} 
     \subsection{Errores de adsoluto y relativo}
@@ -18,5 +19,37 @@
         \end{itemize}
 
         Si está mal condicionado, no hay forma de corregirlo cambiando el algoritmo pues el problema está en el modelo matemático.
+
+        \begin{theorem}
+            Let \(f\) be a function whose derivative exists in every point, then \(f\) 
+            is a continuous function.
+        \end{theorem}
+
+        \begin{definition}[]
+            Un problema matemático (numérico) se dice que está \textbf{bien condicionado} si pequeñas variaciones en los datos de entrada se traducen en pequeñas variaciones de los resultados.
+        \end{definition}
+
+
+    \subsection{Propagación de errores}
+        Propagación de dos de los errores más problemáticos, el inherente y el de redondeo.
+
+
+        \subsubsection{Propagación del error inherente}
+            \begin{equation}
+                e_{y_i} = \sum_{j=1}^{n}  \frac{\partial y_i(\widetilde{x}) }{\partial x_j} \cdot e_{x_j} \quad  \quad para \quad i = 1,2,...,m
+            \end{equation}
+
+            \begin{enumerate}
+                \item \textbf{Suma:} Si $y(x_1, x_2) = x_1 + x_2$, entonces
+                    \begin{equation}
+                        e_y = e_{x_1} + e_{x_2} = \frac{\partial y(\widetilde{x_1}, \widetilde{x_2})}{\partial x_1} \cdot e_{x_1} + \frac{\partial y(x_1, x_2)}{\partial x_2} \cdot e_{x_2} 
+                    \end{equation}
+            \end{enumerate}
+        
+
+
+
+
+
 
 \end{document}  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
