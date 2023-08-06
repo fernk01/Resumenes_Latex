@@ -2,26 +2,35 @@
 
 \begin{document} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Sistemas de Ecuaciones Lineales y No Lineales} 
-    \begin{definition}
-        Una matriz que tiene la misma cantidad de las que de columnas ($A$ es de $nxn$ dimensiones) se denomina \textbf{matriz cuadrada}. 
-    \end{definition}
 
-    \begin{definition}
-        Una matriz cuyo determinante es no nulo ($det(A)\neq 0$) se denomina \textbf{matriz no singular}.
+    \begin{definition} \textbf{(Matriz no singular)}.
+        Una matriz cuyo determinante es no nulo.
+        \begin{equation}
+            det(A) \neq 0
+        \end{equation}
     \end{definition}
         
-    \underline{Matrices Especiales:}
-    \begin{itemize}
-        \item \textbf{Diagonal Dominante:}
-            \begin{equation}
-                |a_{ii}| \geq \sum_{j=1, j\neq i}^{n} |a_{ij}| \quad \quad para \quad i = 1,2,...,n
-            \end{equation}
-        \item \textbf{Simétrica:} $A = A^T$
-        \item \textbf{Definida Positiva:} $x^T \cdot A \cdot x > 0 \quad \forall x \neq 0$
-    \end{itemize}
+    \begin{definition}\textbf{(Diagonal Dominante)}
+        \begin{equation}
+            |a_{ii}| \geq \sum_{j=1, j\neq i}^{n} |a_{ij}| \quad \quad para \quad i = 1,2,...,n
+        \end{equation}
+    \end{definition}
 
-    \begin{definition}
-        (Norma infinito) Dada una matriz $A$ de $nxn$ dimensiones, se define la norma infinito de $A$ como:
+    \begin{definition}\textbf{(Matriz Simétrica)}
+        \begin{equation}
+            A = A^T
+        \end{equation}
+    \end{definition}
+
+    \begin{definition}\textbf{(Matriz Definida Positiva)}
+        \begin{equation}
+            x^T \cdot A \cdot x > 0 \quad \forall x \neq 0
+        \end{equation}
+    \end{definition}
+
+
+    \begin{definition}\textbf{(Norma infinito)} 
+        Dada una matriz $A$ de $nxn$ dimensiones, se define la norma infinito de $A$ como:
         \begin{equation}
             ||A||_{\infty} = max_{1\leq i \leq n} \sum_{j=1}^{n} |a_{ij}|
         \end{equation}
@@ -78,6 +87,12 @@
 
             Usando la estrategia de pivoteo se logra que el error de representación sea minimo (Video P03b min 3:25).
     \subsection{Factorización LU}
+        \begin{teorema}{Teorema de la factorización LU}{}
+            Sea una matriz cuadrada $(nxn)$ y suponga que A se puede reducir por renglones a
+            una matriz triangular $U$ sin hacer alguna permutación entre sus renglones. Entonces
+            existe una matriz triangular inferior $L$ invertible con unos en la diagonal tal que $A = LU$. Si, además, $U$ tiene $n$ pivotes (es decir, A es invertible), entonces esta factorización es única.
+        \end{teorema}
+
         Descomposición o Factorización LU consiste en descomponer la matriz $\textbf{\textit{A}}$ original en el producto de dos matriz: una triangular inferior $(\textbf{\textit{L}})$ y una triangular superior $(\textbf{\textit{U}})$, para armar el siguiente sistema:
 
         \begin{equation}
@@ -148,6 +163,51 @@
             \end{bmatrix*}
         \end{equation}
 
+
+        \subsubsection{La factorización PA = LU}
+            \begin{teorema}
+                Sea $A$ una matriz invertible de $n \times n$. Entonces existe una matriz de permutación $P$ tal que
+                \begin{equation}
+                    P \cdot A = L \cdot U
+                \end{equation}
+                donde $L$ es una matriz triangular inferior con unos en la diagonal y $U$ es una matriz triangular superior. La matriz $P$ es el producto de $n-1$ matrices de permutación elementales $P_{n-1} \cdot P_{n-2} \cdot \dots \cdot P_1$.   
+            \end{teorema}
+            
+        
+    \subsection{Condición de una matriz}
+        Si el residuo es:
+        \begin{equation}
+            R = b - A \cdot \widetilde{x} = A \cdot x - A \cdot \widetilde{x} = A \cdot (x - \widetilde{x}) = A \cdot \delta x
+        \end{equation}
+        
+        Es decir:
+        \begin{equation}
+            x - \widetilde{x} = A^{-1} \cdot R
+        \end{equation}
+
+        Aplicamos norma a ambos lados de la ecuación y usamos la desigualdad triangular:
+        \begin{equation}
+            ||x - \widetilde{x}|| \leq ||A^{-1}|| \cdot ||R||
+            \label{eq:condicion_1}
+        \end{equation}
+
+        Hacemos lo mismo con $A \cdot  x = b$:
+        \begin{equation}
+            ||x|| \leq ||A^{-1}|| \cdot ||b||
+            \label{eq:condicion_2}
+        \end{equation}
+
+        Dividimos miembro a miembro las ecuaciones (\ref{eq:condicion_1}) y (\ref{eq:condicion_2}):
+        \begin{equation}
+            \frac{||x - \widetilde{x}||}{||x||} \leq ||A^{-1}|| \cdot ||A|| \cdot \frac{||R||}{||b||}
+        \end{equation}
+
+        Definimos el \textbf{Número de Condición} de una matriz como:
+        \begin{equation}
+            \kappa(A) = ||A^{-1}|| \cdot ||A||
+        \end{equation}
+
+        El número de condición es $\kappa(A) \geq 1$. Si $\kappa(A) \approx 1$ la matriz es \textbf{bien condicionada}. Si $\kappa(A) \gg 1$ la matriz es \textbf{mal condicionada}.
     \subsection{Refinamiento Iterativo de la Solución}
         Si $A \cdot x = b$. Conocemos la solución $\widetilde{x}$ aproximada.\\
         \begin{enumerate}
@@ -315,9 +375,250 @@
     \subsection{Resumen}
 
 
+    \subsection{Ejercicios}
+        \begin{example}
+            Sea el siguiente sistema de ecuaciones:
+            \begin{equation}
+                \begin{split}
+                    0.721 \cdot x_1 + 0.0352 \cdot x_2 &= 1.62\\
+                    0.836 \cdot x_1 + 0.0410 \cdot x_2 &= 1.89\\
+                \end{split}
+            \end{equation}
+
+            \begin{enumerate}
+                \item Resolverlo utilizando la eliminación de Gauss con pivoteo. Hallar la Descomposición LU de la matriz de coeficientes.Trabajar con una precisión de 3 dígitos.
+                \item Hallar dos refinamientos de la solución obtenida en el punto anterior, utilizando la descomposición LU.  
+            \end{enumerate}
+
+            \textbf{Solución:}
+            \begin{enumerate}
+                \item 
+                    Se resuelve por eliminacion gaussiana utilizando estrategias de pivoteo parcial.
+
+                    Se permutan las filas $F_1 \longleftrightarrow F_2$.
+                    \begin{equation}
+                        \begin{bmatrix*}[r]
+                            0.836 & -0.410 & \vrule & 1.89\\
+                            0.721 & -0.352 & \vrule & 1.62 
+                        \end{bmatrix*}
+                        \quad \quad m_{21} = \frac{a_{21}}{a_{11}} = \frac{0.721}{0.836} = 0.863
+                    \end{equation}
+
+                    Si ($F_2 - 0.863 \cdot F_1$) se obtiene:
+                    \begin{equation}
+                        \begin{bmatrix*}[r]
+                            0.836 & -0.410 & \vrule & \hfill 1.89 \hfill\\
+                            0 & 0.001 & \vrule & -9 \cdot 10^{-3} 
+                        \end{bmatrix*}
+                    \end{equation}
+
+                    Entonces tenemos:
+                    \begin{equation}
+                        \left\lbrace
+                        \begin{array}{ll}
+                            x_2 = \frac{b_2}{a_{22}} = -9,00\\
+                            x_1 = \frac{b_1 - a_{12} \cdot y}{a_{11}} = 2,15
+                        \end{array}
+                        \right.
+                        \quad \Rightarrow \quad
+                        \widetilde{x} = \begin{pmatrix*}[r]
+                            -2.15\\
+                            -9.00
+                        \end{pmatrix*}
+                    \end{equation}
+        
+                    Las matrices de la descomposición LU son:
+                    \begin{equation}
+                        L = \begin{bmatrix*}[r]
+                            1 & 0\\
+                            0.863 & 1
+                        \end{bmatrix*}
+                        \quad \quad
+                        U = \begin{bmatrix*}[r]
+                            0.836 & -0.410\\
+                            0 & 0.001
+                        \end{bmatrix*}
+                    \end{equation}
+
+                    Como se realizo una permitación de las filas $L \cdot U \neq A$. Entonces se define una matriz de permutación $P$ tal que $L \cdot U = P \cdot A$. En este caso la matriz de permutación es:
+                    \begin{equation}
+                        P = \begin{bmatrix*}[r]
+                            0 & 1\\
+                            1 & 0
+                        \end{bmatrix*}
+                    \end{equation}
+
+                \item
+                    Resolvemos el sistema:
+                    \begin{equation}
+                        \begin{split}
+                            A \cdot \delta &= r\\
+                            P \cdot A \cdot \delta &= P \cdot r\\
+                            L \cdot U \cdot \delta &= P \cdot r\\
+                            L \cdot \varepsilon &= P \cdot r\\
+                        \end{split}
+                    \end{equation}
+
+                    \begin{equation}
+                        \begin{split}
+                            \left\lbrace
+                            \begin{array}{ll}
+                                L \cdot \varepsilon &= P \cdot r\\
+                                U \cdot \delta &= \varepsilon
+                            \end{array}
+                            \right.
+                        \end{split}
+                    \end{equation}
+                
+                    \underline{Refinamiento 1:}\\
+                    Con ($2t = 6$):
+                    \begin{equation}
+                        \begin{split}
+                            r &= b - A \cdot \widetilde{x} \\   
+                            r &= \begin{pmatrix*}[r]
+                                1.62\\
+                                1.89
+                            \end{pmatrix*} - 
+                            \begin{bmatrix*}[r]
+                                0.836 & -0.410\\
+                                0.721 & -0.352
+                            \end{bmatrix*} \cdot
+                            \begin{pmatrix*}[r]
+                                -2.15\\
+                                -9.00
+                            \end{pmatrix*} \\
+                            r &= \begin{pmatrix*}[r]
+                                2.15 \cdot 10^{-3}\\
+                                -2.60 \cdot 10^{-3}
+                            \end{pmatrix*}
+                        \end{split}
+                    \end{equation}
+
+                    Se resuelve el sistema:
+                    \begin{equation}
+                        \begin{split}
+                            L \cdot \varepsilon &= P \cdot r \\
+                            \begin{bmatrix*}[r]
+                                1 & 0\\
+                                0.862 & 1
+                            \end{bmatrix*} \cdot
+                            \begin{pmatrix*}[r]
+                                \varepsilon_x\\
+                                \varepsilon_y
+                            \end{pmatrix*} &=
+                            \begin{pmatrix*}[r]
+                                -2.60 \cdot 10^{-3} \\
+                                2.15 \cdot 10^{-3}
+                            \end{pmatrix*}
+                        \end{split}
+                    \end{equation}
+                    
+                    \begin{equation}
+                        \begin{split}
+                            \left\lbrace
+                            \begin{array}{ll}
+                                \varepsilon_x &= -2.60 \cdot 10^{-3}\\
+                                \varepsilon_y &= 4.39 \cdot 10^{-3}
+                            \end{array}
+                            \right.
+                        \end{split}
+                    \end{equation}
+                    
+                    \begin{equation}
+                        \begin{split}
+                            U \cdot \delta &= y \\
+                            \begin{bmatrix*}[r]
+                                0.836 & -0.410\\
+                                0 & 0.001
+                            \end{bmatrix*} \cdot
+                            \begin{pmatrix*}[r]
+                                \delta_x\\
+                                \delta_y
+                            \end{pmatrix*} &=
+                            \begin{pmatrix*}[r]
+                                -2.60 \cdot 10^{-3} \\
+                                4.39 \cdot 10^{-3}
+                            \end{pmatrix*}
+                        \end{split}
+                    \end{equation}
+
+                    \begin{equation}
+                        \begin{split}
+                            \left\lbrace
+                            \begin{array}{ll}
+                                \delta_x &= 2.15\\
+                                \delta_y &= 4.39
+                            \end{array}
+                            \right.
+                        \end{split}
+                    \end{equation}
+
+                    El resultado del primer refinamiento es:
+                    \begin{equation}
+                        \begin{split}
+                            \widetilde{x}_2 &= \widetilde{x} + \delta \\
+                            \widetilde{x}_2 &= \begin{pmatrix*}[r]
+                                -2.15\\
+                                -9.00
+                            \end{pmatrix*} + 
+                            \begin{pmatrix*}[r]
+                                2.15\\
+                                4.39
+                            \end{pmatrix*} \\
+                            \widetilde{x}_2 &= \begin{pmatrix*}[r]
+                                4.69 \cdot 10^{-3}\\
+                                \hfill -4.61 \hfill
+                            \end{pmatrix*}
+                        \end{split}
+                    \end{equation}
+
+                    \underline{Refinamiento 2:}
+                    \begin{equation}
+                        \begin{split}
+                            r_2 &= b - A \cdot \widetilde{x}_2 \\
+                            r_2 &= \begin{pmatrix*}[r]
+                                1.62\\
+                                1.89
+                            \end{pmatrix*} -
+                            \begin{bmatrix*}[r]
+                                0.721 & -0.352\\
+                                0.836 & -0.410
+                            \end{bmatrix*} \cdot
+                            \begin{pmatrix*}[r]
+                                4.69 \cdot 10^{-3}\\
+                                \hfill -4.61 \hfill
+                            \end{pmatrix*} \\
+                            r_2 &= \begin{pmatrix*}[r]
+                                -2.72 \cdot 10^{-3}\\
+                                -0.10 \cdot 10^{-3}
+                            \end{pmatrix*}
+                        \end{split}
+                    \end{equation}
+
+                    \begin{equation}
+                        \begin{split}
+                            L \cdot \varepsilon_2  &= P \cdot r_2 \\
+                            \begin{bmatrix*}[r]
+                                1 & 0\\
+                                0.862 & 1
+                            \end{bmatrix*} \cdot
+                            \begin{pmatrix*}[r]
+                                \varepsilon_{2x}\\
+                                \varepsilon_{2y}
+                            \end{pmatrix*} &=
+                            \begin{pmatrix*}[r]
+                                -0.10 \cdot 10^{-3} \\
+                                -2.72 \cdot 10^{-3}
+                            \end{pmatrix*}
+                        \end{split}
+                    \end{equation}
+                                    
+            \end{enumerate}
 
 
+            
 
+        \end{example}
 
 
 
