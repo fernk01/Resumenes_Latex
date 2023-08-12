@@ -2,15 +2,15 @@
 
 \begin{document} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Introducción al machine learning.}
+\section{Introducción al Machine Learning.}
 
-    En el contexto del aprendizaje supervisado, se trabaja con variables independientes (también conocidas como características, predictores o variables de entrada) y variables dependientes (también llamadas variables objetivo o target o variables de salida). Las variables independientes son las que se utilizan para hacer predicciones o estimaciones, mientras que las variables dependientes son los resultados que se intentan predecir o modelar. Por ejemplo, en un problema de predicción de precios de viviendas, las características como el número de habitaciones, la ubicación y el tamaño de la propiedad serían las variables independientes, mientras que el precio de venta sería la variable dependiente.
+    En el contexto del aprendizaje supervisado, se trabaja con \textit{variables independientes} (también conocidas como características, predictores o variables de entrada) y \textit{variables dependientes} (también llamadas variables objetivo o target o variables de salida). Las variables independientes son las que se utilizan para hacer predicciones o estimaciones, mientras que las variables dependientes son los resultados que se intentan predecir o modelar. Por ejemplo, en un problema de predicción de precios de viviendas, las características como el número de habitaciones, la ubicación y el tamaño de la propiedad serían las variables independientes, mientras que el precio de venta sería la variable dependiente.
 
     \begin{itemize}
         \item Variables Independientes (entradas)
-            \begin{enumerate}
+            \begin{itemize}
                 \item Cualitativas
-                    \begin{enumerate}
+                    \begin{itemize}
                         \item Texto
                             \begin{itemize}
                                 \item Nominales (categorías, Por ejemplo: países, sexo)
@@ -22,21 +22,26 @@
                                 \item Nominales
                                 \item Ordinales
                             \end{itemize}
-                    \end{enumerate}
+                    \end{itemize}
                 \item Cuantitativas: cuando hablamos de cantidad
-                    \begin{enumerate}
+                    \begin{itemize}
                         \item Discretas: Por ejemplo año, mes, edad, etc.
                         \item Continuas: Por ejemplo altura, peso, etc.
-                    \end{enumerate}
-            \end{enumerate}
+                    \end{itemize}
+            \end{itemize}
         \item Variables Dependientes (salidas, categorías)
     \end{itemize}
 	
-    Las variables \textbf{cualitativas} son aquellas que describen características o cualidades y no pueden ser medidas en términos numéricos. Las variables \textbf{cuantitativas}, por otro lado, son aquellas que pueden ser medidas en términos numéricos y tienen valores numéricos.\\
-		
-    Las \textbf{variables nominales} son aquellas que no tienen un orden natural, como el género o el color de ojos. Las \textbf{variables ordinales} son aquellas que tienen un orden natural, como el nivel de educación (primaria/secundaria/universidad), nivel de tabaquismos: Clasificamos como leve (1), moderado (2), nivel medio (3), importante (4) y muy importante (5).\\
-		 
-     \textbf{Variables y tipos de problemas (video 02a min 9:00)}
+    \begin{definition}\textbf{(variables cualitativas)} 
+        Son aquellas que describen características o cualidades y no pueden ser medidas en términos numéricos. Las variables \textbf{cuantitativas}, por otro lado, son aquellas que pueden ser medidas en términos numéricos y tienen valores numéricos.
+    \end{definition}
+        
+    \begin{definition}\textbf{variables nominales}
+        Son aquellas que no tienen un orden natural, como el género o el color de ojos. Las \textbf{variables ordinales} son aquellas que tienen un orden natural, como el nivel de educación (primaria, secundaria, universidad), nivel de tabaquismos: Clasificamos como leve (1), moderado (2), nivel medio (3), importante (4) y muy importante (5).
+    \end{definition}
+
+	 
+     \underline{Variables y tipos de problemas (video 02a min 9:00)}
      \begin{enumerate}
         \item 
             Si la variable dependiente es \textbf{cualitativa}, el tipo de problema es de \textbf{clasificación}. 
@@ -59,5 +64,11 @@
         \item \textbf{Covarianza:} Es una medida de la relación lineal entre dos variables aleatorias. Indica cómo varían conjuntamente dos variables aleatorias respecto a sus medias. Si la covarianza es positiva, las variables aumentan o disminuyen conjuntamente, mientras que si la covarianza es negativa, una variable aumenta mientras la otra disminuye.
     \end{itemize}
 
-	
+	% Cargamos una imagen
+    \begin{figure}[htb]
+        \centering
+        \includegraphics[scale=0.4]{./images/machine.jpg}
+        \caption{Metodología de Machine Learning.}
+        \label{fig:figura1}
+    \end{figure}
 \end{document}  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

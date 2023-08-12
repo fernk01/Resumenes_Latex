@@ -61,3 +61,24 @@
 \title{Apunte Organicacion de datos}
 \author{lcondoriz }
 \date{May 2023}
+
+%% Definiciones
+\usepackage{amsthm}
+\newtheorem{theorem}{Theorem}
+\theoremstyle{definition}
+\newtheorem{definition}{Definición}[section]
+
+\newtheorem{example}{Ejemplo}[section]
+
+% matematicas equaciones
+\usepackage{amsmath}
+\usepackage{mathtools} % para bmatrix*
+
+% para cagas a color en los teoremas
+\usepackage{tcolorbox}          % Cajas de colores.
+\tcbuselibrary{theorems}
+\newtcbtheorem[number within=section]{teorema}{Teorema}{}{}
+
+%% Cuadros de texto sinopticos
+\usepackage{schemata} 
+
