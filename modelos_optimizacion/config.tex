@@ -2,6 +2,8 @@
 %%  Configuracion de la pagina.
 \usepackage[T1]{fontenc}
 \usepackage[spanish]{babel}
+%% Colocamos un tamaño de hoja A4
+\usepackage[a4paper, total={6in, 8in}]{geometry}
 %%
 %% Dimensiones de la pagina.
 % \textheight = 24cm	% alto texto impreso
@@ -69,6 +71,7 @@
 \newtheorem{definition}{Definición}[section]
 
 \newtheorem{example}{Ejemplo}[section]
+\newtheorem{exercise}{Ejercicio}[section]
 
 % matematicas equaciones
 \usepackage{amsmath}
@@ -77,4 +80,4 @@
 % para cagas a color en los teoremas
 \usepackage{tcolorbox}          % Cajas de colores.
 \tcbuselibrary{theorems}
-\newtcbtheorem[number within=section]{teorema}{Teorema}{}{}
+\newtcbtheorem[number within=section]{teorema}{Definición}{}{}
