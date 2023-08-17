@@ -94,10 +94,25 @@
             El polimorfismo es la capacidad de respuesta que tienen distintos objetos de responder de maneras diferentes a un mismo mensaje.
         \end{definition}
 
+    \subsection{Diseño por contrato y un procedimiento constructivo}
+        Pasos para resolver un problema:
+        \begin{enumerate}
+            \item \textbf{Encontrar objetos:} (entidades del dominio del problema)
+                Comenzar con el diseño del modelo.
+            \item \textbf{Determinar los mensajes:} (cómo deben interactuar los objetos)
+                \begin{enumerate}
+                    \item Diagrama de secuencia UML, como colaboran los objetos.
+                   \end{enumerate}
+            \item \textbf{implementar el comportamiento de los objetos:} 
+        \end{enumerate}
 
+        \begin{definition} \textbf{(Modelo)}
+            Un modelo es una representación simplificada de la realidad, que nos permite entenderla y manipularla.
+        \end{definition}
 
-    \subsection{Paréntesis metodológico: diseño por contrato y un procedimiento constructivo}
-        Paréntesis metodológico: diseño por contrato y un procedimiento constructivo
+        \begin{definition} \textbf{(Abstracción)}
+            Es una simplificación que incluye solo aquellos detalles relevantes para determinado propósito y descarta los demás.
+        \end{definition}
 
         \subsubsection{Precondiciones}
             Las precondiciones expresan en qué estado debe estar el medio ambiente antes de que un objeto cliente le envíe un mensaje a un receptor. En general, el medio ambiente está compuesto por el objeto receptor, el objeto cliente y los parámetros del mensaje, pero hay ocasiones en que hay que tener en cuenta el estado de otros objetos.
@@ -106,8 +121,8 @@
 
             \begin{definition} \textbf{(Excepción)}
                 Una excepción es un objeto que el receptor de un mensaje envía a su cliente como aviso de que el propio cliente no está cumpliendo con alguna precondición de ese mensaje.
-             
             \end{definition}
+            
         \subsubsection{Postcondiciones}
             El conjunto de postcondiciones expresa el estado en que debe quedar el medio como consecuencia de la ejecución de un método. En términos operativos, es la respuesta ante la recepción del mensaje.
             
@@ -125,25 +140,47 @@
     \subsection{Pruebas unitarias}
         \subsubsection{Desarrollo empezando por las pruebas}
 
-
     \subsection{colaboración entre objetos}
         Veremos delegación y programación por diferencia, cuestiones de comportamiento que se apoyan en los aspectos estructurales llamados asociación y herencia. 
 
+    \subsection{Pilares de la POO}          
+        \begin{enumerate}
+            \item \textbf{Abstracción:} Es la capacidad de representar un objeto del mundo real en un programa. Es el proceso de identificar las características esenciales de un objeto y eliminar las características no esenciales.
+            \item \textbf{Encapsulamiento:} Es la capacidad de ocultar los detalles de implementación de un objeto.
+            \item \textbf{Polimorfismo:} Es la capacidad de enviar mensajes sintácticamente iguales a objetos de distintas clases y que estos respondan de manera diferente.
+            \item \textbf{Herencia:} Es la capacidad de definir nuevas clases a partir de otras ya existentes.
+        \end{enumerate}
+    
+    \subsection{Herencia}   
+        \begin{definition} \textbf{(Herencia)}
+            La herencia es un mecanismo que permite definir nuevas clases a partir de otras ya existentes. La herencia permite definir una clase a partir de otra, reutilizando sus atributos y comportamientos. La clase de la que se hereda se llama \textit{superclase} y la clase que hereda se llama \textit{subclase}.\\
+
+            La herencia es una relación entre clases, por la cual se define que una clase puede ser un caso particular de otra. A la clase más general la llamamos madre y a la más patricular hija.\\
+
+            Corolario: Cuando hay herencia, todas las instancias de la clase hija son también instancias de la clase madre.
+        \end{definition}
+
+        \begin{definition} \textbf{(Programación por diferencia)}
+            La programación por diferencia es un procedimiento constructivo que consiste en definir una clase a partir de otra, agregando o modificando atributos y comportamientos.\\
+
+            Programamos por diferencia cuando indicamos que parte de la implementación de un objeto está definida en otro objeto, y por lo tanto sólo implementamos las diferencias específicas.
+        \end{definition}
+
+    \subsection{Clases}
+        Tipos de clases:
+        \begin{enumerate}
+            \item \textbf{Clases abstractas:} Son clases que no pueden ser instanciadas, es decir, no pueden tener objetos. Son clases que sirven para definir un comportamiento común a varias clases.
+            \item \textbf{Clases concreta:} Son clases que pueden ser instanciadas, es decir, pueden tener objetos.
+        \end{enumerate}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+        \begin{lstlisting}[style=Java, frame=single, caption=Clase abstracta, numbers=left]
+public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}
+        \end{lstlisting}
 
 
 
