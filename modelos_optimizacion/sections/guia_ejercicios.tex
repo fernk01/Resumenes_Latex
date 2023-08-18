@@ -1,6 +1,5 @@
 \documentclass[../main.tex]{subfiles}
 
-
 \begin{document} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Guía de ejercicios} 
     \subsection{Guía 1}
@@ -297,7 +296,7 @@
             \end{enumerate}
         \end{exercise}
 
-        \begin{exercise}
+        \begin{exercise} % 1.7
             Dado el siguiente sistema de inecuaciones:
             \begin{equation}
                 \begin{aligned}
@@ -327,19 +326,22 @@
                     %Cargamos imagen
                     \begin{figure}[ht]
                         \centering
-                        \includegraphics[width=0.9\textwidth]{./images/guia/1-6_ejercicio.png}
+                        \includegraphics[width=0.8\textwidth]{./images/guia/1-6_ejercicio.png}
                         \caption{Representación gráfica del problema}
                         \label{fig:1-6_ejercicio}
                     \end{figure}
                     
                 \item Observando la Figura \ref{fig:1-6_ejercicio}, se puede ver que el punto óptimo es el punto $B(1.5,1)$ y $C(0,4)$, con un valor de $Z = 16$.
             \end{enumerate}
-            \item 
-
         \end{exercise}
-    
+
+        \newpage
+
     \subsection{Guía 2}
-        \begin{exercise}
+        \addtocounter{exercise}{-6}
+        \setcounter{section}{2} % Reinicia el contador de subsección para la Guía 2
+
+        \begin{exercise} % 2.1
             Un taller de tejido elabora varios modelos de pullóver. Estos modelos de pullóver se pueden agrupar, desde un punto de vista técnico-económico, en tres tipos diferentes de prendas, a los cuales llamaremos A, B y C.
 
             El taller posee dos máquinas (I y II). Los pullóveres A sólo pueden hacerse en la máquina I, los C sólo pueden hacerse en la máquina II y los B pueden hacerse tanto en la máquina I como en la II.
@@ -353,6 +355,8 @@
             No es necesario que las prendas que comienzan a fabricarse en una semana se terminen durante la misma, es decir que pueden quedar pullóveres a medio hacer de una semana para la próxima.
 
             Los estándares de producción y materia prima y los beneficios unitarios para cada tipo de pullóver, se indican en el siguiente cuadro:
+            
+            ¿Qué es lo mejor que se puede hacer con la información disponible?
 
             \begin{table}[ht]
                 \centering
@@ -369,8 +373,168 @@
             \end{table}
 
             \textbf{Solución:}
+            \begin{enumerate}
+                \item Objetivo del problema: Maximizar el beneficio total.
+                \item Variables de decisión:
+                    \begin{equation}
+                        \begin{split}
+                            x_A &= \text{Cantidad de pullóveres A a fabricar.} [pullover/semana] \\
+                            x_B &= \text{Cantidad de pullóveres B a fabricar.} [pullover/semana] \\
+                            x_C &= \text{Cantidad de pullóveres C a fabricar.} [pullover/semana]\\
+                        \end{split}
+                    \end{equation}
+                \item Función objetivo (maximizar beneficio):
+                    \begin{equation}
+                        \max Z = 10 \cdot x_A + 15 \cdot x_B + 18 \cdot x_C
+                    \end{equation}
+                \item Restricciones:
+                    \begin{itemize}
+                        \item Restricción de disponibilidad de máquina I:
+                            \begin{equation}
+                                \begin{aligned}
+                                    5 \frac{hs}{pullover} \cdot x_A + 6 \frac{hs}{pullover} \cdot x_B &\leq 2 \frac{turno}{dia} \cdot 8 \frac{hs}{turno} \cdot 5 \frac{dia}{semana} \\
+                                    5 \frac{hs}{pullover} \cdot x_A + 6 \frac{hs}{pullover} \cdot x_B &\leq 80 \frac{hs}{semana} \\
+                                \end{aligned}
+                            \end{equation}
+                        \item Restricción de disponibilidad de lana Mejorada:
+                            \begin{equation}
+                                \begin{aligned}
+                                    1,6 \frac{kg}{pullover} \cdot x_A + 1,2 \frac{kg}{pullover} \cdot x_C &\leq 20 \frac{kg}{semana} \\
+                                \end{aligned}
+                            \end{equation}
+                    \end{itemize}
+
+                    Todas las restrcciones son:
+                    \begin{equation}
+                        \begin{aligned}
+                            5 \cdot x_A + 6 \cdot x_B &\leq 80 && \text{(Restricción de disponibilidad de máquina I)} \\
+                            4 \cdot x_B + 4 \cdot x_C &\leq 80 && \text{(Restricción de disponibilidad de máquina II)}\\
+                            1,6 \cdot x_A + 1,2 \cdot x_C &\leq 20 && \text{(Restricción de disponibilidad de lana Mejorada)}\\
+                            1,8 \cdot x_B &\leq 36 && \text{(Restricción de disponibilidad de lana Normal)}\\
+                            x_B &\geq 10 && \text{(Restricción de compromiso de entrega de pullóveres B)}\\
+                            x_A, x_B, x_C & \geq 0 && \text{(No se pueden producir cantidades negativas de productos)}\\
+                        \end{aligned}
+                    \end{equation}
+            \end{enumerate}
+
+
         \end{exercise}
 
+        \begin{exercise} % 2.2
+            “Copani”, una compañía dedicada a la minería, explota tres yacimientos (Sierra Alta, Sierra Chica y El Abra), de cada uno de los cuales obtiene un mineral que contiene cuatro metales: Cobre, Estaño, Manganeso y Zinc. Con estos cuatro metales, y siguiendo las especificaciones que pueden verse en el cuadro que figura a continuación, Copani elabora dos aleaciones: A y B.
+
+            \begin{table}[h]
+                \centering
+                \begin{tabular}{|c|c|}
+                \hline
+                Aleación           & Especificaciones              \\ \hline
+                \multirow{3}{*}{A} & Como máximo 80\% de Cobre     \\ \cline{2-2} 
+                                   & Como máximo 30\% de Estaño    \\ \cline{2-2} 
+                                   & Como mínimo 50\% de Zinc      \\ \hline
+                \multirow{3}{*}{B} & Entre 40\% y 60\% de Estaño   \\ \cline{2-2} 
+                                   & Como mínimo 30\% de Manganeso \\ \cline{2-2} 
+                                   & Como máximo 70\% de Zinc      \\ \hline
+                \end{tabular}
+                \caption{Especificaciones de las aleaciones}
+            \end{table} 
+            
+            \newpage
+
+            La proporción de cada metal que está en el mineral depende del yacimiento del cual proviene ese mineral. La siguiente tabla indica esos datos, así como los costos de extracción de mineral:
+
+            \begin{table}[h]
+                \centering
+                \begin{tabular}{|c|c|ccccc|c|}
+                \hline
+                \multirow{3}{*}{\textbf{Mineral}} & \multirow{3}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}Máximo \\ Disponible \\ (toneladas)\end{tabular}}} & \multicolumn{5}{c|}{\multirow{2}{*}{\textbf{Porcentaje de Metal}}}                                                                                                         & \multirow{3}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}Costo \\ \$/Tonelada\end{tabular}}} \\
+                                                  &                                                                                                       & \multicolumn{5}{c|}{}                                                                                                                                                      &                                                                                        \\ \cline{3-7}
+                                                  &                                                                                                       & \multicolumn{1}{c|}{\textbf{Cobre}} & \multicolumn{1}{c|}{\textbf{Estaño}} & \multicolumn{1}{c|}{\textbf{Manganeso}} & \multicolumn{1}{c|}{\textbf{Zinc}} & \textbf{Otros} &                                                                                        \\ \hline
+                \textbf{Sierra Alta}              & 1000                                                                                                  & \multicolumn{1}{c|}{20}             & \multicolumn{1}{c|}{10}              & \multicolumn{1}{c|}{30}                 & \multicolumn{1}{c|}{30}            & 10             & 10                                                                                     \\ \hline
+                \textbf{Sierra Chica}             & 2000                                                                                                  & \multicolumn{1}{c|}{10}             & \multicolumn{1}{c|}{20}              & \multicolumn{1}{c|}{30}                 & \multicolumn{1}{c|}{30}            & 10             & 40                                                                                     \\ \hline
+                \textbf{El Abra}                  & 3000                                                                                                  & \multicolumn{1}{c|}{5}              & \multicolumn{1}{c|}{5}               & \multicolumn{1}{c|}{70}                 & \multicolumn{1}{c|}{30}            & 0              & 50                                                                                     \\ \hline
+                \end{tabular}
+                \caption{Tabla de datos}
+            \end{table}
+            
+            La aleación A se vende a \$A por tonelada y la aleación B a \$B por tonelada. Con la información indicada: ¿Qué es lo mejor que puede hacer “Copani”?\\
+            
+            Para facilitar el análisis se incluyen las siguientes definiciones:
+            \begin{itemize}
+                \item Aleación: Producto homogéneo de propiedades metálicas, compuesto de dos o más elementos, uno de los cuales, al menos, debe ser un metal. Ej: Bronce, Acero.
+                \item Metal: Cada uno de los elementos químicos, buenos conductores del calor y de la electricidad. Ej: Oro, Cobre, Hierro.
+                \item Mineral: Sustancia inorgánica que se halla en la superficie o en diversas capas de la tierra, cuya explotación ofrece interés. Ej: Ferrita, Pirita
+            \end{itemize}
+
+            \textbf{Solución:}
+            \begin{enumerate}
+                \item Objetivo del problema: Maximizar el beneficio total reduciendo los costos de extracción de mineral.
+                \item Definimos variables de decisión:
+                    \begin{equation}
+                        \begin{split}
+                            y_A &= \text{Cantidad de aleación A producida.} [toneladas] \\
+                            y_B &= \text{Cantidad de aleación B producida.} [toneladas] \\\\
+                            x_{SA} &= \text{Cantidad de mineral extraído de Sierra Alta.} [toneladas] \\
+                            x_{SC} &= \text{Cantidad de mineral extraído de Sierra Chica.} [toneladas] \\
+                            x_{EA} &= \text{Cantidad de mineral extraído de El Abra.} [toneladas] \\\\
+                        \end{split}
+                    \end{equation}
+
+                    Queremos:
+                    \begin{equation*}
+                        \text{Maximizar Beneficio Total} = \text{Maximizar Ingresos} - \text{Minimizar Costos}
+                    \end{equation*}
+
+                    Donde:
+                    \begin{equation*}
+                        \begin{split}
+                            \text{Ingresos} &= \$A \cdot y_A + \$B \cdot y_B \\
+                            \text{Costos} &= \$10 \cdot x_{SA} + \$40 \cdot x_{SC} + \$50 \cdot x_{EA} \\
+                        \end{split}
+                    \end{equation*}
+                \item Función objetivo:
+                    \begin{equation}
+                        \max Z =  A \cdot y_A + B \cdot y_B - (10 \cdot x_{SA} + 40 \cdot x_{SC} + 50 \cdot x_{EA})
+                    \end{equation}
+
+                \item Restricciones:
+                
+                    Las restricciones incluirían la disponibilidad máxima de minerales en cada yacimiento, así como las especificaciones para las aleaciones (porcentajes máximos y mínimos de cada metal)
+                    \begin{itemize}
+                        \item Restricciones de Cobre, Estaño, Manganeso y Zinc para la aleación A:
+                            \begin{equation}
+                                \begin{aligned}
+                                    0,2 \cdot x_{SA} + 0,1 \cdot x_{SC} + 0,05 \cdot x_{EA} &\leq 0,8 \cdot y_A && \text{(Restricción de Cobre)} \\
+                                    0,1 \cdot x_{SA} + 0,2 \cdot x_{SC} + 0,05 \cdot x_{EA} &\leq 0,3 \cdot y_A && \text{(Restricción de Estaño)}\\
+                                    0,3 \cdot x_{SA} + 0,3 \cdot x_{SC} + 0,2 \cdot x_{EA} &\geq 0,5 \cdot y_A && \text{(Restricción de Zinc)}\\
+                                \end{aligned}
+                            \end{equation}
+                        \item Restricciones de Estaño, Manganeso y Zinc para la aleación B:
+                            \begin{equation}
+                                \begin{aligned}
+                                    0,4 \cdot y_B \leq 0,1 \cdot x_{SA} + 0,2 \cdot x_{SC} + 0,05 \cdot x_{EA} &\leq 0,6 \cdot y_B && \text{(Restricción de Estaño)}\\
+                                    0,3 \cdot x_{SA} + 0,3 \cdot x_{SC} + 0,7 \cdot x_{EA} &\geq 0,3 \cdot y_B && \text{(Restricción de Manganeso)}\\
+                                    0,3 \cdot x_{SA} + 0,3 \cdot x_{SC} + 0,3 \cdot x_{EA} &\leq 0,7 \cdot y_B && \text{(Restricción de Zinc)}\\
+                                \end{aligned}
+                            \end{equation}
+                        \item Restricciones de disponibilidad de minerales:
+                            \begin{equation}
+                                \begin{aligned}
+                                    x_{SA} &\leq 1000 && \text{(Restricción de disponibilidad de Sierra Alta)} \\
+                                    x_{SC} &\leq 2000 && \text{(Restricción de disponibilidad de Sierra Chica)}\\
+                                    x_{EA} &\leq 3000 && \text{(Restricción de disponibilidad de El Abra)}\\
+                                \end{aligned}
+                            \end{equation}
+                        \item Restricciones de no negatividad:
+                            \begin{equation}
+                                \begin{aligned}
+                                    x_{SA}, x_{SC}, x_{EA}, y_A, y_B &\geq 0 && \text{(No se pueden producir cantidades negativas de productos)}\\
+                                \end{aligned}
+                            \end{equation}
+                    \end{itemize}
+                    
+                \item 
+            \end{enumerate}
+        \end{exercise}
 
 
 
