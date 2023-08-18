@@ -16,4 +16,278 @@
         \begin{example} \textbf{(Leather Limited)}\\
             
         \end{example}
+
+    \subsection{Preliminares del algoritmo simplex}
+        Suponga que se ha convertido un PL con $m$ restricciones en su forma estándar. Si se supone que la forma estándar contiene $n$ variables (denominadas por conveniencia $x_1, x_2, \dots, x_n$), la forma estándar para tal PL es
+        \begin{equation}
+            \max o \min(z) = c_1 \cdot x_1 + c_2 \cdot x_2 + \dots + c_n \cdot x_n
+        \end{equation}
+
+        sujeto a
+        \begin{equation}
+            \begin{aligned}
+                a_{11} \cdot x_1 + a_{12} \cdot x_2 + \dots + a_{1n} \cdot x_n &= b_1 \\
+                a_{21} \cdot x_1 + a_{22} \cdot x_2 + \dots + a_{2n} \cdot x_n &= b_2 \\
+                \vdots \\
+                a_{m1} \cdot x_1 + a_{m2} \cdot x_2 + \dots + a_{mn} \cdot x_n &= b_m \\
+                x_1, x_2, \dots, x_n &\geq 0 \\
+            \end{aligned}
+            \label{eq:forma_estandar}
+        \end{equation}
+
+        Se define matriz
+        \begin{equation}
+            A = \begin{bmatrix}
+                a_{11} & a_{12} & \dots & a_{1n} \\
+                a_{21} & a_{22} & \dots & a_{2n} \\
+                \vdots & \vdots & \ddots & \vdots \\
+                a_{m1} & a_{m2} & \dots & a_{mn} \\
+            \end{bmatrix}
+        \end{equation}
+
+        y
+        \begin{equation}
+            x = \begin{bmatrix}
+                x_1 \\
+                x_2 \\
+                \vdots \\
+                x_n \\
+            \end{bmatrix}, \quad 
+            b = \begin{bmatrix}
+                b_1 \\
+                b_2 \\
+                \vdots \\
+                b_m \\
+            \end{bmatrix} \quad
+        \end{equation}
+
+
+    \subsection{Variables básicas y no básicas}
+        Con el sistema $A \cdot x = b$ de $m$ ecuaciones lineales y $n$ variables (suponga $n \geq m$).
+
+        \begin{definition} \textbf{(Solucion básica)}
+            Una solucion básica para $A \cdot x = b$ se obtiene haciendo $n-m$ variables iguales a cero, y luego se determinan los valores de las $m$ variables restantes. Así se asume que al hacer las $n-m$ variables iguales a cero se llega a valores únicos para las $m$ variables restantes, o que, en forma equivalente, las columnas para las $m$ variables restantes son linealmente independientes.
+        \end{definition}
+
+        \begin{enumerate}
+            \item Escoger un conjuto de $n-m$ variables no básicas (VNB).
+            \item Igualar a cero las variables no básicas.
+        \end{enumerate}
+
+        \begin{example}
+            \begin{equation}
+                \begin{aligned}
+                    x_1 + x_2 &= 3 \\
+                    - x_2 + x_3 &= -1 \\
+                \end{aligned}
+            \end{equation}
+
+            Variables no básicas (VNB): $n-m = 3-2 = 1$.
+            \begin{table}[h]
+                \begin{center}
+                    \begin{tabular}{|c|c|c|}
+                        \hline
+                        VNB $= {x_3}$, BV $= \{x_1,x_2\}$ & VNB $= {x_2}$, BV $= \{x_1,x_3\}$ & VNB $= {x_1}$, BV $= \{x_2,x_3\}$ \\ \hline
+                        $x_3 = 0$ & $x_2 = 0$ & $x_1 = 0$ \\ \hline
+                        \begin{minipage}{.3\textwidth}
+                            \begin{equation*}
+                                \begin{aligned}
+                                    x_1 + x_2 &= 3\\
+                                    x_2 &= -1 \\
+                                \end{aligned}
+                            \end{equation*}
+                        \end{minipage} & \begin{minipage}{.3\textwidth}
+                            \begin{equation*}
+                                \begin{aligned}
+                                    x_1 &= 3\\
+                                    x_3 &= -1 \\
+                                \end{aligned}
+                            \end{equation*}
+                        \end{minipage} & \begin{minipage}{.3\textwidth}
+                            \begin{equation*}
+                                \begin{aligned}
+                                    x_2 &= 3\\
+                                    -x_2 +x_3 &= -1 \\
+                                \end{aligned}
+                            \end{equation*}
+                        \end{minipage} \\ \hline
+                        $x_1 = 2, x_2 = 1, x_3 = 0$ & $x_1 = 3, x_2 = 0, x_3 = -1$ & $x_1 = 0, x_2 = 3, x_3 = 2$ \\ \hline
+                    \end{tabular}
+                \end{center}
+                \caption{Soluciones básicas}
+            \end{table}
+            \label{table:ejemplo_soluciones_básicas}
+        \end{example}
+        
+    \subsection{Soluciones factibles}    
+        \begin{definition} \textbf{(solución básica factible (sbf))}
+            Cualquier solucion básica de (\ref{eq:forma_estandar}) en la cual todas las variables son no negatiavas es una  \textbf{solución factible básica (sfb)}.
+        \end{definition}
+
+        Del ejemplo \ref{table:ejemplo_soluciones_básicas} se puede ver que las soluciones factibles básicas son: $(2,1,0)$ y $(0,3,2)$. Solución no factible básica: $(3,0,-1)$, porque $x_3 < 0$.
+
+        \begin{theorem} \textbf{(punto estremo)}
+            Un punto en la región factible de un PL es un punto extremo si y sólo si es una solución factible básica.
+            
+        \end{theorem}
+
+
+    \subsection{Álgebra del método símplex}
+        \begin{example} Ejemplo tomado del video YouTube \cite{metodo_simplex_algebraico}.
+            \begin{equation}
+                \max z = 7 \cdot x_1 + 4 \cdot x_2
+            \end{equation}
+
+            sujeto a
+            \begin{equation}
+                \begin{aligned}
+                    2 \cdot x_1 + x_2 &\leq 20 \\
+                    x_1 + x_2 &\leq 18 \\
+                    x_1  &\leq 8 \\
+                    x_1, x_2 &\geq 0 \\
+                \end{aligned}
+            \end{equation}
+
+            \underline{\textbf{Solución:}}
+            \begin{enumerate}
+                \item  Forma estándar o aumentada:
+                    \begin{equation}
+                        \begin{aligned}
+                            2 \cdot x_1 + x_2 + s_1 &= 20 \\
+                            x_1 + x_2 + s_2 &= 18 \\
+                            x_1 + s_3 &= 8 \\
+                            x_1, x_2, s_1, s_2, s_3 &\geq 0 \\
+                        \end{aligned}
+                    \end{equation}
+                    
+                    Tenemos $m = 3$ restricciones y $n = 5$ variables. Por lo tanto, $n-m = 2$ variables no básicas y $m = 3$ variables básicas.
+
+                    Si $x_1 = x_2 = 0$, entonces $s_1 = 20$, $s_2 = 18$ y $s_3 = 8$. Por lo tanto, $(0,0,20,18,8)$ es una solución básica factible.
+                \item Determinación de la dirección de movimiento.
+ 
+                    Observando la funcion objetivo $z$ aumenta más rápidamente si $x_1$ aumenta en una unidad. Por lo tanto, $x_1$ es la variable de entrada.
+                    \begin{equation}
+                        \begin{aligned}
+                            \text{¿Aumenta $x_1$?} && \text{Tasa de mejoramiento} && z &= 7 \\
+                            \text{¿Aumenta $x_2$?} && \text{Tasa de mejoramiento} && z &= 4 \\
+                        \end{aligned}
+                    \end{equation}
+
+                    Con esto se determina la variable de entrada $x_1$.
+
+                \item Prueba del cociente mínimo.
+                    Cuanto aumentar el valor de la variable básica entrante $x_1$ antes de detenerse, para no salirse de la región factible.
+
+                    Usando las restricciones y sabiendo que $x_2 = 0$, se obtiene:
+                    \begin{equation}
+                        \begin{aligned}
+                            2 \cdot x_1 + s_1 &= 20 && (x_1 \leq 10)\\
+                            x_1 + s_2 &= 18 && (x_1 \leq 18)\\
+                            x_1 + s_3 &= 8 && (x_1 \leq 8) && \leftarrow \text{mínimo}\\
+                            x_1, s_1, s_2, s_3 &\geq 0 \\
+                        \end{aligned}
+                    \end{equation}
+
+                    Se la restricción que más limita el crecimiento se despeja y se la coloca en las demás ecuaciones.
+                \item Resolución de una nueva solución BF.
+                    Se reemplaza $x_1 = 8 - s_3$ en las demás ecuaciones:
+                    \begin{equation}
+                        \begin{split}
+                            \max z &= 7 \cdot (8 - s_3) + 4 \cdot x_2 \\
+                                   &= 56 + 4 \cdot x_2 - 7 \cdot s_3 \\
+                        \end{split}
+                    \end{equation}
+
+                    \begin{equation}
+                        \begin{aligned}
+                          2 \cdot (8 - s_3) + x_2 + s_4 &= 20 && \longrightarrow && x_2 + s_1 -2 \cdot s_3 = 4 \\
+                            (8 - s_3) + x_2 + s_4 &= 18 && \longrightarrow && x_2 + s_2 - s_3 = 10 
+                        \end{aligned}
+                    \end{equation}
+
+                    El sistema de ecuaciones equivalente es
+                    \begin{equation}
+                        \begin{split}
+                            \max z &= 56 + 4 \cdot x_2 - 7 \cdot s_3 \\
+                        \end{split}
+                    \end{equation}
+
+                    \begin{equation}
+                        \begin{aligned}
+                          x_2 + s_1 -2 \cdot s_3 = 4 \\
+                          x_2 + s_2 - s_3 = 10 \\
+                          x_1 + s_5 = 8 \\
+                            x_1, x_2, s_1, s_2, s_3 &\geq 0 \\
+                        \end{aligned}
+                    \end{equation}
+                \item 
+            \end{enumerate}
+        \end{example}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \end{document}  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

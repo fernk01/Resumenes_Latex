@@ -1,5 +1,6 @@
 \documentclass[../main.tex]{subfiles}
 
+
 \begin{document} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Guía de ejercicios} 
     \subsection{Guía 1}
@@ -131,5 +132,262 @@
             \end{enumerate}
 
         \end{exercise}
+
+        \begin{exercise}
+            Se desea definir las cantidades a fabricar de dos productos, A y B cuyo procesamiento se realiza en dos centros de máquinas, conociéndose los datos referentes a los tiempos de proceso y disponibilidades en los centros. Se sabe además que debe cumplirse con un pedido mínimo de 50 unidades de A. Al mismo tiempo, la producción de B debe ser por lo menos cuatro veces superior a la producción de A.
+            
+            Se conocen los márgenes brutos de beneficio de cada producto.
+
+            \begin{table}[ht]
+                \centering
+                \begin{tabular}{cc|cc|c|}
+                \cline{3-5}
+                                                                                                                             &                     & \multicolumn{2}{c|}{\textbf{Producto}}       & \multirow{2}{*}{\textbf{Disponibilidad}} \\ \cline{3-4}
+                                                                                                                             &                     & \multicolumn{1}{c|}{\textbf{A}} & \textbf{B} &                                          \\ \hline
+                \multicolumn{1}{|c|}{\multirow{2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}Tiempos\\  unitarios\end{tabular}}}} & \textbf{Máquina I}  & \multicolumn{1}{c|}{1}          & 0,4        & 200                                      \\ \cline{2-5} 
+                \multicolumn{1}{|c|}{}                                                                                       & \textbf{Máquina II} & \multicolumn{1}{c|}{0,5}        & 1          & 200                                      \\ \hline
+                \multicolumn{2}{|c|}{\textbf{Margen bruto unitario}}                                                                               & \multicolumn{1}{c|}{12}         & 8          &                                          \\ \hline
+                \end{tabular}
+                \caption{Tabla de datos}
+            \end{table}
+
+            \textbf{Solución:}
+            \begin{enumerate}
+                \item Objetivo del problema: Dado que se quiere maximizar el beneficio, el objetivo es producir la cantidad adecuada de cada producto para maximizar los ingresos.
+                \item Definimos variables de decisión:
+                    \begin{equation}
+                        \begin{split}
+                            x_A &= \text{Cantidad de unidades del Producto A a fabricar.} \\
+                            x_B &= \text{Cantidad de unidades del Producto B a fabricar.} \\
+                        \end{split}
+                    \end{equation}
+                \item Función objetivo (maximizar beneficio):
+                    \begin{equation}
+                        \max Z = 12 \cdot x_A + 8 \cdot x_B
+                    \end{equation}
+                \item Restricciones:
+                    \begin{equation}
+                        \begin{aligned}
+                            x_A &\geq 50 && \text{(Restricción de pedido mínimo de A)} \\
+                            x_B &\geq 4 \cdot x_A && \text{(Restricción de producción de B)}\\
+                            x_A + 0,4 \cdot x_B &\leq 200 && \text{(Restricción de disponibilidad de máquina I)}\\
+                            0,5 \cdot x_A + x_B &\leq 200 && \text{(Restricción de disponibilidad de máquina II)}\\
+                            x_A, x_B & \geq 0 && \text{(No se pueden producir cantidades negativas de productos)}\\
+                        \end{aligned}
+                    \end{equation}
+            \end{enumerate}
+            
+            Nota: 
+            
+            En este caso $x_A$ y $x_B$ [unidades].
+
+            La Disponibilidad en cada máquina: 200 [unidades].
+        \end{exercise}
+
+        \begin{exercise}
+            La empresa Seventeen SRL se dedica a la fabricación de manteles de mesa. Fabrica dos modelos que se adaptan al 90\% de las mesas argentinas: el redondo y el rectangular. Cada uno de estos modelos consume 2 y 3 $m^2$ de tela, respectivamente. Además deben ser cortados y cosidos a mano, tarea que lleva una hora para los manteles rectangulares y dos para los redondos (es más complejo el corte). Por último, a los manteles rectangulares se les deben colocar cuatro esquineros de refuerzo.
+            
+            Semanalmente se pueden conseguir 600 $m^2$ de tela, 600 esquineros y 500 horas de corte y costura. Los márgenes de ganancias son de \$8 para los manteles redondos y \$10 para los rectangulares.\\
+
+            ¿Qué es lo mejor que puede hacer Seventeen con esta información?\\
+
+            \textbf{Solución:}
+            \begin{enumerate}
+                \item Objetivo del problema: Maximizar el beneficio total.
+                \item Definir variables de decisión:
+                    \begin{equation}
+                        \begin{split}
+                            x_C &= \text{Cantidad de manteles redondos (circular) a fabricar.} \\
+                            x_R &= \text{Cantidad de manteles rectangulares a fabricar.} \\
+                        \end{split}
+                    \end{equation}
+
+                    Podemos construir una tabla con los datos de la tabla del enunciado:
+
+                    \begin{table}[ht]
+                        \centering
+                        \begin{tabular}{c|cc|c|c}
+                        \cline{2-4}
+                                                                                & \multicolumn{2}{c|}{\textbf{Producto}}                                                                                                               & \multirow{2}{*}{\textbf{Disponibilidad}} &                                        \\ \cline{2-3} \cline{5-5} 
+                                                                                & \multicolumn{1}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}Redondo\\ $x_C$\end{tabular}}} & \textbf{\begin{tabular}[c]{@{}c@{}}Rectangular\\ $x_R$\end{tabular}} &                                          & \multicolumn{1}{c|}{\textbf{Unidades}} \\ \hline
+                        \multicolumn{1}{|c|}{\textbf{Consumo de tela}}           & \multicolumn{1}{c|}{2}                                                            & 3                                                                & 600                                      & \multicolumn{1}{c|}{{[}$m^2${]}}          \\ \hline
+                        \multicolumn{1}{|c|}{\textbf{Tiempo de corte y costura}} & \multicolumn{1}{c|}{2}                                                            & 1                                                                & 500                                      & \multicolumn{1}{c|}{hs}                \\ \hline
+                        \multicolumn{1}{|c|}{\textbf{Esquineros}}                & \multicolumn{1}{c|}{-}                                                            & 4                                                                & 600                                      & \multicolumn{1}{c|}{}                  \\ \hline
+                        \multicolumn{1}{|c|}{\textbf{Ganancia}}                  & \multicolumn{1}{c|}{8}                                                            & 10                                                               &                                          & \multicolumn{1}{c|}{\$}                \\ \hline
+                        \end{tabular}
+                        \caption{Tabla de datos}
+                    \end{table}
+
+                \item Función objetivo (maximizar beneficio):
+                    \begin{equation}
+                        \max Z = 8 \cdot x_C + 10 \cdot x_R
+                    \end{equation}
+                \item Restricciones:
+                    \begin{equation}
+                        \begin{aligned}
+                            2 \cdot x_C + 3 \cdot x_R &\leq 600 && \text{(Restricción de disponibilidad de tela)} \\
+                            2 \cdot x_C + x_R &\leq 500 && \text{(Restricción de disponibilidad de corte y costura)}\\
+                            4 \cdot x_R &\leq 600 && \text{(Restricción de disponibilidad de esquineros)}\\
+                            x_C, x_R & \geq 0 && \text{(No se pueden producir cantidades negativas de productos)}\\
+                        \end{aligned}
+                    \end{equation}
+
+            \end{enumerate}
+        \end{exercise} 
+
+        \begin{exercise}
+            Es necesario alimentar racionalmente un rebaño de cabezas de ganado.
+
+            Los alimentos deben contener imprescindiblemente, cuatro componentes nutritivos: A, B, C y D.
+
+            Se encuentran disponibles en el mercado dos alimentos M y N cuyas propiedades son:
+            \begin{itemize}
+                \item Un kilogramo de alimento M contiene 100 gr. de nutriente A, 100 gr. de C, y 200 gr. de D.
+                \item Un kilogramo de alimento N contiene 100 gr. de nutriente B, 200 gr. de C y 100 gr. de D.
+            \end{itemize}
+
+            Cada animal debe consumir como mínimo, por día, 400 gr. de nutriente A, 600 gr. de B, 2.000 gr. de C y 1.700 gr. de D.
+
+            El alimento M cuesta 10 \$/kg, y el N cuesta 4 \$/kg.
+
+            ¿Qué cantidad de alimentos M y N debe suministrarse a cada animal diariamente para que la ración sea la más económica?.\\
+
+            \textbf{Solución:}
+            \begin{enumerate}
+                \item Objetivo del problema: Minimizar el costo total de la ración.
+                \item Definir variables de decisión:
+                    \begin{equation}
+                        \begin{split}
+                            x_M &= \text{Cantidad de alimento M a suministrar [kg/día]} \\
+                            x_N &= \text{Cantidad de alimento N a suministrar [kg/día]} \\
+                        \end{split}
+                    \end{equation}
+
+                    Podemos construir una tabla con los datos de la tabla del enunciado:                    
+                    \begin{table}[ht]
+                        \centering
+                        \begin{tabular}{c|cc|c|}
+                        \cline{2-4}
+                                                                  & \multicolumn{2}{c|}{\textbf{Producto}}       & \multirow{2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}Consumo \\ mínimo\end{tabular}}} \\ \cline{1-3}
+                        \multicolumn{1}{|c|}{\textbf{Nutrientes}} & \multicolumn{1}{c|}{\textbf{M}} & \textbf{N} &                                                                                     \\ \hline
+                        \multicolumn{1}{|c|}{\textbf{A}}          & \multicolumn{1}{c|}{100}        & -          & 400                                                                                 \\ \hline
+                        \multicolumn{1}{|c|}{\textbf{B}}          & \multicolumn{1}{c|}{-}          & 100        & 600                                                                                 \\ \hline
+                        \multicolumn{1}{|c|}{\textbf{C}}          & \multicolumn{1}{c|}{100}        & 200        & 2000                                                                                \\ \hline
+                        \multicolumn{1}{|c|}{\textbf{D}}          & \multicolumn{1}{c|}{200}        & 100        & 1700                                                                                \\ \hline
+                        \multicolumn{1}{|c|}{\textbf{Ganancia}}   & \multicolumn{1}{c|}{10}         & 4          &                                                                                     \\ \hline
+                        \end{tabular}
+                        \caption{Tabla de datos}
+                    \end{table}
+                    
+                \item Función objetivo (minimizar costo total):
+                    \begin{equation}
+                        \min Z = 10 \cdot x_M + 4 \cdot x_N
+                    \end{equation}
+                \item Restricciones:
+                    \begin{equation}
+                        \begin{aligned}
+                            100 \cdot x_M &\geq 400 && \text{(Restricción de consumo mínimo de nutriente A)} \\
+                            100 \cdot x_N &\geq 600 && \text{(Restricción de consumo mínimo de nutriente B)}\\
+                            100 \cdot x_M + 200 \cdot x_N &\geq 2000 && \text{(Restricción de consumo mínimo de nutriente C)}\\
+                            200 \cdot x_M + 100 \cdot x_N &\geq 1700 && \text{(Restricción de consumo mínimo de nutriente D)}\\
+                            x_M, x_N & \geq 0 && \text{(No se pueden producir cantidades negativas de productos)}\\
+                        \end{aligned}
+                    \end{equation}
+                
+            \end{enumerate}
+        \end{exercise}
+
+        \begin{exercise}
+            Dado el siguiente sistema de inecuaciones:
+            \begin{equation}
+                \begin{aligned}
+                    4 \cdot x_1 - 2 \cdot x_2 &\leq 4 \\
+                    4 \cdot x_1 + 2 \cdot x_2 &\leq 8 \\
+                    x_1 + x_2 &\geq 0 \\
+                \end{aligned}
+            \end{equation}
+
+            Y el funcional:
+            \begin{equation}
+                \max Z = 8 \cdot x_1 + 4 \cdot x_2 
+            \end{equation}
+
+            \underline{Se pide:}
+            \begin{enumerate}[label=\alph*)]
+                \item Encontrar un enunciado compatible con el mismo.
+                \item Resolverlo gráficamente.
+                \item Indicar la o las soluciones del problema que optimicen el funcional.
+                \item Dar el valor de las variables débiles o slacks, sus unidades y significado en cada uno de los vértices del poliedro.
+            \end{enumerate}
+
+            \textbf{Solución:}
+            \begin{enumerate}[label=\alph*)]
+                \item
+                \item Simulado con la página \cite{PL_online}.
+                    %Cargamos imagen
+                    \begin{figure}[ht]
+                        \centering
+                        \includegraphics[width=0.9\textwidth]{./images/guia/1-6_ejercicio.png}
+                        \caption{Representación gráfica del problema}
+                        \label{fig:1-6_ejercicio}
+                    \end{figure}
+                    
+                \item Observando la Figura \ref{fig:1-6_ejercicio}, se puede ver que el punto óptimo es el punto $B(1.5,1)$ y $C(0,4)$, con un valor de $Z = 16$.
+            \end{enumerate}
+            \item 
+
+        \end{exercise}
+    
+    \subsection{Guía 2}
+        \begin{exercise}
+            Un taller de tejido elabora varios modelos de pullóver. Estos modelos de pullóver se pueden agrupar, desde un punto de vista técnico-económico, en tres tipos diferentes de prendas, a los cuales llamaremos A, B y C.
+
+            El taller posee dos máquinas (I y II). Los pullóveres A sólo pueden hacerse en la máquina I, los C sólo pueden hacerse en la máquina II y los B pueden hacerse tanto en la máquina I como en la II.
+
+            Las dos máquinas trabajan dos turnos por día, 8 horas en cada turno, de lunes a viernes.
+
+            La materia prima utilizada es lana de dos calidades distintas (Mejorada y Normal). La lana Mejorada se utiliza para los pullóveres de tipo A y C. Los pullóveres de tipo B se hacen con lana Normal. De la lana Mejorada se pueden conseguir hasta 20 kg./semana y de la lana Normal hasta 36 kg./semana.
+
+            Existe un compromiso de entregar 10 pullóveres B por semana a un importante distribuidor.
+
+            No es necesario que las prendas que comienzan a fabricarse en una semana se terminen durante la misma, es decir que pueden quedar pullóveres a medio hacer de una semana para la próxima.
+
+            Los estándares de producción y materia prima y los beneficios unitarios para cada tipo de pullóver, se indican en el siguiente cuadro:
+
+            \begin{table}[ht]
+                \centering
+                \begin{tabular}{|c|cc|cc|c|}
+                \hline
+                \multirow{3}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}Tipo de\\ pullóver\end{tabular}}} & \multicolumn{2}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}Estándar de producción\\ hs/pullover\end{tabular}}} & \multicolumn{2}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}Estándar de materia prima\\ kg/pullover\end{tabular}}} & \multirow{3}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}Beneficio \\ unitario \\ \$/pullover\end{tabular}}} \\ \cline{2-5}
+                                                                                                     & \multicolumn{1}{c|}{\multirow{2}{*}{\textbf{Máquina I}}}       & \multirow{2}{*}{\textbf{Máquina II}}      & \multicolumn{1}{c|}{\multirow{2}{*}{\textbf{Mejorada}}}           & \multirow{2}{*}{\textbf{Normal}}          &                                                                                                        \\
+                                                                                                     & \multicolumn{1}{c|}{}                                          &                                           & \multicolumn{1}{c|}{}                                             &                                           &                                                                                                        \\ \hline
+                \textbf{A}                                                                           & \multicolumn{1}{c|}{5}                                         & -                                         & \multicolumn{1}{c|}{1,6}                                          & -                                         & 10                                                                                                     \\ \hline
+                \textbf{B}                                                                           & \multicolumn{1}{c|}{6}                                         & 4                                         & \multicolumn{1}{c|}{-}                                            & 1,8                                       & 15                                                                                                     \\ \hline
+                \textbf{C}                                                                           & \multicolumn{1}{c|}{-}                                         & 4                                         & \multicolumn{1}{c|}{1,2}                                          & -                                         & 18                                                                                                     \\ \hline
+                \end{tabular}
+                \caption{Tabla de datos}
+            \end{table}
+
+            \textbf{Solución:}
+        \end{exercise}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \end{document}  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
