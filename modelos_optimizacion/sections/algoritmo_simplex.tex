@@ -71,8 +71,18 @@
 
         \begin{enumerate}
             \item Escoger un conjuto de $n-m$ variables no básicas (VNB).
-            \item Igualar a cero las variables no básicas.
+            \item Igualar a cero las vaariables no básicas.
         \end{enumerate}
+
+        \begin{definition} \textbf{(Puntos esquina)}
+            Una solución básica es un punto esquina si todas las variables son no negativas.
+            
+            La cantidad máxima de puntos esquina es 
+            \begin{equation}
+                C^n_m = \binom{n}{m} = \frac{n!}{m! \cdot (n-m)!}
+            \end{equation} 
+            
+        \end{definition}
 
         \begin{example}
             \begin{equation}
@@ -121,16 +131,56 @@
         
     \subsection{Soluciones factibles}    
         \begin{definition} \textbf{(solución básica factible (sbf))}
-            Cualquier solucion básica de (\ref{eq:forma_estandar}) en la cual todas las variables son no negatiavas es una  \textbf{solución factible básica (sfb)}.
+            Cualquier solucion básica de (\ref{eq:forma_estandar}) en la cual todas las variables son no negatiavas.
         \end{definition}
 
-        Del ejemplo \ref{table:ejemplo_soluciones_básicas} se puede ver que las soluciones factibles básicas son: $(2,1,0)$ y $(0,3,2)$. Solución no factible básica: $(3,0,-1)$, porque $x_3 < 0$.
+        \begin{definition} \textbf{(punto estremo)}
+            Un punto en la región factible de un PL es un punto extremo si y sólo si es una solución factible básica. 
+        \end{definition}
 
-        \begin{theorem} \textbf{(punto estremo)}
-            Un punto en la región factible de un PL es un punto extremo si y sólo si es una solución factible básica.
-            
-        \end{theorem}
+        \begin{example}
+            Ejemplo sacado del libro Hamby A Taha pág 73.
+            \begin{equation}
+                \min Z = 2 \cdot x_1 + 3 \cdot x_2
+            \end{equation}
 
+            sujeto a
+            \begin{equation}
+                \begin{aligned}
+                    x_1 + x_2 &\leq 4 \\
+                    x_1 + 2 \cdot x_2 &\leq 5 \\
+                    x_1, x_2 &\geq 0 \\
+                \end{aligned}
+            \end{equation}
+
+            \begin{table}[h]
+                \centering
+                \begin{tabular}{cccccc}
+                \hline
+                \multirow{2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}Variables no\\ básicas (cero)\end{tabular}}} & \multirow{2}{*}{\textbf{Variables básicas}} & \multirow{2}{*}{\textbf{Solución básica}} & \multirow{2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}Punto de esquina\\ asociado\end{tabular}}} & \multirow{2}{*}{\textbf{¿Factible?}} & \multirow{2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}Valor\\ objetivo, z\end{tabular}}} \\
+                &&&&&\\ \hline
+                $(x_1,x_2)$ & $(s_1,s_2)$ & (4,5) & A & Sí & 0 \\
+                $(x_1,s_1)$ & $(x_2,s_2)$ & (4,-3)& F& No& -\\
+                $(x_1,s_2)$ & $(x_2,s_1)$ & (2.5,1.5)& B& Sí& 7.5\\
+                $(x_2,s_1)$ & $(x_1,s_2)$ & (2,3)& D& Sí& 4\\
+                $(x_2,s_2)$ & $(x_1,s_1)$ & (5,-6)& E& No& -\\
+                $(s_1,s_2)$ & $(x_1,x_2)$ & \textbf{(1,2)}& \textbf{C}& \textbf{Sí}& \textbf{8 (óptimo) }\\
+                \hline
+                \end{tabular}
+                \caption{Soluciones básicas}
+            \end{table}
+
+            % Carganos imagen
+            \begin{figure}[h]
+                \centering
+                \includegraphics[width=0.7\textwidth]{../images/variable_basicas.png}
+                \caption{Región factible}
+                \label{fig:region_factible}
+            \end{figure}
+
+            Las soluciones básicas estan conformadas por $(x_1, x_2, s_1, s_2)$. Por ejemplo $A=(0,0,4,5)$, y es factible si todas sus variables son positivas.
+        \end{example}
+        
 
     \subsection{Álgebra del método símplex}
         \begin{example} Ejemplo tomado del video YouTube \cite{metodo_simplex_algebraico}.
@@ -178,6 +228,8 @@
                 \item Prueba del cociente mínimo.
                     Cuanto aumentar el valor de la variable básica entrante $x_1$ antes de detenerse, para no salirse de la región factible.
 
+                    En la primer ecuación se observa que el valor más pequeño que tomar la variable $s_1 = 0$. Seguimos asi con el razonamiento para las demás ecuaciones.
+
                     Usando las restricciones y sabiendo que $x_2 = 0$, se obtiene:
                     \begin{equation}
                         \begin{aligned}
@@ -216,12 +268,62 @@
                         \begin{aligned}
                           x_2 + s_1 -2 \cdot s_3 = 4 \\
                           x_2 + s_2 - s_3 = 10 \\
-                          x_1 + s_5 = 8 \\
+                          x_1 + s_3 = 8 \\
                             x_1, x_2, s_1, s_2, s_3 &\geq 0 \\
                         \end{aligned}
                     \end{equation}
-                \item 
-            \end{enumerate}
+                \item Una vez que se tiene un sistema de ecuaciones equivalente, se repite el proceso.
+                    
+                    Una forma fácil de identificar que variables se ponen en cero se observa la función objetivo $x_2 = 0$ y $s_3 = 0$.
+
+                    Otra forma es observando el sistema de ecuaciones y ver las variables con coeficiente uno.
+                \item Prueba del cociente mínimo.
+                
+                    Como $s_3=0$, se obtiene:
+                    \begin{equation}
+                        \begin{aligned}
+                            x_2 + s_1 &= 4 && (x_2 \leq 4) && \leftarrow \text{mínimo} \\
+                            x_2 + s_2 &= 10 && (x_2 \leq 10)\\
+                            x_1 &= 8 &&  && \leftarrow \text{sin restricción}\\
+                            x_1, x_2, s_1, s_2, s_3 &\geq 0 \\
+                        \end{aligned}
+                    \end{equation}
+
+                    Se la restricción que más limita el crecimiento se despeja y se la coloca en las demás ecuaciones.
+                \item Resolución de una nueva solución BF.
+                
+                    Despejando de la primer ecuación:
+                    \begin{equation}
+                        x_2 + s_1 -2 \cdot s_3 = 4 \quad \longrightarrow \quad x_2 = 4 - s_1 + 2 \cdot s_3
+                    \end{equation}
+
+                    Reemplamos en todo el sistema equivalente:
+                    \begin{equation}
+                        \begin{aligned}
+                        \max z &= 56 + 4 \cdot (4 - s_1 + 2 \cdot s_3) - 7 \cdot s_3 \\
+                               &= 72 - 4 \cdot s_1 - s_3 \\
+                        \end{aligned}
+                    \end{equation}
+
+                    \begin{equation}
+                        \begin{aligned}
+                          (4 - s_1 + 2 \cdot s_3) + s_2 - s_3 &= 10 && \longrightarrow && -s_1 + s_2 + s_3 = 6 \\
+                        \end{aligned}
+                    \end{equation}
+
+
+                    El sistema equivalente queda:
+                    \begin{equation}
+                        \begin{aligned}
+                        \max z &= 72 - 4 \cdot s_1 - s_3 \\
+                        x_2 + s_1 -2 \cdot s_3 &= 4 \\
+                          -s_1 + s_2 + s_3 &= 6 \\
+                          x_1 + s_3 &= 8 \\
+                            x_1, x_2, s_1, s_2, s_3 &\geq 0 \\
+                        \end{aligned}
+                    \end{equation}
+                \item Seguimos asi.
+            \end{enumerate} 
         \end{example}
 
 
