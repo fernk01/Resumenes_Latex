@@ -21,22 +21,35 @@
 
     \subsection{Relaciones entre clases}
         Relaciones en UML: \cite{uml_relacion_clases}
+
+        \begin{itemize}
+            \item \textbf{Asociación} 
+                \begin{itemize}
+                    \item \textbf{Agregación}
+                    \item \textbf{Composición}
+                \end{itemize}
+            \item \textbf{Herencia/Generalización} 
+            \item \textbf{Dependencia}
+            \item  \textbf{Realización/Implementación}
+        \end{itemize}
+
         \begin{enumerate}
-            \item \textbf{Asociación:} Indica que una propiedad de una clase contiene una referencia a una instancia (o instancias) de otra clase.
-            
-            La asociación es la relación más utilizada entre una clase y otra clase, lo que significa que existe una conexión entre un tipo de objeto y otro tipo de objeto. Las combinaciones y agregaciones también pertenecen a las relaciones asociativas , pero las relaciones entre clases de afiliaciones son más débiles que las otras dos.
-            
-            Hay cuatro tipos de asociaciones : asociaciones bidireccionales , asociaciones unidireccionales , autoasociación y asociaciones de números múltiples.\\
-            
-            Por ejemplo: coches y conductores, un coche corresponde a un conductor en particular y un conductor puede conducir varios coches.
+            \item \textbf{Asociación:} 
+                Indica que una propiedad de una clase contiene una referencia a una instancia (o instancias) de otra clase.
+                
+                La asociación es la relación más utilizada entre una clase y otra clase, lo que significa que existe una conexión entre un tipo de objeto y otro tipo de objeto. Las combinaciones y agregaciones también pertenecen a las relaciones asociativas , pero las relaciones entre clases de afiliaciones son más débiles que las otras dos.
+                
+                Hay cuatro tipos de asociaciones : asociaciones bidireccionales , asociaciones unidireccionales , autoasociación y asociaciones de números múltiples.\\
+                
+                Por ejemplo: coches y conductores, un coche corresponde a un conductor en particular y un conductor puede conducir varios coches. El * en al fugura significa 0 o más.
 
-            \begin{figure}[ht]
-                \centering
-                \includegraphics[width=0.7\textwidth]{../images/uml_asociacion.png}
-                \caption{Asociación}
-                \label{fig:uml_asociacion}
-            \end{figure}
-
+                \begin{figure}[ht]
+                    \centering
+                    \includegraphics[width=0.7\textwidth]{../images/uml_asociacion.png}
+                    \caption{Asociación}
+                    \label{fig:uml_asociacion}
+                \end{figure}
+                
                 \begin{enumerate}
                     \item \textbf{Agregación:} 
                         La relación entre el todo y la parte, y el todo y la parte se pueden separar.
@@ -75,7 +88,7 @@
 
                 Por ejemplo: autobuses, taxis y automóviles son automóviles, todos tienen nombres y todos pueden estar en la carretera.
 
-            \item \textbf{Dependencia}: 
+            \item \textbf{Dependencia:} 
                 Suponga que un cambio en la clase A provoca un cambio en la clase B, luego diga que la clase B depende de la clase A.
                 En la mayoría de los casos, las dependencias se reflejan en los métodos de una clase que utilizan el objeto de otra clase como parámetro .
                 Una relación de dependencia es una relación de “uso”. Un cambio en una cosa en particular puede afectar a otras cosas que la usan, y usar una dependencia cuando es necesario indicar que una cosa usa otra. \\
@@ -96,7 +109,6 @@
                 
                 Por ejemplo: los automóviles y los barcos son vehículos, y el vehículo es solo un concepto abstracto de una herramienta móvil, y el barco y el vehículo realizan las funciones móviles específicas.
 
-
                 \begin{figure}[ht]
                     \centering
                     \includegraphics[width=0.5\textwidth]{../images/uml_realizacion.png}
@@ -112,7 +124,21 @@
             \label{fig:uml_relaciones}
         \end{figure}
 
-
+        \newpage
+        \begin{itemize}
+            \item \textbf{Asociación:} Es una relación de tipo \textbf{“tiene un”} entre clases, donde una clase tiene una referencia a otra clase. Por ejemplo, si tenemos una clase Persona y una clase Coche, podríamos decir que una persona tiene un coche, y representar esta relación con una asociación entre las clases Persona y Coche.
+                \begin{itemize}
+                    \item \textbf{Agregación:} Es un tipo especial de asociación que representa una relación de tipo \textbf{“parte de”} entre clases, donde una clase es parte de otra clase. A diferencia de la asociación, en la agregación las partes pueden existir independientemente del todo. Por ejemplo, si tenemos una clase Equipo y una clase Jugador, podríamos decir que un jugador es parte de un equipo, y representar esta relación con una agregación entre las clases Equipo y Jugador.
+                        
+                    \item \textbf{Composición:}  Es otro tipo especial de asociación que también representa una relación de tipo \textbf{“parte de”} entre clases, pero en este caso las partes no pueden existir independientemente del todo. Por ejemplo, si tenemos una clase Casa y una clase Habitacion, podríamos decir que una habitación es parte de una casa, y representar esta relación con una composición entre las clases Casa y Habitacion.
+                            
+                \end{itemize}
+            \item \textbf{Herencia:} Es una relación de tipo \textbf{“es un”} entre clases, donde una subclase hereda las propiedades y comportamientos de su superclase y puede agregar o modificar propiedades y comportamientos propios. Por ejemplo, si tenemos una clase Vehiculo con propiedades como marca, modelo y color, y comportamientos como acelerar y frenar, podríamos crear una subclase Coche que herede estas propiedades y comportamientos de la clase Vehiculo, y agregar propiedades específicas como numeroDePuertas y comportamientos específicos como abrirTechoSolar.
+            
+            \item \textbf{Dependencia:} Es una relación entre clases donde una clase depende de otra clase para su funcionamiento. Por ejemplo, si tenemos una clase Calculadora y una clase Operacion, podríamos decir que la calculadora depende de la operación para realizar cálculos, y representar esta relación con una dependencia entre las clases Calculadora y Operacion.
+            \item \textbf{Realización/Implementación:} Es una relación de tipo \textbf{“se comporta como”} entre clases, donde una clase implementa una interfaz y debe proporcionar implementaciones para todos los métodos definidos en la interfaz. Por ejemplo, si tenemos una interfaz Volador con métodos como despegar y aterrizar, podríamos tener clases como Avion y Pajaro que implementen esta interfaz y proporcionen implementaciones para los métodos despegar y aterrizar.
+        \end{itemize}
+        
     \subsection{Interface}
         Interfaces: \cite{interfaces}.
         \begin{itemize}
