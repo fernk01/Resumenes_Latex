@@ -6,75 +6,146 @@
 
     Lo más importante en POO no es tanto la estructura de relacionamiento de los objetos, sino el comportamiento. Por lo tanto, deberíamos ocuparnos de, siguiendo el diseño por contrato,  determinar los contratos de cada objeto a implementar (precondicionesa y postcondiciones, invariantes, etc.) 
 
-    \subsection{Dependencia y asociación}
-        \begin{definition} \textbf{Dependencia}
-            Un objeto depende de otro cuando debe conocerlo para poder enviarle un mensaje.
-            Corolario:
-            Todo objeto cliente depende de su servidor.    
-        \end{definition}
+    \subsection{Relaciones entre objetos}
+        \subsubsection{Los objetos interactúan}
+            Todo mensaje tiene un objeto \textbf{cliente} y uno \textbf{receptor}. Pero los objetos no tienen por qué ser siempre servidores o clientes, sino que su condición cambia según el mensaje. Por ejemplo, un objeto puede ser el receptor de un mensaje y, para poder responder ese mensaje envía a su vez una solicitud a objeto, en cuyo caso se convierte en cliente.
 
-        Esta dependencia puede venir dada de tres maneras:
-        \begin{itemize}
-            \item Porque el objeto servidor se envía como argumento.
-            \item Porque el objeto servidor se obtiene como respuesta al envío de un mensaje a otro
-            objeto.
-            \item Porque el objeto cliente tiene una referencia al servidor. (Esto es asociación)
-        \end{itemize}        
+        \subsubsection{Yendo a lo práctico… o casi}
+            En POO lo mejor no es pensar en relaciones entre objetos per se, sino más bien ir encontrando estas relaciones a partir del \textbf{comportamiento} esperado en los escenarios. De esa manera, no tenemos relaciones tan complejas sin una razón para ello.
 
+        \subsubsection{¿Cómo implementamos esto?}
+            En POO lo importante no es tanto la estructura de relacionamiento de los objetos, sino el comportamiento.
 
-        \begin{definition} \textbf{Asociación}
-            Una asociación es una forma de dependencia en la que el objeto cliente tiene almacenada una referencia al objeto servidor.
-            
-        \end{definition}
+            Por lo tanto, deberíamos ocuparnos de, siguiendo el diseño por contrato, determinar los contratos de cada objeto a implementar.
 
-        Tanto las dependencias más débiles como las asociaciones tienen un sentido: decimos que el
-        cliente depende del servidor, y no al revés. Para un mismo mensaje, lo habitual es que las
-        dependencias sean unidireccionales.
+    \subsection{Conceptualizando}
+        \subsubsection{Dependencia y asociación}
+            \begin{definition} \textbf{Dependencia}
+                Un objeto depende de otro cuando debe conocerlo para poder enviarle un mensaje.
+                Corolario:
+                Todo objeto cliente depende de su servidor.    
+            \end{definition}
 
-        \begin{example} \textbf{Ejemplos de dependencia y asociación (preguntar si es correcto)}
+            Esta dependencia puede venir dada de tres maneras:
             \begin{itemize}
-                \item Si tengo una clase A donde los atributos usan una clase B. Esto sería asociación por que el objeto cliente tiene almacenado una referencia al objeto servidor?
-                \item Si tengo una clase A donde sus métodos usan una clase B. Esto sería dependencia por que el objeto cliente, depende objeto servidor?
+                \item Porque el objeto servidor se envía como argumento.
+                \item Porque el objeto servidor se obtiene como respuesta al envío de un mensaje a otro
+                objeto.
+                \item Porque el objeto cliente tiene una referencia al servidor. (Esto es asociación)
+            \end{itemize}        
+
+
+            \begin{definition} \textbf{Asociación}
+                Una asociación es una forma de dependencia en la que el objeto cliente tiene almacenada una referencia al objeto servidor.
+                
+            \end{definition}
+
+            Tanto las dependencias más débiles como las asociaciones tienen un sentido: decimos que el
+            cliente depende del servidor, y no al revés. Para un mismo mensaje, lo habitual es que las
+            dependencias sean unidireccionales.
+
+            \begin{example} \textbf{Ejemplos de dependencia y asociación (preguntar si es correcto)}
+                \begin{itemize}
+                    \item Si tengo una clase A donde los atributos usan una clase B. Esto sería asociación por que el objeto cliente tiene almacenado una referencia al objeto servidor?
+                    \item Si tengo una clase A donde sus métodos usan una clase B. Esto sería dependencia por que el objeto cliente, depende objeto servidor?
+                \end{itemize}
+
+                Sí, tienes razón en ambos casos.\\
+
+                Si tienes una clase A donde los atributos usan una clase B, esto sería una asociación porque el objeto cliente (clase A) tiene almacenada una referencia al objeto servidor (clase B). Esto significa que el objeto cliente puede interactuar con el objeto servidor a través de esta referencia.
+
+                Si tienes una clase A donde sus métodos usan una clase B, esto sería una dependencia porque el objeto cliente (clase A) depende del objeto servidor (clase B). Esto significa que cualquier cambio en la definición de la clase B podría afectar a la clase A. Sin embargo, esta dependencia puede ser débil si se hace que el código dependa de interfaces o clases abstractas en lugar de clases concretas.
+            \end{example}
+
+        \subsubsection{Interludio metodológico: ¿en qué orden probar cuando tenemos objetos que deben construirse luego?}
+            \begin{definition} \textbf{(Digresión)}
+                Conceptualmente, si una prueba está probando el comportamiento de más de una clase, o incluso más de una responsabilidad de un objeto, es una prueba de integración, no una prueba unitaria.
+            \end{definition}
+
+        \subsubsection{Relaciones entre clases}
+
+        \subsubsection{Colaboración por delegación}
+            Uno de los objetivos centrales de la POO era permitir la programación en base a componentes.
+
+            La manera más sencilla de vinculación es la simple \textbf{asociación} entre objetos. Esta vinculación nos sirve para la delegación de comportamiento.
+
+        \subsubsection{Programación por diferencia: herencia}
+            Una forma de vinculación de componentes es la herencia, o también relación de generalización-especialización.
+
+            \begin{definition} \textbf{(Herencia)}
+                La herencia es una relación entre clases, por la cual se define que una clase puede ser un caso particular de otra. A la clase más general la llamamos madre y a la más patricular hija.
+
+                Corolario:
+                Cuando hay herencia, todas las instancias de la clase hija son también instancias de la clase madre.
+                
+            \end{definition}
+
+            \begin{definition} \textbf{(programación por diferencia)} 
+                Programamos por diferencia cuando indicamos que parte de la implementación de un objeto está definida en otro objeto, y por lo tanto sólo implementamos las diferencias específicas.
+            \end{definition}
+
+            Como regla, entonces, conviene hacer siempre este test a una relación para ver si aplicar o no la herencia: \textit{¿necesitamos reutilizar la interfaz de una clase tal como está en otra clase, sin que nada me sobre?} Si es así, puedo usar herencia, haciendo que la clase que va a reutilizar sea hija de la clase que provee el código que nos interesa. Si no, conviene reutilizar por delegación.\\
+
+            Dejar la herencia solamente para aquellos casos en que la clase madre tenga una interfaz contenida en la interfaz de la clase hija. Es decir, que la clase madre no tenga métodos que sobren en la clase hija.\\
+
+            NOTA: La herencia se puede usar en cualquier tipo de clase pero comumente se nota más, su uso, en las clases abstractas y en las interfaces.\\
+
+        \subsubsection{Programación por diferencia: delegación de comportamiento}
+            \begin{definition} \textbf{Delegación de comportamiento}
+                Cuando deseamos programar por diferencia en JavaScript recurrimos a la delegación de comportamiento, por la cual un objeto delega su comportamiento en otro objeto prototípico sin necesidad de repetir las definiciones de los métodos.
+            \end{definition}
+        
+        \subsubsection{Redefinición}
+            \begin{definition} \textbf{(Redefinición)}
+                La redefinición existe para definir un mismo comportamiento en una clase derivada, para el mismo mensaje de la clase base. Por lo tanto, la semántica o significado del mensaje se debe mantener. Si así no fuera, conviene definir un método diferente, con nombre diferente.
+            \end{definition}
+
+            En la refinición es importante que se mantenga la firma del método, las precondiciones y postcondiciones pueden variar ligeralmente.
+        
+        \subsubsection{Clases abstractas}
+            \begin{definition} \textbf{(Clase abstracta)}
+                Una clase es abstracta cuando no puede tener instancias en forma directa, habitualmente debido a que sus clases descendientes cubren todos los casos posibles.
+                
+                Cuando queramos indicar una clase que no es abstracta (que puede tener instancias) la llamaremos clase concreta.          
+            \end{definition}
+
+        \subsubsection{Métodos abstractos}
+            \begin{definition} \textbf{(Método abstracto)}
+                Un método es abstracto cuando no lo implementamos en una clase, pero sí deseamos que todas las clases descendientes puedan entender el mensaje.
+                
+                Cuando queramos indicar un método que no es abstracto (que tiene implementación) lo llamaremos método concreto.
+            \end{definition}
+
+            Como corolario, un método abstracto no va a tener implementación, sino que sólo se define su firma, para que las clases descendientes lo implementen en base a ella.
+
+    \subsection{Cuestiones de implementación}
+        \subsubsection{Delegación y herencia en Smalltalk y Java}
+            La delegación tiene una implementación muy directa en ambos lenguajes: basta recibir al objeto servidor como parámetro o como respuesta a un mensaje, o simplemente tener una referencia a él, para poder delegar.
+
+        \subsubsection{Visibilidad}
+            Hay tres niveles de visibilidad:
+            \begin{itemize}
+                \item \textbf{Pública}: 
+                    el método, atributo o clase en cuestión se puede utilizar en cualquier parte del
+                programa.
+                \item \textbf{Privada}: 
+                    el método, atributo o clase en cuestión se puede utilizar solamente dentro de su
+                clase.
+                \item \textbf{Protegida}: 
+                    el método, atributo o clase en cuestión se puede utilizar solamente dentro de su clase o una clase descendiente de ella.
+                \item \textbf{Paquete}: 
+                    el método, atributo o clase en cuestión se puede utilizar solamente dentro de su paquete.
             \end{itemize}
 
-            Sí, tienes razón en ambos casos.\\
+            En Smalltalk hay menos control de la visibilidad por parte del programador: todos las clases y los métodos son públicos y los atributos son todos protegidos.
 
-            Si tienes una clase A donde los atributos usan una clase B, esto sería una asociación porque el objeto cliente (clase A) tiene almacenada una referencia al objeto servidor (clase B). Esto significa que el objeto cliente puede interactuar con el objeto servidor a través de esta referencia.
-
-            Si tienes una clase A donde sus métodos usan una clase B, esto sería una dependencia porque el objeto cliente (clase A) depende del objeto servidor (clase B). Esto significa que cualquier cambio en la definición de la clase B podría afectar a la clase A. Sin embargo, esta dependencia puede ser débil si se hace que el código dependa de interfaces o clases abstractas en lugar de clases concretas.
-        \end{example}
-
-        \begin{definition} \textbf{(Digresión)}
-            Conceptualmente, si una prueba está probando el comportamiento de más de una clase, o incluso más de una responsabilidad de un objeto, es una prueba de integración, no una prueba unitaria.
-        \end{definition}
-
-    \subsection{Programación por diferencia: herencia}
-        \begin{definition} \textbf{Herencia}
-            La herencia es una relación entre clases, por la cual se define que una clase puede ser un caso particular de otra. A la clase más general la llamamos madre y a la más patricular hija.
-
-            Corolario:
-            Cuando hay herencia, todas las instancias de la clase hija son también instancias de la clase madre.
+        \subsubsection{Métodos y clases abstractos}
+            Smalltalk, las clases abstractas son aquellas que tienen algún método abstracto, sin que tengamos que declararlo en forma explícit
             
-        \end{definition}
-
-        \begin{definition} \textbf{programación por diferencia} 
-            Programamos por diferencia cuando indicamos que parte de la implementación de un objeto está definida en otro objeto, y por lo tanto sólo implementamos las diferencias específicas.
-        \end{definition}
-
-        Como regla, entonces, conviene hacer siempre este test a una relación para ver si aplicar o no la herencia: \textit{¿necesitamos reutilizar la interfaz de una clase tal como está en otra clase, sin que nada me sobre?} Si es así, puedo usar herencia, haciendo que la clase que va a reutilizar sea hija de la clase que provee el código que nos interesa. Si no, conviene reutilizar por delegación.\\
-
-        Dejar la herencia solamente para aquellos casos en que la clase madre tenga una interfaz contenida en la interfaz de la clase hija. Es decir, que la clase madre no tenga métodos que sobren en la clase hija.
-
-
-
-
-
-
-
-
-
-
-
+            Smalltalk, como recién dijimos, maneja la cuestión en tiempo de ejecución, lanzando excepciones. En Java, en cambio, es el compilador el que chequea que no se llame un método abstracto o se intente instanciar una clase abstracta.
+            
+        \subsubsection{Constructores en situaciones de herencia y asociación}
+        \subsubsection{Herencia y compatibilidad en lenguajes con comprobación de tipos estática}
 
 
 
