@@ -126,11 +126,11 @@
 
         \newpage
         \begin{itemize}
-            \item \textbf{Asociación:} Es una relación de tipo \textbf{“tiene un”} entre clases, donde una clase tiene una referencia a otra clase. Por ejemplo, si tenemos una clase Persona y una clase Coche, podríamos decir que una persona tiene un coche, y representar esta relación con una asociación entre las clases Persona y Coche.
+            \item \textbf{Asociación:} Es una relación de tipo \textbf{“tiene un”} entre clases, donde una clase tiene una referencia a otra clase. Por ejemplo, si tenemos una clase Persona y una clase Coche, podríamos decir que una persona tiene un coche, y representar esta relación con una asociación entre las clases Persona y Coche. Esto se prodria notar en el código como una variable de instancia de tipo Coche en la clase Persona o como un atributo.
                 \begin{itemize}
-                    \item \textbf{Agregación:} Es un tipo especial de asociación que representa una relación de tipo \textbf{“parte de”} entre clases, donde una clase es parte de otra clase. A diferencia de la asociación, en la agregación las partes pueden existir independientemente del todo. Por ejemplo, si tenemos una clase Equipo y una clase Jugador, podríamos decir que un jugador es parte de un equipo, y representar esta relación con una agregación entre las clases Equipo y Jugador.
+                    \item \textbf{Agregación:} Es un tipo especial de asociación que representa una relación de tipo \textbf{“parte de” (“contine” o “hace referencia”)} entre clases, donde una clase es parte de otra clase. A diferencia de la asociación, en la agregación las partes pueden existir independientemente del todo. Por ejemplo, si tenemos una clase Equipo y una clase Jugador, podríamos decir que un jugador es parte de un equipo, y representar esta relación con una agregación entre las clases Equipo y Jugador.
                         
-                    \item \textbf{Composición:}  Es otro tipo especial de asociación que también representa una relación de tipo \textbf{“parte de”} entre clases, pero en este caso las partes no pueden existir independientemente del todo. Por ejemplo, si tenemos una clase Casa y una clase Habitacion, podríamos decir que una habitación es parte de una casa, y representar esta relación con una composición entre las clases Casa y Habitacion.
+                    \item \textbf{Composición:} Es otro tipo especial de asociación que también representa una relación de tipo \textbf{“parte de” (“contine” o “hace referencia”)} entre clases, pero en este caso las partes no pueden existir independientemente del todo. Por ejemplo, si tenemos una clase Casa y una clase Habitacion, podríamos decir que una habitación es parte de una casa, y representar esta relación con una composición entre las clases Casa y Habitacion.
                             
                 \end{itemize}
             \item \textbf{Herencia:} Es una relación de tipo \textbf{“es un”} entre clases, donde una subclase hereda las propiedades y comportamientos de su superclase y puede agregar o modificar propiedades y comportamientos propios. Por ejemplo, si tenemos una clase Vehiculo con propiedades como marca, modelo y color, y comportamientos como acelerar y frenar, podríamos crear una subclase Coche que herede estas propiedades y comportamientos de la clase Vehiculo, y agregar propiedades específicas como numeroDePuertas y comportamientos específicos como abrirTechoSolar.
@@ -150,6 +150,29 @@
             \item La palabra tener \textbf{abstract} en la definición de métodos \underline{no es obligatoria}.
             \item Generalmente las interfaces indican el \textbf{PUEDE HACER} de un objeto.
         \end{itemize}
+
+
+
+    \subsection{Tipos de lenguajes}
+        
+        \begin{figure}[h]
+            \centering
+            \includegraphics[width=0.8\textwidth]{../images/lenguajes.jpeg}
+            \caption{Tipos de lenguajes}
+            \label{fig:tipos_lenguajes}
+        \end{figure}
+
+        \begin{itemize}
+            \item \textbf{JAVA:} es un lenguaje con combinación estática, lleva a que una gran cantidad de error en el código surjan en \textbf{tiempo de compilación}.
+            \item \textbf{SMALLTALK:} es un lenguaje con combinación dinámica, lleva a que una gran cantidad de error en el código surjan en \textbf{tiempo de ejecución}.
+        \end{itemize}
+
+        La comprobación estática de tipos trata de asegurar que los programas no produzcan errores durante su ejecución.\href{https://babel.ls.fi.upm.es/prole2013/miguel_garcia_rodriguez.pdf}{link}
+
+
+
+
+
 
 
 
