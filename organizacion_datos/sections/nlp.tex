@@ -14,23 +14,66 @@
             \begin{equation}
                 \cos(\theta) = \frac{u \cdot v}{\|u\| \|v\|}
             \end{equation}
+
+            \begin{itemize}
+                \item Dos vectores $u$ y $v$ en $\mathbb{R}^n$ son mutuamente ortogonales si y solo si $u \cdot v = 0$.
+                \item Dos vectores $u$ y $v$ en $\mathbb{R}^n$ son paralelos si y solo si $u \cdot v = \|u\| \|v\|$.
+            \end{itemize}
+
+            Entonces un documento es similar a otro, si y solo si $\cos(\theta) \overset{tiende}{\longrightarrow} 1$.
         \end{definition}
 
-        \begin{itemize}
-            \item Dos vectores $u$ y $v$ en $\mathbb{R}^n$ son mutuamente ortogonales si y solo si $u \cdot v = 0$.
-            \item Dos vectores $u$ y $v$ en $\mathbb{R}^n$ son paralelos si y solo si $u \cdot v = \|u\| \|v\|$.
-        \end{itemize}
+    \subsection{Tokenización}
+        La tokenización es el proceso de dividir una cadena de caracteres en unidades más pequeñas, llamadas tokens. 
+    
+        ¿Por que tokenizar, y no usar simplente hacer un split? Porque la tokenización \texttt{nltk} es un proceso más complejo, mientrar que \texttt{split} solo separa de acuerdo a la key que se le pasa como parametro.
 
     \subsection{Bag of Words (BOW)}
         El modelo bolsa de palabras (del inglés, Bag of Words) es un método que se utiliza en el procesado del lenguaje para representar documentos ignorando el orden de las palabras. Con este modelo podemos tener una representación de cada documento, en función de las palabras que este contiene.
 
-
     \subsection{Term Frequency (Count Vectorizer)}
-        
+        Hace lo mismo que BOW, pero además cuenta la cantidad de veces que aparece cada palabra en cada documento.
 
+    
+    \subsection{Term Frequency x Inverse Document Frequency (TF-IDF)}
+        \begin{definition}
+            \begin{equation}
+                \text{TF-IDF}(palabra) = \log \left(\frac{N+1}{frecuencia}\right)
+            \end{equation}
 
+            \begin{itemize}
+                \item $N$ Cantidad total de documentos.
+                \item $frecuencia$ Cantidad de documentos en los que aparece la palabra.
+            \end{itemize}
 
+            Entonces, si una palabra aparece en todos los documentos, su valor de TF-IDF será 0.
+        \end{definition}
 
+    \subsection{Normalización}
+        \subsubsection{Stemming}
+            Es un proceso en donde se elimina la última parte de las palabras por algún proceso (hay steammers de varios tipos). El objetivo es llegar a la raíz (stem) de la palabra por medio de su prefijo.
+
+            \begin{itemize}
+                \item caballo, caballería, caballero $\rightarrow$ caball
+                \item biblioteca, bibliotecario, bibliotecología $\rightarrow$ bibliotec
+                \item canto, cantar, cantante $\rightarrow$ cant
+                \item cantidad, cantar, cantante $\rightarrow$ cant
+            \end{itemize}
+
+        \subsubsection{Lemmatization}
+            Devuelve la base de la pala (lemma), muchas veces por medio de un \textbf{diccionario de lemas} para cada palabra.
+
+            \begin{itemize}
+                \item caballo, caballería, caballero $\rightarrow$ caballo
+                \item biblioteca, bibliotecario $\rightarrow$ biblioteca
+                \item canto, canta, cantamos, cantan $\rightarrow$ canto
+                \item cantidad, cantidades $\rightarrow$ cantidad
+            \end{itemize}
+
+        \subsubsection{Stopwords}
+            Las stopwords o "palabras vacías" son palabras demaciado comunes o sin significado como artículos, pronombres, preposiciones, etc. Estas palabras no aportan información relevante para el análisis de texto, por lo que se suelen eliminar.
+
+            A veces (por ejemplo usando BOW o TF-IDF) queremos removerlas.
 
 
 

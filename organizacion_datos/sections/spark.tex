@@ -1,0 +1,121 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Big data y Almacenamiento Distribuido}
+\subsection{Big Data}
+    \textit{BIg Data} datos que no pueden ser procesados por métodos tradicionales. 
+    
+    Se caracterizan por las 5 \textit{V's}:
+    \begin{itemize}
+        \item Volumen: cantidad de datos.
+        \item Velocidad: velocidad a la que se generan los datos.
+        \item Variedad: variedad de datos.
+        \item Veracidad: calidad de los datos.
+        \item Valencia: valor de los datos.
+    \end{itemize}
+
+    \subsubsection{Volumen}
+        El impedimento de las computadoras a manejar grandes catidades de datos.
+
+        Cluster: un conjunto de computadoras que trabajan enconjunto y pueden ser vistas como un sistema único.
+
+    \subsubsection{Velocidad}
+        La velocidad con la cual se generan los mismos.
+        Para procesar los datos se necesita que el tiempo de procesamiento sea menor al tiempo de generación de los datos, sino estos se aculan y el algoritmo puede descartar una gran volumen de datos.
+
+
+
+\section{VIDEO}
+    \begin{definition} \textbf{(Map-Reduce)}
+        Procesamiento distribuido de datos utilizando un cluster.
+        \begin{itemize}
+            \item Modelo de programación para procesar grandes volúmenes de datos.
+            \item Sugue de la necesidad de procesar grandes volúmenes de datos de forma escalable.
+        \end{itemize}
+
+        \begin{itemize}
+            \item El usuario especifica una funcion una función \textbf{map} que procesa un par clave/valor para generar un conjunto de pares clave/valor intermedios.
+            \item Se debe especificar una función \textbf{reduce} que combina todos los valores asociados a una misma clave intermedia.
+        \end{itemize}
+    \end{definition}
+
+    \begin{definition} \textbf{(Map)}
+        \begin{itemize}
+            \item Transfroma nuestros datos.
+            \item Debe ser aplicada a cada dato de nuestro ser.
+            \item Puede ser paralelizada y distribuirse entre las distintas máquinas de un cluster.
+        \end{itemize}
+        
+        Algunas diferencias dependientes de la implementación:
+        \begin{itemize}
+            \item \textbf{Hadoop:} $Map(k,v) \rightarrow list(k2,v2)$
+            \item \textbf{spark:} $Map(r) \rightarrow list(r')$
+        \end{itemize}
+    \end{definition}
+
+    \begin{definition} \textbf{(Reduce)}
+        \begin{itemize}
+            \item Combina los resultados del map.
+            \item Es necesario procesar los datos de todas las máquinas del cluster.
+            \item Reduce locales en paralelo y reduce entre máquinas mediente esta de shuffle \& sort.
+        \end{itemize}
+
+        Algunas diferencias dependientes de la implementación:
+        
+        \underline{\textbf{Hadoop:}} $RecudeByKey((k, v), f) \rightarrow list(k, v)$
+        \begin{itemize}
+            \item El sistema agrupa todos los registros para los cuales la clave es la misma.
+            \item Requiere que todos los registros de igual clave estén en la misma máquina que ejecute el reduce: Shuffle \& Sort.
+        \end{itemize}
+
+        \underline{\textbf{Spark:}}
+        \begin{itemize}
+            \item La función reduce toma dos valores para dar como resultado la combinación de ambos.
+            \item El resultado de un reduce estre dos registros es un input del siguiente reduce.
+            \item Opereaciones \textbf{conmutativas} y \textbf{asociativas} de modo de poder ejecutarse distribuidas.
+        \end{itemize}
+    
+    \end{definition}
+
+    \begin{definition} \textbf{(Cluster)}
+        Conjunto de computadoras que trabajan juntas y pueden ser vistas como un sistema único.
+    \end{definition}
+
+    \begin{definition} \textbf{(Almacenamiento distribuido)}
+        \begin{itemize}
+            \item FIleSystem Distribuido (DFS)
+            \item Encargado de gastionar cómo y dónde guardar la información en una computadora, y cómo poder consultarla.
+            \item Almacenar grandes volúmenes de datos en multiples equipos.
+            \item Replicación de datos para tolerancia a fallos.
+            \item Tolerancia a fallos.
+            \item Alta disponibilidad (seguir funcionando aunque un nodo falle).
+            \item Relativo a bajo costo.
+        \end{itemize}
+        
+        \underline{Ejemplos de SD:}
+        \begin{itemize}
+            \item GDS (Google File System)
+            \item HDFS (Hadoop Distributed File System)
+            \item CEPH (Ceph File System)
+            \item S3 (Amazon Simple Storage Service)
+        \end{itemize}
+    \end{definition}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
