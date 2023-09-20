@@ -170,9 +170,25 @@
         La comprobación estática de tipos trata de asegurar que los programas no produzcan errores durante su ejecución.\href{https://babel.ls.fi.upm.es/prole2013/miguel_garcia_rodriguez.pdf}{link}
 
 
+    \subsection{COnceptos de la clases}
+        Ocultamiento de información: Para evitar que el objeto se torne inconsistente.
 
+        Encapsulamiento: Mantener el estado consistente del objeto.
 
+        \begin{itemize}
+            \item Atributo de instancia: Son los atributos que tiene cada objeto.
+            \item Atributo de clase: Son los atributos que tienen todas las instancias de la clase.
+        \end{itemize}
 
+        
+        \begin{definition} \textbf{(Desnormalización)}
+            Es cuando se repite información en distintas clases.
+            Desnormalización del estado: Es cuando se repite información en distintos atributos de una clase. O también tener atributos que se pueden calcular a partir de otros atributos. Por ejemplo, tener el atributo edad y fecha de nacimiento.  
+        \end{definition}
+
+        \begin{definition} \textbf{(Lazy loading)}
+            Es cuando se carga la información de un objeto cuando se la necesita. Por ejemplo, cuando se tiene un atributo que es una lista de objetos, y se quiere acceder a un objeto de esa lista, se carga la lista completa.
+        \end{definition}
 
 
 
