@@ -1,0 +1,54 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Refactorización} 
+    El problema es que, con cada cambio que le hacemos al software, éste se degrada en cuanto a calidad del código.
+
+    \begin{definition} \textbf{(Entropía)}
+        Entropía del software: una degradación de la calidad inexorablemente continua y creciente.
+    \end{definition}
+
+    \subsection{Refactorización al rescate}
+        \begin{definition} \textbf{(refactorización como técnica)}
+            Refactorización es una técnica que busca mejorar la calidad del código con vistas a facilitar su mantenimiento, pero sin alterar el comportamiento observable del mismo.
+        \end{definition}
+
+        \begin{definition} \textbf{(refactorización como un cambio)}
+            Una refactorización es un cambio realizado sobre el código de un sistema de software de modo tal que no se afecte su comportamiento observable y con el sólo fin de mejorar la legibilidad, la facilidad de comprensión, la extensibilidad u otros atributos de calidad interna con vistas al mantenimiento.
+        \end{definition}
+
+        Asegurar la preservacipon preservación del comportamiento luego de una
+        refactorización Los métodos analíticos, y en especial los de análisis estático, son los que utilizan las herramientas de refactorización
+        automática.
+
+        Pero no toda refactorización es posible de resolver por métodos analíticos ni automatizable. Por eso se suelen usar pruebas para asegurar la preservación del comportamiento. En definitiva, para permitir refactorizaciones más seguras y confiables, una buena táctica es trabajar con pruebas unitarias automatizadas, escritas antes de refactorizar, y correrlas después para asegurarnos que nuestro programa sigue funcionando tal como lo hacía antes del cambio.
+
+    \subsection{A qué llamamos observable}
+        El conjunto de entradas y el conjunto de salidas debería ser el mismo antes y después de una refactorización.
+
+        Lo que busca una refactorización es que se preserve lo que un usuario espera del sistema, que es lo que habitualmente llamamos requerimientos.
+
+        \begin{definition} \textbf{(refactorización (basada en requerimientos))}
+            Una refactorización es un cambio realizado sobre el código de un sistema de software, con el sólo fin de mejorar la calidad interna con vistas al mantenimiento, de modo tal que, luego de esa transformación, se sigan cumpliendo los requerimientos de la aplicación
+        \end{definition}
+
+
+    \subsection{Refactorización como parte de TD}
+        La práctica de refactorización permanente nos ayuda a que el
+        diseño vaya evolucionando conforme los cambios van surgiendo. ver libro fontenla pag 135.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

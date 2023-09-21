@@ -1,0 +1,198 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Java} 
+    % Cargamos una imagen
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.8\textwidth]{../images/tipos_datos.png}
+        \caption{Tipos de datos en Java \cite{tipos_de_datos_primitivos}}
+        \label{fig:java}
+    \end{figure}
+
+    \subsection{Tipos de clases en JAVA}
+        \begin{itemize}
+            \item \textbf{Clases}: Son las clases comunes y corrientes, que se pueden instanciar.
+            \item \textbf{Clases Abstractas}: Son clases que no se pueden instanciar, pero que sirven para heredar.
+            \item \textbf{Interfaces}: Son clases que no se pueden instanciar, pero que sirven para heredar.
+            \item \textbf{Clases Anónimas}: Son clases que no tienen nombre, y se usan para sobreescribir métodos.
+            \item \textbf{Clases finales}: Son clases que no se pueden heredar.
+        \end{itemize}
+
+    \subsection{Relaciones entre clases}
+        Relaciones en UML: \cite{uml_relacion_clases}
+
+        \begin{itemize}
+            \item \textbf{Asociación} 
+                \begin{itemize}
+                    \item \textbf{Agregación}
+                    \item \textbf{Composición}
+                \end{itemize}
+            \item \textbf{Herencia/Generalización} 
+            \item \textbf{Dependencia}
+            \item  \textbf{Realización/Implementación}
+        \end{itemize}
+
+        \begin{enumerate}
+            \item \textbf{Asociación:} 
+                Indica que una propiedad de una clase contiene una referencia a una instancia (o instancias) de otra clase.
+                
+                La asociación es la relación más utilizada entre una clase y otra clase, lo que significa que existe una conexión entre un tipo de objeto y otro tipo de objeto. Las combinaciones y agregaciones también pertenecen a las relaciones asociativas , pero las relaciones entre clases de afiliaciones son más débiles que las otras dos.
+                
+                Hay cuatro tipos de asociaciones : asociaciones bidireccionales , asociaciones unidireccionales , autoasociación y asociaciones de números múltiples.\\
+                
+                Por ejemplo: coches y conductores, un coche corresponde a un conductor en particular y un conductor puede conducir varios coches. El * en al fugura significa 0 o más.
+
+                \begin{figure}[ht]
+                    \centering
+                    \includegraphics[width=0.7\textwidth]{../images/uml_asociacion.png}
+                    \caption{Asociación}
+                    \label{fig:uml_asociacion}
+                \end{figure}
+                
+                \begin{enumerate}
+                    \item \textbf{Agregación:} 
+                        La relación entre el todo y la parte, y el todo y la parte se pueden separar.
+                        Las relaciones agregadas también representan la relación entre el todo y una parte de la clase, los objetos miembros son parte del objeto general, pero el objeto miembro puede existir independientemente del objeto general.Tiempo de vida \textit{independiente}.\\
+
+                        Por ejemplo, los conductores de autobús y la ropa y los sombreros de trabajo son parte de la relación general, pero se pueden separar. La ropa de trabajo y los sombreros se pueden usar en otros conductores. Los conductores de autobuses también pueden usar otra ropa de trabajo y sombreros.
+
+                        \begin{figure}[ht]
+                            \centering
+                            \includegraphics[width=0.7\textwidth]{../images/uml_agregacion.png}
+                            \caption{Agregación}
+                            \label{fig:uml_agregacion}
+                        \end{figure}
+
+                        Otro ejemplo puede ser el de un auto y sus ruedas, el auto depende si o si de tener cuatro ruedas.
+
+                    \item \textbf{Composición:} 
+                        La relación entre el todo y la parte, pero el todo y la parte no se pueden separar.
+                        
+                        La relación de combinación representa la relación entre el todo y la parte de la clase, y el total y la parte tienen una duración constante. Una vez que el objeto general no existe, algunos de los objetos no existirán y todos morirán en la misma vida. Tiempo de vida \textit{dependiente}.\\ 
+                        
+                        Por ejemplo, una persona está compuesta por una cabeza y un cuerpo. Los dos son inseparables y coexisten. 
+
+                        \begin{figure}[ht]
+                            \centering
+                            \includegraphics[width=0.7\textwidth]{../images/uml_composicion.png}
+                            \caption{Composición}
+                            \label{fig:uml_composicion}
+                        \end{figure}
+
+                \end{enumerate}
+            \item \textbf{Herencia/Generalización:} 
+                La herencia también se denomina generalización y se utiliza para describir la relación entre las clases padre e hijo. Una clase principal también se denomina clase base y una subclase también se denomina clase derivada.
+
+                En la relación de herencia, la subclase hereda todas las funciones de la clase principal y la clase principal tiene todos los atributos, métodos y subclases. Las subclases contienen información adicional además de la misma información que la clase principal.\\a
+
+                Por ejemplo: autobuses, taxis y automóviles son automóviles, todos tienen nombres y todos pueden estar en la carretera.
+
+            \item \textbf{Dependencia:} 
+                Suponga que un cambio en la clase A provoca un cambio en la clase B, luego diga que la clase B depende de la clase A.
+                En la mayoría de los casos, las dependencias se reflejan en los métodos de una clase que utilizan el objeto de otra clase como parámetro .
+                Una relación de dependencia es una relación de “uso”. Un cambio en una cosa en particular puede afectar a otras cosas que la usan, y usar una dependencia cuando es necesario indicar que una cosa usa otra. \\
+                
+                Por ejemplo: El auto depende de la gasolina. Si no hay gasolina, el automóvil no podrá conducir.
+
+                \begin{figure}[ht]
+                    \centering
+                    \includegraphics[width=0.7\textwidth]{../images/uml_dependencia.png}
+                    \caption{Dependencia}
+                    \label{fig:uml_dependencia}
+                \end{figure}
+
+            \item \textbf{Realización/Implementación:}
+                La implementación (Implementación) se utiliza principalmente para especificar la relación entre las interfaces y las clases de implementación.
+
+                Una interfaz (incluida una clase abstracta ) es una colección de métodos. En una relación de implementación, una clase implementa una interfaz y los métodos de la clase implementan todos los métodos de la declaración de la interfaz.\\
+                
+                Por ejemplo: los automóviles y los barcos son vehículos, y el vehículo es solo un concepto abstracto de una herramienta móvil, y el barco y el vehículo realizan las funciones móviles específicas.
+
+                \begin{figure}[ht]
+                    \centering
+                    \includegraphics[width=0.5\textwidth]{../images/uml_realizacion.png}
+                    \caption{Realización/Implementación}
+                    \label{fig:uml_realizacion}
+                \end{figure}
+        \end{enumerate}
+
+        \begin{figure}[ht]
+            \centering
+            \includegraphics[width=0.5\textwidth]{../images/uml_relaciones.png}
+            \caption{UML Relaciones entre clases}
+            \label{fig:uml_relaciones}
+        \end{figure}
+
+        \newpage
+        \begin{itemize}
+            \item \textbf{Asociación:} Es una relación de tipo \textbf{“tiene un”} entre clases, donde una clase tiene una referencia a otra clase. Por ejemplo, si tenemos una clase Persona y una clase Coche, podríamos decir que una persona tiene un coche, y representar esta relación con una asociación entre las clases Persona y Coche. Esto se prodria notar en el código como una variable de instancia de tipo Coche en la clase Persona o como un atributo.
+                \begin{itemize}
+                    \item \textbf{Agregación:} Es un tipo especial de asociación que representa una relación de tipo \textbf{“parte de” (“contine” o “hace referencia”)} entre clases, donde una clase es parte de otra clase. A diferencia de la asociación, en la agregación las partes pueden existir independientemente del todo. Por ejemplo, si tenemos una clase Equipo y una clase Jugador, podríamos decir que un jugador es parte de un equipo, y representar esta relación con una agregación entre las clases Equipo y Jugador.
+                        
+                    \item \textbf{Composición:} Es otro tipo especial de asociación que también representa una relación de tipo \textbf{“parte de” (“contine” o “hace referencia”)} entre clases, pero en este caso las partes no pueden existir independientemente del todo. Por ejemplo, si tenemos una clase Casa y una clase Habitacion, podríamos decir que una habitación es parte de una casa, y representar esta relación con una composición entre las clases Casa y Habitacion.
+                            
+                \end{itemize}
+            \item \textbf{Herencia:} Es una relación de tipo \textbf{“es un”} entre clases, donde una subclase hereda las propiedades y comportamientos de su superclase y puede agregar o modificar propiedades y comportamientos propios. Por ejemplo, si tenemos una clase Vehiculo con propiedades como marca, modelo y color, y comportamientos como acelerar y frenar, podríamos crear una subclase Coche que herede estas propiedades y comportamientos de la clase Vehiculo, y agregar propiedades específicas como numeroDePuertas y comportamientos específicos como abrirTechoSolar.
+            
+            \item \textbf{Dependencia:} Es una relación entre clases donde una clase depende de otra clase para su funcionamiento. Por ejemplo, si tenemos una clase Calculadora y una clase Operacion, podríamos decir que la calculadora depende de la operación para realizar cálculos, y representar esta relación con una dependencia entre las clases Calculadora y Operacion.
+            \item \textbf{Realización/Implementación:} Es una relación de tipo \textbf{“se comporta como”} entre clases, donde una clase implementa una interfaz y debe proporcionar implementaciones para todos los métodos definidos en la interfaz. Por ejemplo, si tenemos una interfaz Volador con métodos como despegar y aterrizar, podríamos tener clases como Avion y Pajaro que implementen esta interfaz y proporcionen implementaciones para los métodos despegar y aterrizar.
+        \end{itemize}
+        
+    \subsection{Interface}
+        Interfaces: \cite{interfaces}.
+        \begin{itemize}
+            \item Son una \textbf{colección de métodos abstractos} con propiedades (atributos) \textbf{constantes}.
+            \item Una interfaz \textbf{solamente puede extender o implemtar otras interfaces} (la cabtidad que quiera).
+            \item Da a conocer qué se debe hacer (métodos) \textbf{pero sin mostrar su implemtación} (solo puede tener métodos abstractos).
+            \item Solo puede tener \textbf{métodos} con \textbf{métodos públicos} (no pueden ser protected o private).
+            \item Solo puede tener "variables" public static final (o sea constantes).
+            \item La palabra tener \textbf{abstract} en la definición de métodos \underline{no es obligatoria}.
+            \item Generalmente las interfaces indican el \textbf{PUEDE HACER} de un objeto.
+        \end{itemize}
+
+
+
+    \subsection{Tipos de lenguajes}
+        
+        \begin{figure}[h]
+            \centering
+            \includegraphics[width=0.8\textwidth]{../images/lenguajes.jpeg}
+            \caption{Tipos de lenguajes}
+            \label{fig:tipos_lenguajes}
+        \end{figure}
+
+        \begin{itemize}
+            \item \textbf{JAVA:} es un lenguaje con combinación estática, lleva a que una gran cantidad de error en el código surjan en \textbf{tiempo de compilación}.
+            \item \textbf{SMALLTALK:} es un lenguaje con combinación dinámica, lleva a que una gran cantidad de error en el código surjan en \textbf{tiempo de ejecución}.
+        \end{itemize}
+
+        La comprobación estática de tipos trata de asegurar que los programas no produzcan errores durante su ejecución.\href{https://babel.ls.fi.upm.es/prole2013/miguel_garcia_rodriguez.pdf}{link}
+
+
+    \subsection{COnceptos de la clases}
+        Ocultamiento de información: Para evitar que el objeto se torne inconsistente.
+
+        Encapsulamiento: Mantener el estado consistente del objeto.
+
+        \begin{itemize}
+            \item Atributo de instancia: Son los atributos que tiene cada objeto.
+            \item Atributo de clase: Son los atributos que tienen todas las instancias de la clase.
+        \end{itemize}
+
+        
+        \begin{definition} \textbf{(Desnormalización)}
+            Es cuando se repite información en distintas clases.
+            Desnormalización del estado: Es cuando se repite información en distintos atributos de una clase. O también tener atributos que se pueden calcular a partir de otros atributos. Por ejemplo, tener el atributo edad y fecha de nacimiento.  
+        \end{definition}
+
+        \begin{definition} \textbf{(Lazy loading)}
+            Es cuando se carga la información de un objeto cuando se la necesita. Por ejemplo, cuando se tiene un atributo que es una lista de objetos, y se quiere acceder a un objeto de esa lista, se carga la lista completa.
+        \end{definition}
+
+
+
+
+
+
+\end{document}  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
