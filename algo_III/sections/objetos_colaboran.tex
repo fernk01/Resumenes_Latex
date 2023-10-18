@@ -154,9 +154,45 @@
         \subsubsection{Constructores en situaciones de herencia y asociación}
         \subsubsection{Herencia y compatibilidad en lenguajes con comprobación de tipos estática}
 
+    
+    \subsection{Modularización}
+        Principios de diseño:
+        \begin{itemize}
+            \item clases
+            \item Paquetes
+            \item Métodos
+        \end{itemize}
 
+        \subsubsection{Cohesión y acoplamiento}
+            \begin{definition} \textbf{(Cohesión)}
+                La cohesión es un principio de diseño que indica que los elementos de un módulo deben estar relacionados entre sí, y que el módulo debe tener una única responsabilidad.
+            \end{definition}
 
+            Para mantener compresibles, mantenibles y reutilizables a los módulos.
+    
+    \subsection{Pricipios SOLID}
+        \subsubsection{Única responsabilidad (SRP)}
+            Tiene que ver con la cohesión.\\
 
+            Cada clase o método debe tener una única responsabilidad, y por lo tanto una única razón para cambiar.\\
+            
+            Por ejemplo: si tenemos una clase que se encarga de la lógica de negocio y de la persistencia (guardar), esta clase tiene dos responsabilidades y por lo tanto dos razones para cambiar.\\
 
+        \subsubsection{Abierto-cerrado (OCP)}
+            "Las clases tienen que estar cerradas para modificación, pero abiertas para reutilización".\\
+
+            \begin{itemize}
+                \item No modificar las clases existentes
+                \item Extenderlas o adaptarlas por herencia o delegación.
+            \end{itemize}
+
+        \subsubsection{Sustitución de Liskov (LSP)}
+            En los clientes, debemos poder sustituir un tipo por sus subtipos.\\
+            Relación es "es un"
+            La subclase sea un subconjunto de la clase.
+            Las clase base no deben tener comportamiento que dependan de las clases derivadas.\\
+            
+        \subsubsection{Segregación de interfaces (ISP)}
+        \subsubsection{Inversión de dependencias (DIP)}
 
 \end{document}  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
