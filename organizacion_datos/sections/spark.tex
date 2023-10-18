@@ -25,7 +25,7 @@
 
 
 
-\section{VIDEO}
+\subsection{Clase 6 - Spark - 1 - Spark}
     \begin{definition} \textbf{(Map-Reduce)}
         Procesamiento distribuido de datos utilizando un cluster.
         \begin{itemize}
@@ -101,12 +101,55 @@
         \end{itemize}
     \end{definition}
 
+\subsection{Clase 6 - Spark - 2 - Spark}
 
 
+\subsection{YouTube}
+    MapReduce vs Spark \href{https://www.youtube.com/watch?v=Z-iNJypyZTQ&list=PLlhVpWerA0Ky2GVx1yE7LW_Xtq_DruUSB&index=2}{link}:
+    \begin{itemize}
+        \item MapReduce: procesamiento de datos distribuido en disco.
+        \item Spark: procesamiento de datos distribuido en memoria.
+        \item Spark es 100 más rápido que MapReduce.
+        \item Spark es más fácil de usar que MapReduce.
+        \item Spark es más flexible que MapReduce.
+        \item Spark es más costoso que MapReduce.
+        \item Spark es más complejo que MapReduce.
+        \item Spark es más nuevo que MapReduce.
+    \end{itemize}
 
+    Spark trabaja con RDDs (Resilient Distributed Datasets) que son colecciones de objetos que se pueden dividir en particiones y distribuir entre los nodos del cluster. Los RDDs son inmutables y tolerantes a fallos.
 
+    Los RDDs:
+    \begin{itemize}
+        \item Spark utiliza RDDs para almacenar datos.
+        \item Son como tuplas o listas.
+        \item Datos Distribuidos.
+        \item Tolerantes a fallos.
+        \item Opereaciones paralelizables.
+        \item Habilidad para datos de multiples fuentes.
+    \end{itemize}
 
-
+    Opereaciones:
+    \begin{itemize}
+        \item Transformaciones: crean un nuevo RDD a partir de uno existente: map, filter, flatMap, sample, union, intersection, distinct, groupByKey, reduceByKey, sortByKey, join, cogroup, cartesian.
+            \begin{itemize}
+                \item RDD.filter(): Aplica una función y devuelve los elementos que son verdaderos, parecido a filter de python.
+                \item RDD.map(): Transforma cada elemento sin cambiar el número de elementos, parecido a pandas.apply().
+                
+                Estraer la primer letra de una lista de nombres.
+                \item RDD.flatMap(): Transforma cada elemento y cambia el número de elementos.
+                
+                Convertir el corpus de un text a una lista de palabras.
+            \end{itemize}
+        \item Acciones: devuelven un valor al programa driver después de ejecutar un cálculo en un RDD: reduce, collect, count, first, take, takeSample, takeOrdered, saveAsTextFile, saveAsSequenceFile, saveAsObjectFile, countByKey, foreach.
+            \begin{itemize}
+                \item Collect: Devuelve todos los elementos del RDD como una matriz.
+                \item Count: Devuelve el número de elementos en el RDD.
+                \item First: Devuelve el primer elemento del RDD.
+                \item Take: Devuelve un número especificado de elementos del RDD.
+            \end{itemize}
+        \item Lazy evaluation: las transformaciones no se ejecutan hasta que no se ejecuta una acción.
+    \end{itemize}
 
 
 
