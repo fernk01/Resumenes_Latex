@@ -1,0 +1,141 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{El kernel}
+    En un sistema operativo, el kernel (núcleo en español) es la parte central que actúa como intermediario entre el hardware y el software. Es el componente esencial del sistema operativo y se encarga de administrar los recursos del sistema, proporcionando servicios básicos a las aplicaciones y controlando el acceso y la comunicación con el hardware.\\
+
+    \underline{El kernel tiene varias responsabilidades clave, entre las que se incluyen:}
+    \begin{enumerate}
+        \item \textbf{Gestión de memoria:} El kernel se encarga de asignar y liberar memoria para los procesos y programas en ejecución, asegurándose de que cada proceso tenga acceso a la cantidad de memoria necesaria y evitando conflictos.
+        \item \textbf{Gestión de procesos:} El kernel administra los procesos en ejecución, asignándoles los recursos necesarios, programando su ejecución y asegurándose de que se ejecuten de manera segura y eficiente. También maneja la planificación de la CPU, decidiendo qué procesos se ejecutan y durante cuánto tiempo.
+        \item \textbf{Gestión de dispositivos:} El kernel proporciona una capa de abstracción para los dispositivos de hardware, permitiendo que las aplicaciones accedan a ellos de manera uniforme. Controla la comunicación y el acceso a los dispositivos, gestionando los controladores correspondientes.
+        \item \textbf{Gestión de archivos:} El kernel proporciona servicios para crear, leer, escribir y eliminar archivos en el sistema de almacenamiento. También maneja la organización y el acceso a los directorios y archivos del sistema.
+        \item \textbf{Seguridad y control de acceso:} El kernel controla el acceso a los recursos del sistema, aplicando políticas de seguridad y garantizando que las aplicaciones y los usuarios solo puedan acceder a los recursos permitidos.
+    \end{enumerate}
+
+    El kernel es entonce la capa de software de más bajo nivel en la computadora.[apunte]
+
+    \subsection{Ejecución Directa}
+        La \textbf{ejecución directa} de un programa es un concepto simple, significa, correr el programa directamente en la CPU. Esto otorga la ventaja de tener rapidez. Aunque también esto viene con algunos problemas. Estos son: ¿Como se asegura el OS que el programa no va a hacer nada que el usuario no quiere que sea hecho? ¿Como hace el OS para pausar la ejecución de ese programa y hacer que se ejecute otro?.
+
+        Debido a esto se necesita limitar la ejecución directa. Hoy en día esto ya no existe en un sistema operativo serio.
+	
+    \subsection{Limitar la Ejecución Directa}
+        Para poder limitar la ejecución directa se necesitan ciertos mecanismos de hardware:
+        \begin{itemize}
+            \item Dual Mode Operation - Modo de operación dual.
+            \item Privileged Instructions - Instrucciones Privilegiadas.
+            \item Memory Protection - Proteccion de Memoria.
+            \item Timer Interrupts - Interrupciones por temporizador.
+        \end{itemize}
+        
+        \subsubsection*{Modo Dual de Operaciones}
+            El modo de operación dual, es un mecanismo que proveen todas los procesadores a y algunos microprocesadores modernos. El hardware debe tener la capacidad de funcionar en dos modos diferentes: modo kernel (o modo supervisor) y modo usuario (o modo usuario final). El modo kernel tiene privilegios más altos y acceso completo a todos los recursos del sistema, mientras que el modo usuario tiene acceso limitado y restringido a ciertos recursos. El sistema operativo se ejecuta en modo kernel, mientras que las aplicaciones de usuario se ejecutan en modo usuario.\\
+
+            \underline{Existen dos modos operacionales utilizados de la CPU:}
+            \begin{itemize}
+                \item \textbf{Modo Usuario o User Mode:} que ejecuta instrucciones en nombre del usuario.
+                \item \textbf{Modo Supervisor o Kernel o Monitor:} que ejecuta instrucciones en nombre del kernel del sistema operativo y estas son instrucciones privilegiadas.
+            \end{itemize}
+    
+    \subsection{Protección del Sistema:}
+        ¿Cual es el hardware necesario para que el kernel del sistema operativo pueda proteger a Usuarios y aplicaciones de otros usuarios?
+
+        \subsubsection*{Instrucciones Privilegiadas}
+            Por la existencia del Modo Dual, los distintos modos poseen cada uno su propio set de instrucciones que pueden ser ejecutadas o no según el bit de modo de operación.
+            
+        \subsubsection*{Protección de Memoria}
+            El SO y los programas que están siendo ejecutados deben residir ambos en memoria al mismo tiempo (el SO debe cargar el programa, hacer que comience a ejecutarse y el programa tiene que residir en memoria para poder hacerlo), de modo que -para que la memoria sea compartida de forma segura- el SO debe poder configurar el hardware de forma tal que cada proceso pueda leer y escribir su propia porción de memoria.
+        
+        \subsubsection*{Timer Interrupts (Interrupciones por temporizador)}
+            Es un mecanismo que periódicamente le permita al kernel desalojar al proceso de usuario en ejecución y volver a tomar el control del procesador, y así de toda la máquina.
+
+    \subsection{Visión General (Definiciones concretas)}
+        \textbf{Sistema Operativo:} Es el software que controla los recursos de hardware de una computadora y provee un ambiente bajo el cual los programas pueden ejecutarse. Habitualmente a este software se lo llama el Kernel.
+
+        Gracias a la existencia del kernel los programas son independientes del hardware subyacente, es decir, se comunican con el kernel y no con el hardware directamente.  
+
+        El kernel es entonces la capa de software de más bajo nivel en la computadora. El kernel es un programa.
+
+    \subsection{Modos de Transferencia}
+        Formas de alternar entre modo usuario y modo Kernel.
+        
+        \subsubsection*{De Modo Usuario a Modo Kernel}
+            \begin{itemize}
+                \item \textbf{interrupciones:} son eventos asíncronos que ocurren en el hardware o en el software que requieren la atención del kernel.
+                \item \textbf{excepciones del procesador:} son eventos síncronos que ocurren en el procesador como resultado de la ejecución de una instrucción.
+                \item \textbf{ejecución de system calls (llamadas al sistema):} son eventos síncronos que ocurren cuando una aplicación de usuario ejecuta una instrucción especial que le pide al kernel que realice una acción en su nombre.
+            \end{itemize}
+        
+        \subsubsection*{Interrupciones}
+            Una interrupción es una señal asincrónica enviada hacia el procesador de que algún evento externo ha sucedido y pueda requerir de la atención del mismo.
+
+            El procesador está continuamente chequeando si una interrupción es disparada. Cuando se dispara una interrupción, el procesador completa o detiene la instrucción que se esté ejecutando, guarda todo el contexto y comienza a ejecutar el manejador de esa interrupción en el Kernel.\\
+            
+            El orden de prioridad de las interrupciones (según BCH) es:
+
+            \begin{itemize}
+                \item Errores de la Máquina.
+                \item Timers.
+                \item Discos.
+                \item Network devices.
+                \item Terminales.
+                \item Interrupciones de Software.
+            \end{itemize}
+
+        \subsubsection*{Excepciones del Procesador}
+            La otra forma por la cual se necesitaría pasar de modo usuario a modo kernel es por un evento de hardware causado por un programa de usuario. Por ejemplo, si un programa de usuario intenta dividir por cero, el procesador genera una excepción de división por cero. El procesador entonces pasa al modo kernel y ejecuta el manejador de la excepción de división por cero. Acceder fuera de la memoria del proceso, intentar escribir en memoria de solo lectura, ntentar ejecutar una instrucción privilegiada en modo usuario, etc.
+
+
+        \subsubsection*{System Calls}
+            Las System Calls son funciones que permiten a los procesos de usuario pedirle al kernel que realice operaciones en su nombre. Las system calls son la interfaz entre el kernel y las aplicaciones de usuario.\\
+
+    \subsection{System Calls}
+        Una system call (llamada al sistema) es un punto de entrada controlado al kernel permitiendo a un proceso solicitar que el kernel realice alguna operación en su nombre [KER](cap. 3).\\
+
+        Algunas características generales de las system calls son:
+        \begin{itemize}
+            \item Una system call cambia el modo del procesador de user mode a kernel mode, por ende la CPU podrá acceder al área protegida del kernel.
+            \item El conjunto de system calls es fijo. Cada system call esta identificada por un único número, que por supuesto no es visible al programa, este sólo conoce su nombre.
+            \item Cada system call debe tener un conjunto de parámetros que especifican información que debe ser transferida desde el user space al kernel space.
+        \end{itemize}
+
+        \subsubsection*{Llamada a una System Call}
+            Desde el punto de vista de un programa llamar a una system call es mas o menos como invocar a una función de C. Por supuesto, detrás de bambalinas muchas cosas suceden:
+
+            \begin{enumerate}
+                \item El programa realiza un llamado a una system call mediante la invocación de una función wrapper (envoltorio) en la biblioteca de C.
+                \item Dicha función wrapper tiene que proporcionar todos los argumentos al system call trap\_handling. Estos argumentos son pasados al wraper por el stack, pero el kernel los espera en determinados registros. La función wraper copia estos valores a los registros.
+                \item Dado que todas las system calls son accedidas de la misma forma, el kernel tiene que saber identificarlas de alguna forma. Para poder hacer esto, la función wrapper copia el número de la system call a un determinado registro de la CPU. 
+                \item La función wrapper ejecuta una instrucción de código maquina llamada trap machine instruction (int 0x80), esta causa que el procesador pase de user mode a kernel mode y ejecute el código apuntado por la dirección 0x80 (128) del vector de traps del sistema.
+                \item En respuesta al trap de la posición 128, el kernel invoca su propia función llamada syste\_call() (arch/i386/entry.s) para manejar esa trap. Este manejador:
+                      \begin{enumerate}
+                        \item graba el valor de los registros en el stack del kernel.
+                        \item verifica la validez del numero de system call.
+                        \item invoca el servicio correspondiente a la system call llamada a través del vector de system\ calls, el servico realiza su tarea y finalmete le devuelve un resultado de estado a la rutina system\_call().
+                        \item se restauran los registros almacenado en el stack del kernel y se agrega el valor de retorno en el stack.
+                        \item se devuelve el control al wraper y simultáneamente se pasa a user mode.
+                      \end{enumerate}
+                \item Si el valor de retorno del la rutina de servicio de la system call da error, la función wrapper setea el valor en errno.
+            \end{enumerate}
+
+
+    \subsection{Tipos de Kernel}
+        Existen básicamente dos tipos de estructuras de kernel:
+        \begin{itemize}
+            \item \textbf{Monolítico:} El kernel es un único programa (en realidad proceso) que se ejecuta continuamente en la memoria de la computadora intercambiándose con la ejecución de los procesos de usuario. Contiene todos los servicios del sistema operativo en el mismo espacio de direcciones.
+            \item \textbf{Microkernel:} Es un kernel que se ejecuta en modo kernel y contiene solo los servicios esenciales del sistema operativo, como la gestión de memoria, la planificación de procesos y la comunicación entre procesos. Todos los demás servicios del sistema operativo se ejecutan como procesos de usuario fuera del kernel. El kernel proporciona una interfaz de programación de aplicaciones (API) para que los procesos de usuario puedan comunicarse con los servicios del kernel. El kernel microkernel es el tipo de kernel utilizado por los sistemas operativos macOS e iOS de Apple.
+            \item \textbf{Híbrido:} Es un kernel que se ejecuta en modo kernel y contiene algunos servicios del sistema operativo en el mismo espacio de direcciones, mientras que otros servicios se ejecutan como procesos de usuario fuera del kernel. El kernel híbrido es el tipo de kernel utilizado por el sistema operativo Windows de Microsoft.
+        \end{itemize}Existen básicamente dos tipos de estructuras de kernel:   
+        
+        
+
+
+
+
+
+
+
+
+
+\end{document}  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

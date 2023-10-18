@@ -1,0 +1,31 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Programación} 
+    \begin{enumerate}
+        \item \textbf{fork():}
+        \item \textbf{getpid()}
+    \end{enumerate}
+    \subsection{Fork}
+        La única forma de que un usuario cree un proceso en el sistema operativo UNIX es llamando a la system call fork.
+
+        Crea un proceso y devuelve su id.\\
+
+        ¿Que hace fork?:
+        \begin{itemize}
+            \item Crea y asigna una nueva entrada en la \textbf{Process Table} para el nuevo proceso.
+            \item Asigna un número de ID único al proceso hijo.
+            \item Crea una copia lógica del \textbf{contexto} del proceso padre, algunas de esas partes pueden ser compartidas como la sección text.
+            \item Realiza ciertas operaciones de I/O.
+            \item Devuelve el número de ID del hijo al proceso padre, y un 0 al proceso hijo.
+        \end{itemize}
+
+        \underline{Código de error:}
+        \begin{itemize}
+            \item \textbf{EAGAIN:} No hay suficientes recursos disponibles para crear un nuevo proceso.
+            \item \textbf{ENOMEM:} No hay suficiente memoria disponible para crear un nuevo proceso.
+            \item \textbf{EPERM:} El proceso no tiene permiso para crear un nuevo proceso.
+        \end{itemize}
+
+
+\end{document}  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
