@@ -26,11 +26,12 @@
     \end{table}
     
     
-    \underline{Métricas Clasificación:}
+    \underline{\textbf{Métricas Clasificación binaria:}}
         \begin{itemize}
-            \item Precisión.
+            \item Accuracy (exactitud).
+            \item Precision (precisión)
             \item Recall (exhaustividad).
-            \item Valor-F ($F_1$)
+            \item F1 Score (Valor-F ($F_1$))
         \end{itemize}
         
         Ver video 03b min 40. Matriz de confucion.
@@ -162,6 +163,49 @@
 
             Linealmente separable: es un conjunto de datos que se puede separar en dos grupos distintos de manera que no haya puntos de datos que se superpongan entre los dos grupos.\\
             
+    \subsection{Métricas de Clasificación Binaria}
+        Las métricas de evaluación son medidas utilizadas para evaluar el rendimiento de un modelo de aprendizaje automático. En el caso de los problemas de clasificación en el aprendizaje supervisado, estas métricas nos ayudan a determinar qué tan bien nuestro modelo está haciendo predicciones categóricas, como clasificar un correo electrónico como spam o no spam. \href{https://www.themachinelearners.com/metricas-de-clasificacion/#Precision}{link}\\
+        
+        \underline{Metricas para la clasificación:}
+        \begin{itemize}
+            \item Accuracy (exactitud).
+            \item Precision (precisión)
+            \item Recall (exhaustividad).
+            \item F1 Score (Valor-F ($F_1$))
+        \end{itemize}
+        
+        \underline{Para cada una de las métricas:}
+        \begin{itemize}
+            \item \textbf{TP (True Positive):} Son los valores que el algoritmo clasifica como positivos y que realmente son positivos.
+            \item \textbf{TN (True Negative):} Son los valores que el algoritmo clasifica como negativos y que realmente son negativos.
+            \item \textbf{FP (False Positive):} Falsos positivos, es decir, valores que el algoritmo clasifica como positivo cuando realmente son negativos.
+            \item \textbf{FN (False Negative):} Falsos negativos, es decir, valores que el algoritmo clasifica como negativo cuando realmente son positivos.
+        \end{itemize}
+        
+        \begin{definition} \textbf{(Accuracy)}
+            \begin{equation}
+                Accuracy = \frac{TP + TN}{TP + TN + FP + FN}
+            \end{equation}
+        \end{definition}
+
+        \begin{definition} \textbf{(Precisión)}
+            \begin{equation}
+                Precision = \frac{TP}{TP + FP}
+            \end{equation}
+        \end{definition}
+        
+        \begin{definition} \textbf{(Recall)}
+            \begin{equation}
+                Recall = \frac{TP}{TP + FN}
+            \end{equation}
+        \end{definition}
+        
+        \begin{definition} \textbf{(Valor-F)}
+            \begin{equation}
+                F1 = \frac{2 \cdot Precision \cdot Recall}{Precision + Recall}
+            \end{equation}
+        \end{definition}
+    
     \subsection{Regresión}
         Los modelos que existe para la regresión son:
         \begin{itemize}
@@ -218,6 +262,30 @@
                 RMSE(X, h) = \sqrt{\frac{1}{m} \cdot \sum_{i=1}^{m}(h(x^{(i)}-y^{(i)}))^2}
             \end{equation} 
         \end{definition}
+
+        \begin{example}
+            Usando $x = [10, 20, 30]$, $y = [11, 19, 25]$.
+            \begin{itemize}
+                \item \textbf{MAE:} 
+                    \begin{equation}
+                        \begin{split}
+                            MAE(x, y) &= \frac{1}{3} \cdot (|10-11| + |20-19| + |30-25|) \\
+                            &= \frac{1}{3} \cdot (1 + 1 + 5) \\
+                            &= 2.33
+                        \end{split}
+                    \end{equation}
+                \item 
+                    \textbf{MSE:}
+                    \begin{equation}
+                        \begin{split}
+                            MSE(x, y) &= \frac{1}{3} \cdot ((10-11)^2 + (20-19)^2 + (30-25)^2) \\
+                            &= \frac{1}{3} \cdot (1 + 1 + 25) \\
+                            &= 9
+                        \end{split}
+                    \end{equation}
+            \end{itemize}
+        \end{example}
+
 
 
 		          
