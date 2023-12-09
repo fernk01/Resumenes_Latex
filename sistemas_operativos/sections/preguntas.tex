@@ -1,12 +1,4 @@
 \documentclass[../main.tex]{subfiles}
-\usepackage{mdframed}
-
-% Recuadrar teoremas
-\surroundwithmdframed[hidealllines=true,backgroundcolor=blue!20]{theorem}
-\surroundwithmdframed[hidealllines=true,backgroundcolor=blue!20]{definition}
-\surroundwithmdframed[hidealllines=true,backgroundcolor=blue!20]{exercise}
-\surroundwithmdframed[hidealllines=true,backgroundcolor=blue!20]{answer}
-
 % \begin{mdframed}[linecolor=blue]
 % \end{mdframed}\medskip
 
@@ -272,14 +264,25 @@
     \end{exercise}
 
     \begin{exercise}
-        Sea un disco que posee 2049 bloques de 4kb y un sistema operativo cuyos i-nodos son de 512 bytes. Definir un sistema de archivos FFS. Explique las decisiones tomadas.
+        Sea un disco que posee 2049 bloques de 4KiB y un sistema operativo cuyos i-nodos son de 512 bytes. Definir un sistema de archivos FFS. Explique las decisiones tomadas.
 
         \begin{answer}
             La estructura de un File System es la siguiente:
             \begin{itemize}
                 \item \textbf{Superbloque:} apunta al inodo del directorio raíz.
-                \item \textbf{inodos:} contiene información sobre los archivos, como el tamaño, los permisos, etc. Apunta a los bloques de datos. Continen la información de qué bloques componen a un archivo/directorio.
+                \item \textbf{bitmap inodos:} indica qué inodos están libres y cuáles están ocupados.
+                \item \textbf{bitmap bloques:} indica qué bloques están libres y cuáles están ocupados.
+                \item \textbf{inodos:} contiene información sobre los archivos, como el tamaño, los permisos, etc.
+                \item \textbf{bloques de datos:} contienen los datos de los archivos.
             \end{itemize}
+            Pra el superbloque (1 bloque = 4KiB), bitmap inodos (1 bloque = 4KiB), bitmap bloques (1 bloque = 4KiB) y los inodos (512 bloques), data región (1534 bloques).\\
+
+            Determinamos cuantos inodos caben en un bloque de 4KiB = 4094 bytes: 4096 bytes / 512 bytes = 8 inodos.
+
+            Cantidad máxima de archivos/directorios: 512 bloques * 8 inodos/bloque = 4096 inodos.\\
+
+            Cantidad de los bloques de datos: 1534 bloques * 4KiB = 6136 KiB = 6 MiB.
+   
         \end{answer}
     \end{exercise}
 
@@ -290,23 +293,60 @@
         \begin{itemize}
             \item symlink
             \item hardlink
-            \item ambos 
-            \item ninguno
+            \item ambos \checkmark
+            \item ninguno  
         \end{itemize}
+
+        \begin{answer}
+            Esta elección permite tanto enlaces simbólicos (symlink) como enlaces duros (hardlink). Los enlaces simbólicos son referencias a otros archivos por su nombre, mientras que los enlaces duros son múltiples entradas de directorio que apuntan al mismo inodo (y por lo tanto, al mismo conjunto de bloques de datos). Ambos tipos de enlaces comparten el mismo conjunto de bloques de datos, pero tienen diferentes inodos y nombres de archivo. Este diseño proporciona flexibilidad y eficiencia en la gestión de enlaces en el sistema de archivos. Ver Figura \ref{fig:hard-sym-link}.
+        \end{answer}
+        \label{ex:hard-sym-link}
     \end{exercise}
 
-    \begin{exercise}
-        ¿Qué es un hardlink? ¿Qué es un symlink?
-    \end{exercise}
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[scale=0.45]{../images/hard-sym-link.png}
+        \label{fig:hard-sym-link}
+        \caption{Hardlink y Symlink. Ejercicio \ref{ex:hard-sym-link}}
+    \end{figure}
 
     \begin{exercise}
         ¿Qué es un inodo? ¿Qué información contiene?
     \end{exercise}
 
+    \begin{exercise}
+        Se tiene un file system basado en i-nodos con la siguientes características:
+        \begin{itemize}
+            \item Los bloques son de 1 kiB (1024 bytes) $[2^10]$.
+            \item EI tamaño de un i-nodo es de 64 bytes $[2^6]$.
+        \end{itemize}
+        La distribución de los bloques es: 
+        \begin{itemize}
+            \item EI bloque 0 es el boot\_block.
+            \item EI bloque 1 es el superblock.
+            \item EI bloque 2 es el isnode\_bitmap.
+            \item EI bloque 3 es el block-bitmap.
+            \item Hay 126 bloques dedicados a la i-nodo table.
+            \item Hay 128 bloques dedicados a datos.
+        \end{itemize}
+        Dada la siguiente información de la tabla de i-nodos y el contenido de los bloques de datos. indicar:
+        \begin{enumerate}
+            \item ¿Qué se mostraria en pantalla o que equivale ejecutar \textit{ls home/dato} y \textit{ls home/juan}?
+            \item Indicar la secuencia de operaciones (lecturas de bloque blkrd indicando la numeración relativa a la sección de Ánodos o datos: y la numeración dentro del sistema entero). que se realizan para acceder al archivo \textit{ls home/dato/start.sh}. Indicar para cada bloque leído qué información contiene y qué parte resulta relevante.
+            \item ¿Hay algún archivo que tenga más de una referencia (hard link)? ¿Qué syscall o comando unix usaría para borrar este tipo de archivos?
+        \end{enumerate}
+
+        \begin{answer}
+            Ver el \href{https://fiubaar-my.sharepoint.com/:p:/g/personal/lcondoriz_fi_uba_ar/ERIlPc9eeJNOg9fCVzz2cjgBsjhy15nYJswfVTfWUNNcTg?e=KJvO2T}{PowerPoint} diapositiva 2. El enuciado esta en la carpeta parciales.\\
+
+            \begin{enumerate}
+                \item \textit{ls home/dato}: Al ejectarse el file system comienza accediendo al superbloque, el cual apunta al inodo del direcrorio raíz (/). Una vez accedido al inodo del directorio raíz, se accede al bloque de datos, tiene el bloque 0 y 1, en el bloque 1 se encuantra el directorio home. El directorio home tiene un inodo 5, se accede al inodo 5, se accede al bloque de datos, tiene bloque directos: 7 y 9 y indirectos: 0 (Block ptr). El block ptr = 0, me dice que ingrese al data block 0, ahi va estar "dato". Me manda al inode 11, y luego block ptr = 9, me manda al data block 9. En tonces com \textit{ls home/dato} me muestra "jos.c star.c". 
+            \end{enumerate}
+        \end{answer}
+    \end{exercise}
+
+    
 \subsection{Definiciones sueltas}
     El sistema operativo tiene que poder configurar el hardware de forma tal que cada proceso pueda leer y escribir solo su propia memoria.
-
-
-
 
 \end{document}  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
