@@ -16,21 +16,21 @@
     El kernel es entonce la capa de software de más bajo nivel en la computadora.[apunte]
 
     \subsection{Ejecución Directa}
-        La \textbf{ejecución directa} de un programa es un concepto simple, significa, correr el programa directamente en la CPU. Esto otorga la ventaja de tener rapidez. Aunque también esto viene con algunos problemas. Estos son: ¿Como se asegura el OS que el programa no va a hacer nada que el usuario no quiere que sea hecho? ¿Como hace el OS para pausar la ejecución de ese programa y hacer que se ejecute otro?.
+        Significa, correr el programa directamente en la CPU. Esto otorga la ventaja de tener rapidez. Aunque también esto viene con algunos problemas: se da control total al programa sin supervisión, abministrar la ejecucuión de programas, comienzo, fin, nuevo.
 
         Debido a esto se necesita limitar la ejecución directa. Hoy en día esto ya no existe en un sistema operativo serio.
 	
     \subsection{Limitar la Ejecución Directa}
         Para poder limitar la ejecución directa se necesitan ciertos mecanismos de hardware:
         \begin{itemize}
-            \item Dual Mode Operation - Modo de operación dual.
-            \item Privileged Instructions - Instrucciones Privilegiadas.
-            \item Memory Protection - Proteccion de Memoria.
-            \item Timer Interrupts - Interrupciones por temporizador.
+            \item \textbf{Dual Mode Operation} - Modo de operación dual.
+            \item \textbf{Privileged Instructions} - Instrucciones Privilegiadas.
+            \item \textbf{Memory Protection} - Proteccion de Memoria.
+            \item \textbf{Timer Interrupts} - Interrupciones por temporizador.
         \end{itemize}
         
         \subsubsection*{Modo Dual de Operaciones}
-            El modo de operación dual, es un mecanismo que proveen todas los procesadores a y algunos microprocesadores modernos. El hardware debe tener la capacidad de funcionar en dos modos diferentes: modo kernel (o modo supervisor) y modo usuario (o modo usuario final). El modo kernel tiene privilegios más altos y acceso completo a todos los recursos del sistema, mientras que el modo usuario tiene acceso limitado y restringido a ciertos recursos. El sistema operativo se ejecuta en modo kernel, mientras que las aplicaciones de usuario se ejecutan en modo usuario.\\
+            El modo de operación dual, es un mecanismo que proveen todas los procesadores a y algunos microprocesadores modernos. El hardware debe tener la capacidad de funcionar en dos modos diferentes: modo kernel y modo usuario. El modo kernel tiene privilegios más altos y acceso completo a todos los recursos del sistema, mientras que el modo usuario tiene acceso limitado y restringido a ciertos recursos. El sistema operativo se ejecuta en modo kernel, mientras que las aplicaciones de usuario se ejecutan en modo usuario.\\
 
             \underline{Existen dos modos operacionales utilizados de la CPU:}
             \begin{itemize}
@@ -48,7 +48,7 @@
             El SO y los programas que están siendo ejecutados deben residir ambos en memoria al mismo tiempo (el SO debe cargar el programa, hacer que comience a ejecutarse y el programa tiene que residir en memoria para poder hacerlo), de modo que -para que la memoria sea compartida de forma segura- el SO debe poder configurar el hardware de forma tal que cada proceso pueda leer y escribir su propia porción de memoria.
         
         \subsubsection*{Timer Interrupts (Interrupciones por temporizador)}
-            Es un mecanismo que periódicamente le permita al kernel desalojar al proceso de usuario en ejecución y volver a tomar el control del procesador, y así de toda la máquina.
+            Todos los procesadores poseen un dispositivo de hardware llamado Interrupciones de Tiempo que periódicamente le permita al kernel desalojar al proceso de usuario en ejecución y volver a tomar el control del procesador, y así de toda la máquina.
 
     \subsection{Visión General (Definiciones concretas)}
         \textbf{Sistema Operativo:} Es el software que controla los recursos de hardware de una computadora y provee un ambiente bajo el cual los programas pueden ejecutarse. Habitualmente a este software se lo llama el Kernel.

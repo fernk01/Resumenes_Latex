@@ -1,12 +1,35 @@
 \documentclass[../main.tex]{subfiles}
 
 \begin{document} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \section{Introducción: x86}
-    \subsection*{Ley de Moore}
-        En 1965 Gordon Moore, cofundador de Intel formuló una ley empírica que se ha podido constatar hasta nuestros días que dice:
 
-        \textit{”Aproximadamente cada dos años se duplica el número de transistores en un microprocesador por unidad de área”}
-    
-    \subsection*{Arquitectura x86: Hardware}
+\subsection{Ley de Moore}
+    En 1965 Gordon Moore, cofundador de Intel formuló una ley empírica que se ha podido constatar hasta nuestros días que dice:\\
+
+    \textit{”Aproximadamente cada dos años se duplica el número de transistores en un microprocesador por unidad de área”}
+
+\subsection{Arquitectura x86: Hardware}
+    \underline{Registros de Segmento}
+    \begin{itemize}
+        \item \textbf{CS}: Segmento de código.
+        \item \textbf{DS}: Segmento de datos.
+        \item \textbf{SS}: Segmento de pila.
+        \item \textbf{ES}: Segmento extra.
+    \end{itemize}
+
+    \subsubsection{El Stack}
+        El stack o pila es una estructura de datos que almacena información de forma temporal y ordenada, siguiendo el principio LIFO. El stack se usa
+        para guardar los datos locales de una función, las direcciones de retorno de las llamadas a funciones y los parámetros que se pasan a las funciones. Más precisamente la ejecución de un programa se basa practicamente en pusher.
+
+    \subsubsection{Estructura del Stack Frame}
+        En la arquitectura x86 los programas utilizan el stack del programa para soportar la llamada a funciones (o procedimientos). La máquina utiliza el stack para:
+        
+        \begin{itemize}
+            \item Almacenar los parámetros de la función.
+            \item Almacenar las variables locales de la función.
+            \item Almacenar el valor de retorno de la función.
+            \item Almacenar los registros que se deben preservar.
+        \end{itemize}
+
+
 \end{document}  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
