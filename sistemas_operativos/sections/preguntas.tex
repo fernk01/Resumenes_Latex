@@ -292,18 +292,22 @@
         Este diseño posibilita la implementación de enlaces de tipo, marque la opción correcta:
         \begin{itemize}
             \item symlink
-            \item hardlink
-            \item ambos \checkmark
+            \item hardlink  \checkmark
+            \item ambos
             \item ninguno  
         \end{itemize}
 
         \begin{answer}
-            Esta elección permite tanto enlaces simbólicos (symlink) como enlaces duros (hardlink). Los enlaces simbólicos son referencias a otros archivos por su nombre, mientras que los enlaces duros son múltiples entradas de directorio que apuntan al mismo inodo (y por lo tanto, al mismo conjunto de bloques de datos). Ambos tipos de enlaces comparten el mismo conjunto de bloques de datos, pero tienen diferentes inodos y nombres de archivo. Este diseño proporciona flexibilidad y eficiencia en la gestión de enlaces en el sistema de archivos. Ver Figura \ref{fig:hard-sym-link}.
+            Los nombres de archivos no se almacenan directamente en los inodos, sino que se almacenan en los bloques de datos de los directorios. Este diseño permite la implementación de enlaces de tipo "hard link". Los enlaces de tipo "hard link" permiten que un archivo tenga múltiples nombres de archivo asociados a un mismo inodo, lo que significa que un solo archivo puede tener múltiples entradas en diferentes directorios, pero todos apuntan al mismo inodo. Este enfoque proporciona eficiencia en el almacenamiento, ya que los datos del archivo solo se almacenan una vez, pero se pueden acceder a través de múltiples nombres de archivo. Ver Figura \ref{fig:hard-sym-link}.\\
+
+            Los symlinks (enlaces simbólicos) son un tipo de archivo especial. Funcionan creando una nueva entrada en algún directorio que contiene la ruta del archivo/directorio de destino.
+            Así, un symlink no apunta directamente a un inode, sino que guardan una cadena con una ruta. Cuando se accede al symlink, el sistema operativo sigue esa ruta para encontrar el archivo/directorio real apuntado.
+            Los symlinks tienen su propio inode que contiene los contenidos del enlace, así como los permisos, propietario, etc. Pero no apuntan al mismo inode que el archivo de destino.
         \end{answer}
         \label{ex:hard-sym-link}
     \end{exercise}
 
-    \begin{figure}[ht]
+    \begin{figure}[h]
         \centering
         \includegraphics[scale=0.45]{../images/hard-sym-link.png}
         \label{fig:hard-sym-link}
@@ -311,7 +315,37 @@
     \end{figure}
 
     \begin{exercise}
-        ¿Qué es un inodo? ¿Qué información contiene?
+        Sea un disco que posee 256 bloques de 4KiB y un sistema operativo cuyos i-nodos son de 512 bytes. Defina la estructura completa del sistema de archivos unix-like . Justificar cada elección.
+        \newpage
+        \begin{answer} Suposiciones:
+            \begin{itemize}
+                \item \textbf{Superbloque:} 1 bloque = 4KiB.
+                \item \textbf{bitmap inodos:} 1 bloque = 4KiB.
+                \item \textbf{bitmap bloques:} 1 bloque = 4KiB.
+            \end{itemize}
+
+            \underline{Forma 1:} Queremos que cada inode tenga un unico bloque de datos.
+            Entonces:
+            $$ Cantidad\_inodos = Cantidad\_bloques$$
+            $$ 253 bloques = Cantidad\_bloques\_inodos + Cantidad\_bloques$$
+            $$ 253 bloques = \frac{1}{8} \cdot x + x$$
+
+            La ecuacion es: $x = 224.88 \approx 225$, donde x es la cantidad de bloques de datos y inodos.\\
+
+            En un bloque entran 8 inodos, entonces la cantidad de inodos es: $225 inodos / 8 \frac{inodos}{bloques} = 28 bloques$. Con lo cual la cantidad de bloques de datos = 253-28 = 225 bloques. \\
+            
+            conclusion: 28 bloques de inodos y 225 bloques de datos.\\
+
+            \underline{Forma 2:} Lo hacemos suponiendo que el inode puede tener mas de un bloque de datos.\\
+
+            Se elige la cantidad máxima de archivos/directorios (un inodo por cada uno) que se quiera tener en el sistema de archivos. Por ejemplo: 1000 archivos/directorios.\\
+            
+            Cantidad de bloques de datos para los inodos: 
+            $$1000 inodos / [8 inodos / bloque] = 125 bloques$$.
+
+            Cantidad de bloques de datos es: 
+            $$256 bloques - 125 bloques = 131 bloques$$
+        \end{answer}
     \end{exercise}
 
     \begin{exercise}
