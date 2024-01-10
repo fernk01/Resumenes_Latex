@@ -1,0 +1,79 @@
+\documentclass{article}
+%%  Configuracion de la pagina.
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+%%
+%% Dimensiones de la pagina.
+% \textheight = 24cm	% alto texto impreso
+% \textwidth = 16cm	    % ancho texto impreso
+% \topmargin = -2cm	    % margen superior 3-2=1cm
+% \oddsidemargin = -0.5cm % margen izquierdo 4.5-0.5=4cm
+%%
+\usepackage{graphicx}
+%%  
+\usepackage{subfiles} % Best loaded last in the preamble
+%%  Para tener una bibliografia.
+\usepackage{csquotes}
+\usepackage{biblatex} %Imports biblatex package
+\addbibresource{bibliography.bib} %Import the bibliography file
+\nocite{*}
+%%
+%% Numeracion con formato: Page 3 of 20
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+\pagestyle{fancy}
+\fancyhf[]{}
+
+\chead{Apunte Ingles}  %titulos de la página.
+\rfoot{Página \thepage \hspace{1pt} de \pageref{LastPage}}
+
+\renewcommand{\headrulewidth}{1pt}  % Grosor de la línea del encabezado.
+\renewcommand{\footrulewidth}{1pt}  % Grosor de la línea del pie de página. 
+%%
+%% Referecias a las secciones.
+\usepackage{hyperref}
+%%
+%% Configuracion para el indice.
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }  
+\urlstyle{same}
+%%
+%% para usar icono de checkmark
+\usepackage{tikz}
+\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;} 
+%% Cambiar colo a las section y subsection
+\usepackage{xcolor}
+\usepackage{sectsty}
+\chapterfont{\color{blue}}  % sets colour of chapters
+\sectionfont{\color{blue}}  % sets colour of sections
+\subsectionfont{\color{purple}}  % sets colour of sections
+\subsubsectionfont{\color{brown}}  % sets colour of sections
+%% 
+\hbadness=100000 % No warnings for underfull or overfull boxes (ignora este error en visual studio code)
+%%  Titulo para la portada.
+\title{Apunte Ingles}
+\author{lcondoriz }
+\date{Enero 2024}
+%%
+%% Definiciones
+\usepackage{amsthm}
+\newtheorem{theorem}{Theorem}
+\theoremstyle{definition}
+\newtheorem{definition}{Definición}[section]
+
+\newtheorem{exercise}{Ejercicio}[section]
+\newtheorem{answer}{Respuesta}[section]    
+
+
+\usepackage{mdframed}
+\surroundwithmdframed[hidealllines=true,backgroundcolor=blue!20]{theorem}
+\surroundwithmdframed[hidealllines=true,backgroundcolor=blue!20]{definition}
+\surroundwithmdframed[hidealllines=true,backgroundcolor=blue!20]{exercise}
+\surroundwithmdframed[hidealllines=true,backgroundcolor=blue!20]{answer}
